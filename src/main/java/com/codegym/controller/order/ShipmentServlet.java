@@ -1,10 +1,11 @@
+package com.codegym.controller.order;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ShipmentServlet", value = "/ShipmentServlet")
+@WebServlet(name = "ShipmentServlet", value = "/shipment")
 public class ShipmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
