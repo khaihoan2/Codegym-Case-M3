@@ -3,10 +3,7 @@ package com.codegym.dao.shipment;
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Shipment;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +36,16 @@ public class ShipmentDao implements IShipmentDao {
 
     @Override
     public boolean update(int id, Shipment shipment) {
-        return false;
+        boolean isUpdate = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update shipment set name = ? where id = ?");
+            preparedStatement.setString(1, shipment.getName());
+            preparedStatement.setInt(2, id);
+            isUpdate = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUpdate;
     }
 
     @Override

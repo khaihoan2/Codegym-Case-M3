@@ -22,7 +22,7 @@ public class ShipmentServlet extends HttpServlet {
         }
         switch (action) {
             case "edit":
-                editShipment(request, response);
+                showEdit(request, response);
                 break;
             default:
                 showList(request, response);
@@ -31,13 +31,18 @@ public class ShipmentServlet extends HttpServlet {
 
     }
 
-    private void editShipment(HttpServletRequest request, HttpServletResponse response) {
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Shipment shipment = shipmentService.findById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/shipment/create/jsp");
-
-
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/shipment/edit.jsp");
+        request.setAttribute("shipment", shipment);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
@@ -55,6 +60,28 @@ public class ShipmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "edit":
+                editShipment(request, response);
+                break;
 
+        }
+
+    }
+
+    private void editShipment(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        Shipment shipment = new Shipment(id, name);
+        shipmentService.update(id, shipment);
+        try {
+            response.sendRedirect("/shipment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

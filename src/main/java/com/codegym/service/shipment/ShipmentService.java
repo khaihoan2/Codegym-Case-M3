@@ -21,7 +21,7 @@ public class ShipmentService implements IShipmentService {
 
     @Override
     public boolean update(int id, Shipment shipment) {
-        return false;
+        return shipmentDao.update(id, shipment);
     }
 
     @Override
@@ -31,6 +31,6 @@ public class ShipmentService implements IShipmentService {
 
     @Override
     public Shipment findById(int id) {
-        return null;
+        return shipmentDao.findById(id);
     }
 }
