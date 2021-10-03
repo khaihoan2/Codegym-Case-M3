@@ -11,15 +11,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO implements IProductDAO{
+public class ProductDAO implements IProductDAO {
 
     private static final Connection CONNECTION = DBConnection.getConnection();
+    private static final String SQL_SELECT_ALL = "SELECT * FROM product";
 
     @Override
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try {
-            PreparedStatement statement = CONNECTION.prepareStatement("SELECT * FROM product");
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_SELECT_ALL);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -45,7 +46,22 @@ public class ProductDAO implements IProductDAO{
 
     @Override
     public boolean save(Product product) {
-        return false;
+        boolean isSaved = false;
+        try {
+            PreparedStatement statement = CONNECTION.prepareStatement("");
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setDouble(3, product.getPrice());
+            statement.setString(4, product.getSKU());
+            statement.setInt(5, product.getBrandId());
+            statement.setInt(6,product.getCategoryId());
+            statement.setInt(7,product.getVendorId());
+            statement.setInt(8, product.getDiscountId());
+            isSaved = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isSaved;
     }
 
     @Override
