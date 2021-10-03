@@ -86,4 +86,23 @@ public class PaymentDao implements IPaymentDao {
         }
         return payment;
     }
+
+    @Override
+    public List<Payment> searchByName(String name) {
+        List<Payment> payments = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from payment where name like ?");
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name1 = resultSet.getString("name");
+                Payment payment = new Payment(id, name1);
+                payments.add(payment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payments;
+    }
 }

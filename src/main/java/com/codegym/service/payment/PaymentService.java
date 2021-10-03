@@ -33,4 +33,10 @@ public class PaymentService implements IPaymentService {
     public Payment findById(int id) {
         return paymentDao.findById(id);
     }
+
+    @Override
+    public List<Payment> searchByName(String name) {
+        name = "%" + name + "%";
+        return paymentDao.searchByName(name);
+    }
 }

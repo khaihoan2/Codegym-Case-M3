@@ -22,6 +22,9 @@ public class PaymentServlet extends HttpServlet {
         }
 
         switch (action) {
+            case "q":
+                showList(request, response);
+                break;
             case "create":
                 showCreate(request, response);
                 break;
@@ -76,7 +79,15 @@ public class PaymentServlet extends HttpServlet {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
-        List<Payment> payments = paymentService.getAll();
+        List<Payment> payments = null;
+        String name = request.getParameter("name");
+        if (name == null) {
+            payments = paymentService.getAll();
+        } else if (name.equals("")) {
+            payments = null;
+        } else {
+            payments = paymentService.searchByName(name);
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/payment/list.jsp");
         request.setAttribute("payments", payments);
         try {
