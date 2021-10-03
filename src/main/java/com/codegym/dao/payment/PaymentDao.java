@@ -4,6 +4,10 @@ import com.codegym.dao.DBConnection;
 import com.codegym.model.Payment;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDao implements IPaymentDao {
@@ -11,7 +15,20 @@ public class PaymentDao implements IPaymentDao {
 
     @Override
     public List<Payment> getAll() {
-        return null;
+        List<Payment> payments = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from payment");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                Payment payment = new Payment(id, name);
+                payments.add(payment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payments;
     }
 
     @Override

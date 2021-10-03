@@ -1,15 +1,17 @@
 package com.codegym.service.payment;
 
+import com.codegym.dao.payment.IPaymentDao;
+import com.codegym.dao.payment.PaymentDao;
 import com.codegym.model.Payment;
 
 import java.util.List;
 
 public class PaymentService implements IPaymentService {
-
+    private IPaymentDao paymentDao = new PaymentDao();
 
     @Override
     public List<Payment> getAll() {
-        return null;
+        return paymentDao.getAll();
     }
 
     @Override
