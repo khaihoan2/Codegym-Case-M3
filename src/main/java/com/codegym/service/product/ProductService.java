@@ -17,7 +17,7 @@ public class ProductService implements IProductService{
 
     @Override
     public boolean save(Product product) {
-        return false;
+        return PRODUCT_DAO.save(product);
     }
 
     @Override
