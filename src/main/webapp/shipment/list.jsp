@@ -13,6 +13,11 @@
 </head>
 <body>
     <div>
+        <form action="/shipment?action=q">
+            <input type="text" name="name">
+            <button>Search</button>
+        </form>
+        <button><a href="shipment?action=create">create</a></button>
         <table>
             <tr>
                 <th>Id</th>

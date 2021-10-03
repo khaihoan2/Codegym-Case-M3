@@ -10,6 +10,10 @@ public class Shipment {
         this.name = name;
     }
 
+    public Shipment(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

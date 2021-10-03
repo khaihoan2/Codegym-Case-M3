@@ -12,7 +12,7 @@
 </head>
 <body>
     <div>
-        <form action="" method="post">
+        <form method="post">
             <input type="text" name="name" value="${shipment.name}">
             <button>edit</button>
         </form>

@@ -10,7 +10,6 @@ import java.util.List;
 public class ShipmentDao implements IShipmentDao {
     private Connection connection = DBConnection.getConnection();
 
-
     @Override
     public List<Shipment> getAll() {
         List<Shipment> shipments = new ArrayList<>();
@@ -31,7 +30,15 @@ public class ShipmentDao implements IShipmentDao {
 
     @Override
     public boolean save(Shipment shipment) {
-        return false;
+        boolean isShipment = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into shipment(name) value (?)");
+            preparedStatement.setString(1, shipment.getName());
+            isShipment = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isShipment;
     }
 
     @Override
@@ -50,7 +57,15 @@ public class ShipmentDao implements IShipmentDao {
 
     @Override
     public boolean remove(int id) {
-        return false;
+        boolean isRemove = false;
+        try {
+            CallableStatement callableStatement = connection.prepareCall("call delete_shipment_by_id(?)");
+            callableStatement.setInt(1, id);
+            isRemove = callableStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isRemove;
     }
 
     @Override
@@ -68,5 +83,25 @@ public class ShipmentDao implements IShipmentDao {
             e.printStackTrace();
         }
         return shipment;
+    }
+
+    @Override
+    public List<Shipment> searchByName(String name) {
+        List<Shipment> shipments = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from shipment where name like ?");
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name1 = resultSet.getString("name");
+                Shipment shipment = new Shipment(id, name1);
+                shipments.add(shipment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return shipments;
     }
 }

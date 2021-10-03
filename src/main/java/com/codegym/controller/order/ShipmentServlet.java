@@ -21,14 +21,47 @@ public class ShipmentServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "create":
+                showCreate(request, response);
+                break;
             case "edit":
                 showEdit(request, response);
+                break;
+            case "delete":
+                showDelete(request, response);
+                break;
+            case "q":
+                showList(request, response);
                 break;
             default:
                 showList(request, response);
                 break;
         }
 
+    }
+
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shipment/delete.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id", id);
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shipment/create.jsp");
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showEdit(HttpServletRequest request, HttpServletResponse response) {
@@ -46,7 +79,15 @@ public class ShipmentServlet extends HttpServlet {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
-        List<Shipment> shipments = shipmentService.getAll();
+        List<Shipment> shipments = null;
+        String name = request.getParameter("name");
+        if (name == null) {
+            shipments = shipmentService.getAll();
+        } else  if (name.equals("")){
+            shipments = null;
+        } else {
+            shipments = shipmentService.searchByName(name);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/shipment/list.jsp");
         request.setAttribute("shipments", shipments);
         try {
@@ -65,12 +106,38 @@ public class ShipmentServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "create":
+                createShipment(request, response);
+                break;
             case "edit":
                 editShipment(request, response);
                 break;
-
+            case "delete":
+                deleteShipment(request, response);
+                break;
         }
 
+    }
+
+    private void deleteShipment(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        shipmentService.remove(id);
+        try {
+            response.sendRedirect("/shipment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createShipment(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        Shipment shipment = new Shipment(name);
+        shipmentService.save(shipment);
+        try {
+            response.sendRedirect("/shipment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editShipment(HttpServletRequest request, HttpServletResponse response) {

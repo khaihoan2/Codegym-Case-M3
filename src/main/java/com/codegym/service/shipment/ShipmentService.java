@@ -16,7 +16,7 @@ public class ShipmentService implements IShipmentService {
 
     @Override
     public boolean save(Shipment shipment) {
-        return false;
+        return shipmentDao.save(shipment);
     }
 
     @Override
@@ -26,11 +26,17 @@ public class ShipmentService implements IShipmentService {
 
     @Override
     public boolean remove(int id) {
-        return false;
+        return shipmentDao.remove(id);
     }
 
     @Override
     public Shipment findById(int id) {
         return shipmentDao.findById(id);
+    }
+
+    @Override
+    public List<Shipment> searchByName(String name) {
+        name = "%" + name + "%";
+        return shipmentDao.searchByName(name);
     }
 }
