@@ -49,6 +49,18 @@ public class ShipmentDao implements IShipmentDao {
 
     @Override
     public Shipment findById(int id) {
-        return null;
+        Shipment shipment = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from shipment where id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                shipment = new Shipment(id, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return shipment;
     }
 }

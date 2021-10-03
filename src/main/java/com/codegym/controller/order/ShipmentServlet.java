@@ -3,13 +3,11 @@ package com.codegym.controller.order;
 import com.codegym.model.Shipment;
 import com.codegym.service.shipment.IShipmentService;
 import com.codegym.service.shipment.ShipmentService;
-import sun.misc.REException;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ShipmentServlet", value = "/shipment")
@@ -23,12 +21,22 @@ public class ShipmentServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "create":
+            case "edit":
+                editShipment(request, response);
                 break;
             default:
                 showList(request, response);
                 break;
         }
+
+    }
+
+    private void editShipment(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Shipment shipment = shipmentService.findById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/shipment/create/jsp");
+
+
 
     }
 
