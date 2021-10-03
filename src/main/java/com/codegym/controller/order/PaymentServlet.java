@@ -24,10 +24,22 @@ public class PaymentServlet extends HttpServlet {
 
         switch (action) {
             case "create":
+                showCreate(request, response);
                 break;
             default:
                 showList(request, response);
                 break;
+        }
+    }
+
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/payment/create.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -46,6 +58,26 @@ public class PaymentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+                createPayment(request, response);
+                break;
+        }
 
+    }
+
+    private void createPayment(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        Payment payment = new Payment(name);
+        paymentService.save(payment);
+        try {
+            response.sendRedirect("/payment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

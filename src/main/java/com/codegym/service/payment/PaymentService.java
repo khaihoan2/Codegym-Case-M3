@@ -16,7 +16,7 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public boolean save(Payment payment) {
-        return false;
+        return paymentDao.save(payment);
     }
 
     @Override

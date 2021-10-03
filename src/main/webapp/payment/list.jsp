@@ -17,6 +17,9 @@
             <input type="text" name="name">
             <button>Search</button>
         </form>
+        <button>
+            <a href="/payment?action=create">Create</a>
+        </button>
         <table>
             <tr>
                 <th>Id</th>

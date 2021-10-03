@@ -33,7 +33,16 @@ public class PaymentDao implements IPaymentDao {
 
     @Override
     public boolean save(Payment payment) {
-        return false;
+        boolean isSave = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into payment(name) value (?)");
+            preparedStatement.setString(1, payment.getName());
+            isSave = preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return isSave;
     }
 
     @Override
