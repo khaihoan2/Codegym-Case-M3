@@ -22,16 +22,16 @@ public class ProductService implements IProductService{
 
     @Override
     public boolean update(int id, Product product) {
-        return false;
+        return PRODUCT_DAO.update(id, product);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return PRODUCT_DAO.delete(id);
     }
 
     @Override
     public Product findById(int id) {
-        return null;
+        return PRODUCT_DAO.findById(id);
     }
 }
