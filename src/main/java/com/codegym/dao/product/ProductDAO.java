@@ -29,6 +29,8 @@ public class ProductDAO implements IProductDAO {
     public static final String SQL_MARK_AS_DELETED = "UPDATE product\n" +
             "SET delete_at = CURDATE()\n" +
             "WHERE id = ?";
+    public static final String SQL_FIND_BY_ID = "SELECT * FROM product\n" +
+            "WHERE id = ?";
 
     @Override
     public List<Product> getAll() {
@@ -114,6 +116,27 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public Product findById(int id) {
-        return null;
+        Product product = null;
+        try {
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_FIND_BY_ID);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                double price = Double.parseDouble(resultSet.getString("price"));
+                String SKU = resultSet.getString("SKU");
+                int brandId = resultSet.getInt("brand_id");
+                int categoryId = resultSet.getInt("category_id");
+                int vendorId = resultSet.getInt("vendor_id");
+                int discountId = resultSet.getInt("discount_id");
+                LocalDate createAt = LocalDate.parse(resultSet.getString("created_at"));
+                LocalDate lastModifiedAt = LocalDate.parse(resultSet.getString("created_at"));
+                LocalDate deletedAt = LocalDate.parse(resultSet.getString("created_at"));
+                product = new Product(id, name, description, price, SKU, brandId, categoryId, vendorId, discountId, createAt, lastModifiedAt, deletedAt);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 }
