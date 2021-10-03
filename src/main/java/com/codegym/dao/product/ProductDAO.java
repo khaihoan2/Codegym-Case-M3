@@ -26,6 +26,9 @@ public class ProductDAO implements IProductDAO {
             "       discount_id      = ?,\n" +
             "       last_modified_at = (SELECT CURDATE())\n" +
             " WHERE id = ?";
+    public static final String SQL_MARK_AS_DELETED = "UPDATE product\n" +
+            "SET delete_at = CURDATE()\n" +
+            "WHERE id = ?";
 
     @Override
     public List<Product> getAll() {
@@ -98,7 +101,15 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public boolean delete(int id) {
-        return false;
+        boolean isMarkAsDeleted = false;
+        try {
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_MARK_AS_DELETED);
+            statement.setInt(1, id);
+            isMarkAsDeleted = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isMarkAsDeleted;
     }
 
     @Override
