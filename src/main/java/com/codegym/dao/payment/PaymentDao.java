@@ -3,10 +3,7 @@ package com.codegym.dao.payment;
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Payment;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,16 +44,46 @@ public class PaymentDao implements IPaymentDao {
 
     @Override
     public boolean update(int id, Payment payment) {
-        return false;
+        boolean isUpdate = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update payment set name = ? where id = ?");
+            preparedStatement.setInt(2, id);
+            preparedStatement.setString(1, payment.getName());
+            isUpdate = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return isUpdate;
     }
 
     @Override
     public boolean remove(int id) {
-        return false;
+        boolean isRemove = false;
+        try {
+            CallableStatement callableStatement = connection.prepareCall("call delete_payment_by_id(?)");
+            callableStatement.setInt(1, id);
+            isRemove = callableStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isRemove;
     }
 
     @Override
     public Payment findById(int id) {
-        return null;
+        Payment payment = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from payment where id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                payment = new Payment(id, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payment;
     }
 }

@@ -8,7 +8,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "PaymentServlet", value = "/payment")
@@ -26,9 +25,42 @@ public class PaymentServlet extends HttpServlet {
             case "create":
                 showCreate(request, response);
                 break;
+            case "edit":
+                showEdit(request, response);
+                break;
+            case "delete":
+                showDelete(request, response);
+                break;
             default:
                 showList(request, response);
                 break;
+        }
+    }
+
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/payment/edit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Payment payment = paymentService.findById(id);
+        request.setAttribute("payment", payment);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/payment/delete.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id", id);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -66,8 +98,36 @@ public class PaymentServlet extends HttpServlet {
             case "create":
                 createPayment(request, response);
                 break;
+            case "edit":
+                editPayment(request, response);
+                break;
+            case "delete":
+                deletePayment(request, response);
+                break;
         }
 
+    }
+
+    private void editPayment(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        Payment payment = new Payment(id, name);
+        paymentService.update(id, payment);
+        try {
+            response.sendRedirect("/payment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deletePayment(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        paymentService.remove(id);
+        try {
+            response.sendRedirect("/payment");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createPayment(HttpServletRequest request, HttpServletResponse response) {

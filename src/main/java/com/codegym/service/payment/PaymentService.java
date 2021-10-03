@@ -21,16 +21,16 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public boolean update(int id, Payment payment) {
-        return false;
+        return paymentDao.update(id, payment);
     }
 
     @Override
     public boolean remove(int id) {
-        return false;
+        return paymentDao.remove(id);
     }
 
     @Override
     public Payment findById(int id) {
-        return null;
+        return paymentDao.findById(id);
     }
 }
