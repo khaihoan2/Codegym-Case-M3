@@ -1,5 +1,6 @@
 package com.codegym.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Order {
@@ -7,27 +8,50 @@ public class Order {
 
     private int userId;
 
+    private String userName;
+
     private int paymentId;
+
+    private String paymentName;
 
     private int shipmentId;
 
+    private String shipmentName;
+
     private int statusId;
 
-    private LocalDate createAt;
+    private String statusName;
 
-    private LocalDate lastModifiedAt;
+    private Date createAt;
 
-    private LocalDate deleteAt;
+    private Date lastModifiedAt;
+
+    private Date deleteAt;
 
     public Order() {
     }
 
-    public Order(int id, int userId, int paymentId, int shipmentId, int statusId, LocalDate createAt, LocalDate lastModifiedAt, LocalDate deleteAt) {
+    public Order(int id, int userId, int paymentId, int shipmentId, int statusId, Date createAt, Date lastModifiedAt, Date deleteAt) {
         this.id = id;
         this.userId = userId;
         this.paymentId = paymentId;
         this.shipmentId = shipmentId;
         this.statusId = statusId;
+        this.createAt = createAt;
+        this.lastModifiedAt = lastModifiedAt;
+        this.deleteAt = deleteAt;
+    }
+
+    public Order(int id, int userId, String userName, int paymentId, String paymentName, int shipmentId, String shipmentName, int statusId, String statusName, Date createAt, Date lastModifiedAt, Date deleteAt) {
+        this.id = id;
+        this.userId = userId;
+        this.userName = userName;
+        this.paymentId = paymentId;
+        this.paymentName = paymentName;
+        this.shipmentId = shipmentId;
+        this.shipmentName = shipmentName;
+        this.statusId = statusId;
+        this.statusName = statusName;
         this.createAt = createAt;
         this.lastModifiedAt = lastModifiedAt;
         this.deleteAt = deleteAt;
@@ -49,12 +73,28 @@ public class Order {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public int getPaymentId() {
         return paymentId;
     }
 
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
+    }
+
+    public String getPaymentName() {
+        return paymentName;
+    }
+
+    public void setPaymentName(String paymentName) {
+        this.paymentName = paymentName;
     }
 
     public int getShipmentId() {
@@ -65,6 +105,14 @@ public class Order {
         this.shipmentId = shipmentId;
     }
 
+    public String getShipmentName() {
+        return shipmentName;
+    }
+
+    public void setShipmentName(String shipmentName) {
+        this.shipmentName = shipmentName;
+    }
+
     public int getStatusId() {
         return statusId;
     }
@@ -73,27 +121,35 @@ public class Order {
         this.statusId = statusId;
     }
 
-    public LocalDate getCreateAt() {
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public Date getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
+    public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
 
-    public LocalDate getLastModifiedAt() {
+    public Date getLastModifiedAt() {
         return lastModifiedAt;
     }
 
-    public void setLastModifiedAt(LocalDate lastModifiedAt) {
+    public void setLastModifiedAt(Date lastModifiedAt) {
         this.lastModifiedAt = lastModifiedAt;
     }
 
-    public LocalDate getDeleteAt() {
+    public Date getDeleteAt() {
         return deleteAt;
     }
 
-    public void setDeleteAt(LocalDate deleteAt) {
+    public void setDeleteAt(Date deleteAt) {
         this.deleteAt = deleteAt;
     }
 }
