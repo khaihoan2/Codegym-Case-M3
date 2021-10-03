@@ -15,6 +15,17 @@ public class ProductDAO implements IProductDAO {
 
     private static final Connection CONNECTION = DBConnection.getConnection();
     private static final String SQL_SELECT_ALL = "SELECT * FROM product";
+    public static final String SQL_UPDATE = "UPDATE product\n" +
+            "   SET name             = ?,\n" +
+            "       description      = ?,\n" +
+            "       price            = ?,\n" +
+            "       SKU              = ?,\n" +
+            "       brand_id         = ?,\n" +
+            "       category_id      = ?,\n" +
+            "       vendor_id        = ?,\n" +
+            "       discount_id      = ?,\n" +
+            "       last_modified_at = (SELECT CURDATE())\n" +
+            " WHERE id = ?";
 
     @Override
     public List<Product> getAll() {
@@ -54,8 +65,8 @@ public class ProductDAO implements IProductDAO {
             statement.setDouble(3, product.getPrice());
             statement.setString(4, product.getSKU());
             statement.setInt(5, product.getBrandId());
-            statement.setInt(6,product.getCategoryId());
-            statement.setInt(7,product.getVendorId());
+            statement.setInt(6, product.getCategoryId());
+            statement.setInt(7, product.getVendorId());
             statement.setInt(8, product.getDiscountId());
             isSaved = statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -66,7 +77,23 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public boolean update(int id, Product product) {
-        return false;
+        boolean isUpdated = false;
+        try {
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_UPDATE);
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setDouble(3, product.getPrice());
+            statement.setString(4, product.getSKU());
+            statement.setInt(5, product.getBrandId());
+            statement.setInt(6, product.getCategoryId());
+            statement.setInt(7, product.getVendorId());
+            statement.setInt(8, product.getDiscountId());
+            statement.setInt(9, id);
+            isUpdated = statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUpdated;
     }
 
     @Override
