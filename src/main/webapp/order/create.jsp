@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: t
@@ -11,8 +12,19 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/payment?action=create" method="post">
-    <input type="text" name="name">
+<form action="/order?action=create&userId=${userId}" method="post">
+    <input type="text" name="productId" placeholder="ProductId">
+    <select name="paymentId">
+        <c:forEach items="${payments}" var="payment">
+            <option value="${payment.id}">${payment.name}</option>
+        </c:forEach>
+    </select>
+    <select name="shipmentId">
+        <c:forEach items="${shipments}" var="shipment">
+            <option value="${shipment.id}">${shipment.name}</option>
+        </c:forEach>
+    </select>
+    <input type="text" name="quantity">
     <button>Create</button>
 </form>
 

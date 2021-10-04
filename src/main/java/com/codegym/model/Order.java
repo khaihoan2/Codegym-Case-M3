@@ -1,7 +1,6 @@
 package com.codegym.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Order {
     private int id;
@@ -29,6 +28,12 @@ public class Order {
     private Date deleteAt;
 
     public Order() {
+    }
+
+    public Order(int userId, int paymentId, int shipmentId) {
+        this.userId = userId;
+        this.paymentId = paymentId;
+        this.shipmentId = shipmentId;
     }
 
     public Order(int id, int userId, int paymentId, int shipmentId, int statusId, Date createAt, Date lastModifiedAt, Date deleteAt) {

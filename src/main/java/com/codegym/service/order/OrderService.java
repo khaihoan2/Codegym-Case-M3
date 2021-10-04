@@ -16,7 +16,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public boolean save(Order order) {
-        return false;
+        return orderDao.save(order);
     }
 
     @Override

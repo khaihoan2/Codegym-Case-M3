@@ -1,8 +1,17 @@
 package com.codegym.controller.order;
 
 import com.codegym.model.Order;
+import com.codegym.model.OrderItem;
+import com.codegym.model.Payment;
+import com.codegym.model.Shipment;
 import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
+import com.codegym.service.orderItem.IOrderItemService;
+import com.codegym.service.orderItem.OrderItemService;
+import com.codegym.service.payment.IPaymentService;
+import com.codegym.service.payment.PaymentService;
+import com.codegym.service.shipment.IShipmentService;
+import com.codegym.service.shipment.ShipmentService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,6 +23,12 @@ import java.util.List;
 public class OrderServlet extends HttpServlet {
     private IOrderService orderService = new OrderService();
 
+    private IShipmentService shipmentService = new ShipmentService();
+
+    private IPaymentService paymentService = new PaymentService();
+
+    private IOrderItemService orderItemService = new OrderItemService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -22,6 +37,7 @@ public class OrderServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
+                showCreate(request, response);
                 break;
             case "delete":
                 showDelete(request, response);
@@ -31,6 +47,23 @@ public class OrderServlet extends HttpServlet {
                 break;
         }
 
+    }
+
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/order/create.jsp");
+        int userId = Integer.parseInt(request.getParameter("userId"));
+            request.setAttribute("userId", userId);
+        List<Payment> payments = paymentService.getAll();
+        request.setAttribute("payments", payments);
+        List<Shipment> shipments = shipmentService.getAll();
+        request.setAttribute("shipments", shipments);
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
@@ -66,9 +99,29 @@ public class OrderServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "create":
+                createOrder(request, response);
+                break;
             case "delete":
                 deleteOrder(request, response);
                 break;
+        }
+    }
+
+    private void createOrder(HttpServletRequest request, HttpServletResponse response) {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        int paymentId = Integer.parseInt(request.getParameter("paymentId"));
+        int shipmentId = Integer.parseInt(request.getParameter("shipmentId"));
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        OrderItem orderItem = new OrderItem(userId, productId, quantity);
+        orderItemService.save(orderItem);
+        Order order = new Order(userId, paymentId, shipmentId);
+        orderService.save(order);
+        try {
+            response.sendRedirect("/order");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

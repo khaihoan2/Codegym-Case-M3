@@ -47,7 +47,21 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public boolean save(Order order) {
-        return false;
+        boolean isSave = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into `order`(user_id, payment_id, shipment_id, status_id, created_at)\n" +
+                    "value (?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, order.getUserId());
+            preparedStatement.setInt(2, order.getPaymentId());
+            preparedStatement.setInt(3, order.getShipmentId());
+            preparedStatement.setInt(4, 1);
+            preparedStatement.setDate(5, new Date(System.currentTimeMillis()));
+            isSave = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return isSave;
     }
 
     @Override

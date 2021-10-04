@@ -23,6 +23,7 @@
         <table>
             <tr>
                 <th>Id</th>
+                <th>UserId</th>
                 <th>UserName</th>
                 <th>Payment</th>
                 <th>Shipment</th>
@@ -32,6 +33,7 @@
             <c:forEach items="${orders}" var="order">
                 <tr>
                     <th>${order.id}</th>
+                    <th>${order.userId}</th>
                     <th>${order.userName}</th>
                     <th>${order.paymentName}</th>
                     <th>${order.shipmentName}</th>
@@ -39,6 +41,7 @@
                     <th>${order.createAt}</th>
                     <th><a href="/order?action=edit&id=${order.id}">Edit</a></th>
                     <th><a href="/order?action=delete&id=${order.id}">Delete</a></th>
+                    <th><a href="/order?action=create&userId=${order.userId}">Create</a></th>
                 </tr>
             </c:forEach>
         </table>
