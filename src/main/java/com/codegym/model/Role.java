@@ -1,2 +1,6 @@
-package com.codegym.model;public enum Role {
+package com.codegym.model;
+
+public enum Role {
+    ADMINISTRATOR,
+    CUSTOMER,
 }
