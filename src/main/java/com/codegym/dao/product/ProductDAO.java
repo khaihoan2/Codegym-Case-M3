@@ -3,10 +3,7 @@ package com.codegym.dao.product;
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +20,15 @@ public class ProductDAO implements IProductDAO {
             "       brand_id         = ?,\n" +
             "       category_id      = ?,\n" +
             "       vendor_id        = ?,\n" +
-            "       discount_id      = ?,\n" +
-            "       last_modified_at = (SELECT CURDATE())\n" +
+            "       discount_id      = ?\n" +
             " WHERE id = ?";
     public static final String SQL_MARK_AS_DELETED = "UPDATE product\n" +
-            "SET delete_at = CURDATE()\n" +
+            "SET delete_at = ?\n" +
             "WHERE id = ?";
     public static final String SQL_FIND_BY_ID = "SELECT * FROM product\n" +
             "WHERE id = ?";
-    public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brandId, categoryId, vendorId, discountId) values (?,?,?,?,?,?,?,?)";
+    public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brandId, categoryId, vendorId, discountId, created_at) " +
+            "VALUES (?,?,?,?,?,?,?,?,?)";
 
     @Override
     public List<Product> getAll() {
