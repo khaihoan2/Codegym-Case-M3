@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 public class Image {
+    private int id;
     private String name;
     private String src;
     private int productId;
@@ -8,10 +9,19 @@ public class Image {
     public Image() {
     }
 
-    public Image(String name, String src, int productId) {
+    public Image(int id, String name, String src, int productId) {
+        this.id = id;
         this.name = name;
         this.src = src;
         this.productId = productId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
