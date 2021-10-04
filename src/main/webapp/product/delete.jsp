@@ -32,11 +32,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="wrapper">
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="" height="60" width="60">
-    </div>
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -860,91 +855,20 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Projects</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Projects</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
 
-        <!-- Main content -->
         <section class="content">
-
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Products</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-                    <table class="table table-striped projects">
-                        <thead>
-                        <tr>
-                            <th style="width: 5%">#</th>
-                            <th style="width: 25%">Name</th>
-                            <th style="width: 20%">SKU</th>
-                            <th style="width: 10%">Vendor</th>
-                            <th style="width: 10%">Price</th>
-                            <th style="width: 5%">Discount</th>
-                            <th style="width: 25%"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${products}" var="product">
-                            <tr>
-                                <td>${product.id}</td>
-                                <td>${product.name}</td>
-                                <td>${product.SKU}</td>
-                                <td>${product.vendorId}</td>
-                                <td>${product.price}</td>
-                                <td>${product.discountId}</td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="/products?action=view&id=${product.id}">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="/products?action=edit&id=${product.id}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm" href="/products?action=delete&id=${product.id}">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
+            EMPTY CONTENT! DELETE TEST!
         </section>
-        <!-- /.content -->
+
     </div>
+
+
+
+    <form method="post">
+        <button>
+            Yes!
+        </button>
+    </form>
     <!-- /.content-wrapper -->
 
     <!-- Footer -->
