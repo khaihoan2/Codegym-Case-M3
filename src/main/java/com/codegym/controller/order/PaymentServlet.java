@@ -57,7 +57,8 @@ public class PaymentServlet extends HttpServlet {
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/payment/delete.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);
+        Payment payment = paymentService.findById(id);
+        request.setAttribute("payment", payment);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
