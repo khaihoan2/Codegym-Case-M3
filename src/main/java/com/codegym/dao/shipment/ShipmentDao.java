@@ -56,7 +56,7 @@ public class ShipmentDao implements IShipmentDao {
     }
 
     @Override
-    public boolean remove(int id) {
+    public boolean delete(int id) {
         boolean isRemove = false;
         try {
             CallableStatement callableStatement = connection.prepareCall("call delete_shipment_by_id(?)");

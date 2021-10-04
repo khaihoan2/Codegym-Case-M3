@@ -1,7 +1,7 @@
 package com.codegym.dao.orderItem;
 
-import com.codegym.dao.IGeneralDao;
+import com.codegym.dao.IGeneralDAO;
 import com.codegym.model.OrderItem;
 
-public interface IOrderItemDao extends IGeneralDao<OrderItem> {
+public interface IOrderItemDao extends IGeneralDAO<OrderItem> {
 }

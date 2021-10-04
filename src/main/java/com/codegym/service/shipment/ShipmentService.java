@@ -25,8 +25,8 @@ public class ShipmentService implements IShipmentService {
     }
 
     @Override
-    public boolean remove(int id) {
-        return shipmentDao.remove(id);
+    public boolean delete(int id) {
+        return shipmentDao.delete(id);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class OrderItemDao implements IOrderItemDao {
     }
 
     @Override
-    public boolean remove(int id) {
+    public boolean delete(int id) {
         return false;
     }
 

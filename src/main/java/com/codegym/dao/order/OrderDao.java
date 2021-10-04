@@ -70,7 +70,7 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
-    public boolean remove(int id) {
+    public boolean delete(int id) {
         boolean isRemove = false;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from `order` where id = ?");

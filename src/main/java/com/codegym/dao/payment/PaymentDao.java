@@ -58,7 +58,7 @@ public class PaymentDao implements IPaymentDao {
     }
 
     @Override
-    public boolean remove(int id) {
+    public boolean delete(int id) {
         boolean isRemove = false;
         try {
             CallableStatement callableStatement = connection.prepareCall("call delete_payment_by_id(?)");

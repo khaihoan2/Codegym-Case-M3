@@ -9,7 +9,7 @@ public interface IGeneralService<T> {
 
     boolean update(int id, T t);
 
-    boolean remove(int id);
+    boolean delete(int id);
 
     T findById(int id);
 }

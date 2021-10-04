@@ -127,7 +127,7 @@ public class OrderServlet extends HttpServlet {
 
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        orderService.remove(id);
+        orderService.delete(id);
         try {
             response.sendRedirect("/order");
         } catch (IOException e) {

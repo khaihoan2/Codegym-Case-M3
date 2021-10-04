@@ -121,7 +121,7 @@ public class ShipmentServlet extends HttpServlet {
 
     private void deleteShipment(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        shipmentService.remove(id);
+        shipmentService.delete(id);
         try {
             response.sendRedirect("/shipment");
         } catch (IOException e) {

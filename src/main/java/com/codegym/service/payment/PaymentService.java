@@ -25,8 +25,8 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public boolean remove(int id) {
-        return paymentDao.remove(id);
+    public boolean delete(int id) {
+        return paymentDao.delete(id);
     }
 
     @Override

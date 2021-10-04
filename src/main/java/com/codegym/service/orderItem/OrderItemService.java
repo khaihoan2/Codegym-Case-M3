@@ -25,7 +25,7 @@ public class OrderItemService implements IOrderItemService {
     }
 
     @Override
-    public boolean remove(int id) {
+    public boolean delete(int id) {
         return false;
     }
 

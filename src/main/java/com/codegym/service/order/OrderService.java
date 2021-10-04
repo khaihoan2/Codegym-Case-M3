@@ -25,8 +25,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public boolean remove(int id) {
-        return orderDao.remove(id);
+    public boolean delete(int id) {
+        return orderDao.delete(id);
     }
 
     @Override

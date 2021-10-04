@@ -133,7 +133,7 @@ public class PaymentServlet extends HttpServlet {
 
     private void deletePayment(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        paymentService.remove(id);
+        paymentService.delete(id);
         try {
             response.sendRedirect("/payment");
         } catch (IOException e) {
