@@ -39,6 +39,9 @@ public class OrderServlet extends HttpServlet {
             case "create":
                 showCreate(request, response);
                 break;
+            case "detail":
+                showDetail(request, response);
+                break;
             case "delete":
                 showDelete(request, response);
                 break;
@@ -47,6 +50,20 @@ public class OrderServlet extends HttpServlet {
                 break;
         }
 
+    }
+
+    private void showDetail(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Order order = orderService.findById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/order/detail.jsp");
+        request.setAttribute("order", order);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showCreate(HttpServletRequest request, HttpServletResponse response) {
@@ -69,7 +86,8 @@ public class OrderServlet extends HttpServlet {
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/delete.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);
+        Order order = orderService.findById(id);
+        request.setAttribute("order", order);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

@@ -1,3 +1,4 @@
+<%@ page import="com.codegym.model.Order" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -231,7 +232,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/payment" class="nav-link">
+                                <a href="/order" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Payment</p>
                                 </a>
@@ -256,7 +257,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Profile</h1>
+                        <h1>Order</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -274,17 +275,21 @@
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Delete Payment</h3>
+                            <h3 class="card-title">Order details</h3>
                         </div>
                         <div class="card-body p-0">
                             <div class="container mx-2">
-                                <form action="/payment?action=delete&id=${payment.id}" method="post">
-                                    <div class="mb-3">
-                                        <h5 class="my-4">Payment name: ${payment.name}</h5>
-                                    </div>
-                                    <button type="submit" class="btn btn-danger my-3 float-right">Delete</button>
-                                    <a class="btn btn-primary my-3 mr-3 float-right" href="/payment">Come back</a>
-                                </form>
+                                <div class="mb-3">
+                                    <h5 class="my-4"><Strong>User name: </Strong> ${order.userName}</h5>
+                                    <h5 class="my-4"><Strong>Quantity: </Strong> ${order.quantity}</h5>
+                                    <h5 class="my-4"><Strong>Shipment: </Strong> ${order.shipmentName}</h5>
+                                    <h5 class="my-4"><Strong>Payment: </Strong> ${order.paymentName}</h5>
+                                    <h5 class="my-4"><Strong>Create at: </Strong> ${order.createAt}</h5>
+                                    <h5 class="my-4"><Strong>Last modified at: </Strong>${order.lastModifiedAt}</h5>
+                                    <h5 class="my-4"><Strong>Status: </Strong>${order.statusName}</h5>
+                                    <h5 class="my-4"><Strong>Delete at: </Strong>${order.deleteAt}</h5>
+                                </div>
+                                <a class="btn btn-primary my-3 mr-3 float-right" href="/order">Come back</a>
                             </div>
                         </div>
                         <!-- /.card-body -->

@@ -178,7 +178,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="/index.jsp" class="brand-link">
             <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
@@ -283,7 +283,7 @@
                                         <h5 class="my-4">Shipment name: ${shipment.name}</h5>
                                     </div>
                                     <button type="submit" class="btn btn-danger my-3 mr-2 float-right">Delete</button>
-                                    <a class="btn btn-primary my-3 mr-2 float-right" href="/shipment">Come back</a>
+                                    <a class="btn btn-primary my-3 mr-3 float-right" href="/shipment">Come back</a>
                                 </form>
                             </div>
                         </div>

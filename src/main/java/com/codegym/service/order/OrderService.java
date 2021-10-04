@@ -31,6 +31,6 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order findById(int id) {
-        return null;
+        return orderDao.findById(id);
     }
 }
