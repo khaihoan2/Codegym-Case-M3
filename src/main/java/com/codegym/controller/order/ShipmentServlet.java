@@ -43,7 +43,8 @@ public class ShipmentServlet extends HttpServlet {
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/shipment/delete.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);
+        Shipment shipment = shipmentService.findById(id);
+        request.setAttribute("shipment", shipment);
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {

@@ -283,7 +283,7 @@
                                         <h5 class="my-4">Payment name: ${payment.name}</h5>
                                     </div>
                                     <button type="submit" class="btn btn-danger my-3 float-right">Delete</button>
-                                    <a class="btn btn-primary my-3 mr-2 float-right" href="/payment">Remove</a>
+                                    <a class="btn btn-primary my-3 mr-2 float-right" href="/payment">Come back</a>
                                 </form>
                             </div>
                         </div>
