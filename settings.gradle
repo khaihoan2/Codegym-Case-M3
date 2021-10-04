@@ -1,2 +1,3 @@
 rootProject.name = 'Case-M3'
+include 'case_study'
 
