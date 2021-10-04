@@ -554,7 +554,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/examples/projects.html" class="nav-link">
+
+                                <a href="list.jsp" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Product List</p>
                                 </a>
@@ -861,8 +862,6 @@
         </section>
 
     </div>
-
-
 
     <form method="post">
         <button>

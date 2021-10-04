@@ -863,11 +863,11 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputName">Project Name</label>
+                                <label for="inputName">Product Name</label>
                                 <input type="text" id="inputName" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputDescription">Project Description</label>
+                                <label for="inputDescription">Product Description</label>
                                 <textarea id="inputDescription" class="form-control" rows="4"></textarea>
                             </div>
                             <div class="form-group">
@@ -946,6 +946,13 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
+
+<!-- jQuery -->
+<script src="../static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>

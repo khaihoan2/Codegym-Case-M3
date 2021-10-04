@@ -8,12 +8,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
 
     private static final IProductService PRODUCT_SERVICE = new ProductService();
+    public static final String ERROR_404_JSP = "error-404.jsp";
+    public static final String PRODUCT_EDIT_JSP = "/product/edit.jsp";
+    public static final String PRODUCT_VIEW_JSP = "/product/view.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,6 +51,20 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showViewFrom(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = PRODUCT_SERVICE.findById(id);
+        RequestDispatcher dispatcher;
+        if (product == null) {
+            dispatcher = request.getRequestDispatcher(ERROR_404_JSP);
+        } else {
+            dispatcher = request.getRequestDispatcher(PRODUCT_VIEW_JSP);
+            request.setAttribute("product", product);
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showUpdateFrom(HttpServletRequest request, HttpServletResponse response) {
@@ -53,14 +72,14 @@ public class ProductServlet extends HttpServlet {
         Product product = PRODUCT_SERVICE.findById(id);
         RequestDispatcher dispatcher;
         if (product == null) {
-            dispatcher = request.getRequestDispatcher("error-404.jsp");
+            dispatcher = request.getRequestDispatcher(ERROR_404_JSP);
         } else {
-            dispatcher = request.getRequestDispatcher("/product/update.jsp");
+            dispatcher = request.getRequestDispatcher(PRODUCT_EDIT_JSP);
             request.setAttribute("product", product);
-            request.setAttribute("brands", brands);
-            request.setAttribute("categories", categories);
-            request.setAttribute("vendors", vendors);
-            request.setAttribute("discounts", discounts);
+//            request.setAttribute("brands", brands);
+//            request.setAttribute("categories", categories);
+//            request.setAttribute("vendors", vendors);
+//            request.setAttribute("discounts", discounts);
         }
         try {
             dispatcher.forward(request, response);
@@ -126,10 +145,6 @@ public class ProductServlet extends HttpServlet {
                 deleteProduct(request, response);
                 break;
             }
-            default: {
-                listAllProduct(request, response);
-                break;
-            }
         }
     }
 
@@ -143,6 +158,7 @@ public class ProductServlet extends HttpServlet {
         int vendorId = Integer.parseInt(request.getParameter("vendorId"));
         int discountId = Integer.parseInt(request.getParameter("discountId"));
         Product product = new Product(name, description, price, SKU, brandId, categoryId, vendorId, discountId);
+        product.setCreatedAt(LocalDate.now());
         boolean isSaved = PRODUCT_SERVICE.save(product);
 
         String message = (isSaved)? "Product create successfully!" : "Product created fail!";
@@ -156,7 +172,23 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("double"));
+        String SKU = request.getParameter("SKU");
+        int brandId = Integer.parseInt(request.getParameter("brandId"));
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        int vendorId = Integer.parseInt(request.getParameter("vendorId"));
+        int discountId = Integer.parseInt(request.getParameter("discountId"));
+        Product product = new Product(name, description, price, SKU, brandId, categoryId, vendorId, discountId);
+        product.setLastModifiedAt(LocalDate.now());
+        PRODUCT_SERVICE.update(id, product);
+        try {
+            response.sendRedirect("/products");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {

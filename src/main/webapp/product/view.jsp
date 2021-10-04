@@ -854,7 +854,14 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    EMPTY CONTENT!
+    <div class="content-wrapper">
+        <section class="content-header">
+
+        </section>
+        <section class="content">
+            <div><p></p></div>
+        </section>
+    </div>
     <!-- /.content-wrapper -->
 
     <!-- Footer -->
