@@ -238,7 +238,7 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="min-height: 1603.67px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">

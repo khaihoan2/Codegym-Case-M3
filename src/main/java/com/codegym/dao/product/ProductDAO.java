@@ -31,6 +31,7 @@ public class ProductDAO implements IProductDAO {
             "WHERE id = ?";
     public static final String SQL_FIND_BY_ID = "SELECT * FROM product\n" +
             "WHERE id = ?";
+    public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brandId, categoryId, vendorId, discountId) values (?,?,?,?,?,?,?,?)";
 
     @Override
     public List<Product> getAll() {
@@ -64,7 +65,7 @@ public class ProductDAO implements IProductDAO {
     public boolean save(Product product) {
         boolean isSaved = false;
         try {
-            PreparedStatement statement = CONNECTION.prepareStatement("");
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_INSERT);
             statement.setString(1, product.getName());
             statement.setString(2, product.getDescription());
             statement.setDouble(3, product.getPrice());
@@ -119,6 +120,7 @@ public class ProductDAO implements IProductDAO {
         Product product = null;
         try {
             PreparedStatement statement = CONNECTION.prepareStatement(SQL_FIND_BY_ID);
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
