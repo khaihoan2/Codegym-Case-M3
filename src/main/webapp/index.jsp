@@ -32,10 +32,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="wrapper">
-    <!-- Preloader -->
-    <%--    <div class="preloader flex-column justify-content-center align-items-center">--%>
-    <%--        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="" height="60" width="60">--%>
-    <%--    </div>--%>
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -223,15 +219,15 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Pages
+                                Order
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/examples/contact-us.html" class="nav-link">
+                                <a href="/order" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Contact us</p>
+                                    <p>Order</p>
                                 </a>
                             </li>
                         </ul>

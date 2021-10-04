@@ -57,10 +57,10 @@ public class ProductServlet extends HttpServlet {
         } else {
             dispatcher = request.getRequestDispatcher("/product/update.jsp");
             request.setAttribute("product", product);
-            request.setAttribute("brands", brands);
-            request.setAttribute("categories", categories);
-            request.setAttribute("vendors", vendors);
-            request.setAttribute("discounts", discounts);
+//            request.setAttribute("brands", brands);
+//            request.setAttribute("categories", categories);
+//            request.setAttribute("vendors", vendors);
+//            request.setAttribute("discounts", discounts);
         }
         try {
             dispatcher.forward(request, response);
