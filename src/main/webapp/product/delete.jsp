@@ -360,12 +360,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Write the page's name here!</h1>
+                        <h1>Delete product</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Write the page's name here!</li>
+                            <li class="breadcrumb-item active">Delete product</li>
                         </ol>
                     </div>
                 </div>
