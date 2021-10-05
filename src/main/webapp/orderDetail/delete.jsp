@@ -257,7 +257,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Order</h1>
+                        <h1>Profile</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -275,73 +275,20 @@
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Order details</h3>
+                            <h3 class="card-title">Delete order detail</h3>
                         </div>
                         <div class="card-body p-0">
                             <div class="container mx-2">
-                                <div class="mb-3">
-                                    <h5 class="my-4"><Strong>User name: </Strong> ${order.userName}</h5>
-                                    <h5 class="my-4"><Strong>Shipment: </Strong> ${order.shipmentName}</h5>
-                                    <h5 class="my-4"><Strong>Payment: </Strong> ${order.paymentName}</h5>
-                                    <h5 class="my-4"><Strong>Create at: </Strong> ${order.createAt}</h5>
-                                    <h5 class="my-4"><Strong>Last modified at: </Strong>${order.lastModifiedAt}</h5>
-                                    <h5 class="my-4"><Strong>Status: </Strong>${order.statusName}</h5>
-                                    <h5 class="my-4"><Strong>Delete at: </Strong>${order.deleteAt}</h5>
-                                </div>
+                                <form method="post">
+                                    <h3>Are you sure?</h3>
+                                    <button type="submit" class="btn btn-danger my-3 mr-3 float-right">Delete</button>
+                                    <a class="btn btn-primary my-3 mr-3 float-right" href="/order?action=detail&id=${id}">Come back</a>
+                                </form>
                             </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Order details</h3>
-
-                        </div>
-                        <div class="card-body p-0">
-                            <table class="table table-striped projects">
-                                <thead>
-                                <tr>
-                                    <th>Product name</th>
-                                    <th>Category</th>
-                                    <th>Quantity</th>
-                                    <th>Discount</th>
-                                    <th>Price</th>
-                                    <th>Total money</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${orderItems}" var="orderItem">
-                                    <tr>
-                                        <td>${orderItem.productName}</td>
-                                        <td>${orderItem.productCategory}</td>
-                                        <td>${orderItem.quantity}</td>
-                                        <td>${orderItem.price}</td>
-                                        <td>${orderItem.percentage}</td>
-                                        <td>${orderItem.price * orderItem.quantity * (orderItem.percentage / 100)}</td>
-                                        <td class="project-actions text-right d-flex ">
-                                            <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&amp;id=1">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a class="btn btn-danger btn-sm " href="/orderDetail?action=delete&id=${order.id}&productId=${orderItem.productId}&orderId=${order.id}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                            <a class="btn btn-primary my-3 mr-3 float-right" href="/order">Come back</a>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <footer class="main-footer">
-                        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-                        All rights reserved.
-                        <div class="float-right d-none d-sm-inline-block">
-                            <b>Version</b> 3.2.0-rc
-                        </div>
-                    </footer>
                 </div>
             </div>
         </section>
@@ -349,6 +296,11 @@
 
     <!-- Footer -->
     <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.2.0-rc
+        </div>
     </footer>
 
     <!-- Control Sidebar -->

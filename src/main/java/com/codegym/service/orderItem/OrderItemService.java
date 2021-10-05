@@ -7,7 +7,7 @@ import com.codegym.model.OrderItem;
 import java.util.List;
 
 public class OrderItemService implements IOrderItemService {
-    private IOrderItemDao orderItemDao = new OrderItemDao();
+    private OrderItemDao orderItemDao = new OrderItemDao();
 
     @Override
     public List<OrderItem> getAll() {
@@ -27,6 +27,10 @@ public class OrderItemService implements IOrderItemService {
     @Override
     public boolean delete(int id) {
         return false;
+    }
+
+    public boolean delete(int orderId, int productId) {
+        return orderItemDao.delete(orderId, productId);
     }
 
     @Override

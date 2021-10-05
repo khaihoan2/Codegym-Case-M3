@@ -21,7 +21,8 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public OrderItem(String productName, String productCategory, int quantity, double price, int percentage) {
+    public OrderItem(int productId, String productName, String productCategory, int quantity, double price, int percentage) {
+        this.productId = productId;
         this.productName = productName;
         this.productCategory = productCategory;
         this.quantity = quantity;
