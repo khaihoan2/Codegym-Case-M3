@@ -1,4 +1,4 @@
 .idea
 .gradle
 build
-src/main/java/code/gym/Dao/DBConnection.java
+src/main/java/com/codegym/dao/DBConnection.java

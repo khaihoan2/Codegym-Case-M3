@@ -3,6 +3,7 @@ package com.codegym.service.user;
 import com.codegym.dao.user.IUserDao;
 import com.codegym.dao.user.UserDao;
 import com.codegym.model.User;
+
 import java.util.List;
 
 public class UserService implements IUserService {
@@ -19,23 +20,39 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean update(String username, User user) {
-        return userDao.update(username,user);
+    public boolean update(int id, User user) {
+        return false;
     }
 
     @Override
-    public boolean delete(String username) {
-        return userDao.delete(username);
+    public boolean delete(int id) {
+        return false;
     }
+
+    @Override
+    public User findById(int id) {
+        return null;
+    }
+
 
     @Override
     public List<User> findByName(String username) {
-        username="%" +username+ "%";
+        username = "%" + username + "%";
         return userDao.findByName(username);
     }
 
     @Override
     public boolean login(String username, String password) {
-        return userDao.login(username,password);
+        return userDao.login(username, password);
+    }
+
+    @Override
+    public boolean deleteByName(String username) {
+        return userDao.deleteByName(username);
+    }
+
+    @Override
+    public boolean updateByName(String username, User user) {
+        return userDao.updateByName(username, user);
     }
 }

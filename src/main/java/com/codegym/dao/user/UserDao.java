@@ -60,7 +60,22 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean update(String username, User user) {
+    public boolean update(int id, User user) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public User findById(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean updateByName(String username, User user) {
         boolean isUpdate=false;
         try {
             PreparedStatement statement = connection.prepareStatement("update user  set username=?,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,created_at=? where username=?");
@@ -80,7 +95,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean delete(String username) {
+    public boolean deleteByName(String username) {
         boolean isDelete=false;
         try {
             CallableStatement callableStatement = connection.prepareCall("call delete_by_name(?)");

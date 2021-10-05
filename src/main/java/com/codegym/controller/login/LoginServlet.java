@@ -1,4 +1,4 @@
-package com.codegym.controller;
+package com.codegym.controller.login;
 
 import com.codegym.model.User;
 import com.codegym.service.user.IUserService;
@@ -10,6 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -51,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
         String username=request.getParameter("username");
-        userService.delete(username);
+        userService.deleteByName(username);
         try {
             response.sendRedirect("/login/login.jsp");
         } catch (IOException e) {
@@ -84,7 +85,7 @@ public class LoginServlet extends HttpServlet {
             boolean isValid = userService.login(username, password);
             RequestDispatcher dispatcher;
             if (isValid) {
-                dispatcher = request.getRequestDispatcher("/order.jsp");
+                dispatcher = request.getRequestDispatcher("/index.jsp");
                 dispatcher.forward(request, response);
             } else {
                 response.sendRedirect("/login/login.jsp");
