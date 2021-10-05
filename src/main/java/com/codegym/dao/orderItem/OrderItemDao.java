@@ -38,6 +38,8 @@ public class OrderItemDao implements IOrderItemDao {
 
     @Override
     public boolean update(int id, OrderItem orderItem) {
+
+
         return false;
     }
 
@@ -81,7 +83,6 @@ public class OrderItemDao implements IOrderItemDao {
                 OrderItem orderItem = new OrderItem(productId, productName, categoryName, quantity, price, percentage);
                 orderItems.add(orderItem);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
