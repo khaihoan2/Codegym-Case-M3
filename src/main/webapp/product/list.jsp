@@ -379,7 +379,6 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-
         <!-- Main content -->
         <section class="content">
 
@@ -447,7 +446,6 @@
 
         </section>
         <!-- /.content -->
-
 
         <!-- /.div -->
         <!-- /.content -->
