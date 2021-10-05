@@ -80,6 +80,7 @@ public class CategoryServlet extends HttpServlet {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             dispatcher = request.getRequestDispatcher("category/edit.jsp");
+            request.setAttribute("category", category);
         }
         try {
             dispatcher.forward(request, response);
@@ -89,14 +90,14 @@ public class CategoryServlet extends HttpServlet {
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher;
         int id = Integer.parseInt(request.getParameter("id"));
         Category category = CATEGORY_SERVICE.findById(id);
-        request.setAttribute("category", category);
+        RequestDispatcher dispatcher;
         if (category == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("category/delete.jsp");
+            dispatcher = request.getRequestDispatcher("/category/delete.jsp");
+            request.setAttribute("category", category);
         }
         try {
             dispatcher.forward(request, response);
