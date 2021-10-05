@@ -8,6 +8,8 @@
     <title>$</title>
 </head>
 <body>
-Delete test
+<form method="post">
+    <button>OK, Delete</button>
+</form>
 </body>
 </html>

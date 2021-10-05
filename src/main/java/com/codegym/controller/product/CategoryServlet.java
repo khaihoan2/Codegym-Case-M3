@@ -7,8 +7,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "CategoryServlet", value = "/categories")
@@ -142,7 +140,17 @@ public class CategoryServlet extends HttpServlet {
     private void createCategory(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Category category = new Category(name);
-        CATEGORY_SERVICE.save(category);
+        boolean isSaved = CATEGORY_SERVICE.save(category);
+        String message = (isSaved)? "Successful!" : "Failed!";
+        request.setAttribute("message", message);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/category/create.jsp");
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editCategory(HttpServletRequest request, HttpServletResponse response) {
@@ -155,5 +163,10 @@ public class CategoryServlet extends HttpServlet {
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         CATEGORY_SERVICE.delete(id);
+        try {
+            response.sendRedirect("/categories");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

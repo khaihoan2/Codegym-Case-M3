@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<a href="/category/create.jsp">Create new category</a>
+<a href="${pageContext.request.contextPath}/categories?action=create">Create new category</a>
 
 <table>
     <tr>
@@ -23,9 +23,9 @@
         <tr>
             <td>${category.id}</td>
             <td>${category.name}</td>
-            <td><a href="/category/view.jsp">View</a></td>
-            <td><a href="/category/edit.jsp">Edit</a></td>
-            <td><a href="/category/delete.jsp">Delete</a></td>
+            <td><a href="/categories?action=view&id=${category.id}">View</a></td>
+            <td><a href="/categories?action=edit&id=${category.id}">Edit</a></td>
+            <td><a href="/categories?action=delete&id=${category.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
