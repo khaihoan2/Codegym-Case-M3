@@ -12,6 +12,7 @@ import com.codegym.service.payment.IPaymentService;
 import com.codegym.service.payment.PaymentService;
 import com.codegym.service.shipment.IShipmentService;
 import com.codegym.service.shipment.ShipmentService;
+import com.sun.org.apache.xerces.internal.util.Status;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -39,6 +40,9 @@ public class OrderServlet extends HttpServlet {
             case "create":
                 showCreate(request, response);
                 break;
+            case "edit":
+                showEdit(request, response);
+                break;
             case "detail":
                 showDetail(request, response);
                 break;
@@ -50,6 +54,25 @@ public class OrderServlet extends HttpServlet {
                 break;
         }
 
+    }
+
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/order/edit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Order order = orderService.findById(id);
+        request.setAttribute("order", order);
+        List<Shipment> shipments = shipmentService.getAll();
+        request.setAttribute("shipments", shipments);
+        List<Payment> payments = paymentService.getAll();
+        request.setAttribute("payments", payments);
+        List<Status>
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showDetail(HttpServletRequest request, HttpServletResponse response) {

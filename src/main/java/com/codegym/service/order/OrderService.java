@@ -21,7 +21,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public boolean update(int id, Order order) {
-        return false;
+        return orderDao.update(id, order);
     }
 
     @Override

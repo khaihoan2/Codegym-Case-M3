@@ -66,7 +66,19 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public boolean update(int id, Order order) {
-        return false;
+        boolean isUpdate = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update `order` set payment_id = ?, shipment_id = ?, status_id = ?, last_modified_at = ? where id = ?");
+            preparedStatement.setInt(1, order.getPaymentId());
+            preparedStatement.setInt(2, order.getShipmentId());
+            preparedStatement.setInt(3, order.getStatusId());
+            preparedStatement.setDate(4, order.getLastModifiedAt());
+            preparedStatement.setInt(5, id);
+            isUpdate = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUpdate;
     }
 
     @Override
