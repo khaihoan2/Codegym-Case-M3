@@ -42,7 +42,7 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-dark">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -456,7 +456,7 @@
     <!-- /.content-wrapper -->
 
     <!-- Footer -->
-    <footer class="main-footer position-fixed">
+    <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0-rc
         </div>
