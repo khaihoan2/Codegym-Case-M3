@@ -1,6 +1,6 @@
-package com.codegym.Dao.user;
+package com.codegym.dao.user;
 
-import com.codegym.Dao.IGeneralDao;
+import com.codegym.dao.IGeneralDao;
 import com.codegym.model.User;
 
 public interface IUserDao extends IGeneralDao<User> {

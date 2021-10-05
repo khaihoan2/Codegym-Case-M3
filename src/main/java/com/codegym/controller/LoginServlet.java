@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -30,13 +31,27 @@ public class LoginServlet extends HttpServlet {
             case "delete":
                 deleteUser(request,response);
                 break;
+            case "search":
+                findByName(request,response);
+                break;
+
 
         }
     }
 
+    private void findByName(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        userService.findByName(username);
+        try {
+            response.sendRedirect("/showAll.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        userService.delete(id);
+        String username=request.getParameter("username");
+        userService.delete(username);
         try {
             response.sendRedirect("/login/login.jsp");
         } catch (IOException e) {
@@ -50,11 +65,11 @@ public class LoginServlet extends HttpServlet {
         String first_name = request.getParameter("first_name");
         String last_name = request.getParameter("last_name");
         String address = request.getParameter("address");
-        String email = request.getParameter("email");
         String telephone = request.getParameter("telephone");
-        Date created_at = Date.valueOf(request.getParameter("created_at"));
-        User user = new User(username, password, first_name, last_name, address, email, telephone, created_at);
-        userService.save(user);
+        String email = request.getParameter("email");
+        Date created_at= Date.valueOf(request.getParameter("created_at"));
+        User user = new User(username, password, first_name, last_name, address, telephone, email,created_at);
+            userService.save(user);
         try {
             response.sendRedirect("/login/login.jsp");
         } catch (IOException e) {
@@ -96,16 +111,20 @@ public class LoginServlet extends HttpServlet {
             case "delete":
                 showDelete(request,response);
                 break;
-            case "update":
-
+            case "search":
+                showByName(request,response);
             default:
                 break;
         }
     }
 
+    private void showByName(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        User oldUser = userService.findById(id);
+        String username=request.getParameter("username");
+        List<User> oldUser = userService.findByName(username);
         RequestDispatcher dispatcher;
         if (oldUser == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");

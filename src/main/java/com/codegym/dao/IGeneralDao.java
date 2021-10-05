@@ -1,8 +1,8 @@
-package com.codegym.service;
+package com.codegym.dao;
 
 import java.util.List;
 
-public interface IGeneralService<T> {
+public interface IGeneralDao<T> {
     public List<T> getAll();
 
     boolean save(T t);
@@ -12,4 +12,5 @@ public interface IGeneralService<T> {
     boolean delete(String username);
 
     public List<T> findByName(String username);
+
 }

@@ -18,8 +18,8 @@
         <td><input type="text" name="first_name" placeholder="first_name"></td>
         <td><input type="text" name="last_name" placeholder="last_name"></td>
         <td><input type="text" name="address" placeholder="address"></td>
-        <td><input type="text" name="email" placeholder="email"></td>
         <td><input type="text" name="telephone" placeholder="telephone"></td>
+        <td><input type="text" name="email" placeholder="email"></td>
         <td><input type="text" name="created_at" placeholder="created_at"></td>
     </tr>
     <button>sign Up</button>

@@ -1,7 +1,7 @@
 package com.codegym.service.user;
 
-import com.codegym.Dao.user.IUserDao;
-import com.codegym.Dao.user.UserDao;
+import com.codegym.dao.user.IUserDao;
+import com.codegym.dao.user.UserDao;
 import com.codegym.model.User;
 import java.util.List;
 
@@ -19,18 +19,19 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean update(int id, User user) {
-        return userDao.update(id,user);
+    public boolean update(String username, User user) {
+        return userDao.update(username,user);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public boolean delete(String username) {
+        return userDao.delete(username);
     }
 
     @Override
-    public User findById(int id) {
-        return userDao.findById(id);
+    public List<User> findByName(String username) {
+        username="%" +username+ "%";
+        return userDao.findByName(username);
     }
 
     @Override

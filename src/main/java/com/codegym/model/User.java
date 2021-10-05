@@ -21,14 +21,8 @@ public class User {
         this.delete_at = delete_at;
     }
 
-    public User(String username, String password, String first_name, String last_name, String address, String email, String telephone, java.sql.Date create_at) {
-    }
 
-    public User() {
-    }
-
-    public User(int id, String username, String password, String first_name, String last_name, String address, String telephone, String email, Date created_at) {
-        this.id = id;
+    public User(String username, String password, String first_name, String last_name, String address, String telephone, String email,Date created_at) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
@@ -36,8 +30,12 @@ public class User {
         this.address = address;
         this.telephone = telephone;
         this.email = email;
-        this.created_at = created_at;
+        this.created_at=created_at;
     }
+
+    public User() {
+    }
+
 
     public int getId() {
         return id;
