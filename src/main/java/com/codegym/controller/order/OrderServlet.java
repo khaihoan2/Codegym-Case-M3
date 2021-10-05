@@ -98,7 +98,15 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) {
-        List<Order> orders = orderService.getAll();
+        List<Order> orders = null;
+        String name = request.getParameter("q");
+        if (name == null) {
+            orders = orderService.getAll();
+        } else if (name.equals("")) {
+            orders = null;
+        } else {
+            orders = orderService.findByName(name);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/list.jsp");
         request.setAttribute("orders", orders);
         try {

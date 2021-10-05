@@ -33,4 +33,10 @@ public class OrderService implements IOrderService {
     public Order findById(int id) {
         return orderDao.findById(id);
     }
+
+    @Override
+    public List<Order> findByName(String name) {
+        name = "%" + name + "%";
+        return orderDao.findByName(name);
+    }
 }

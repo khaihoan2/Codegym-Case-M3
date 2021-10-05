@@ -116,4 +116,43 @@ public class OrderDao implements IOrderDao {
 
         return order;
     }
+
+    @Override
+    public List<Order> findByName(String name) {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
+                    "from `order` o\n" +
+                    "left join user u on o.user_id = u.id\n" +
+                    "left join payment p on o.payment_id = p.id\n" +
+                    "left join shipment s on o.shipment_id = s.id\n" +
+                    "left join status s2 on o.status_id = s2.id\n" +
+                    "left join ordered_item oi on o.id = oi.order_id\n" +
+                    "where username like ?");
+
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("o.id");
+                int userId = resultSet.getInt("user_id");
+                String userName = resultSet.getString("username");
+                int paymentId = resultSet.getInt("payment_id");
+                String paymentName = resultSet.getString("p.name");
+                int shipmentId = resultSet.getInt("shipment_id");
+                String shipmentName = resultSet.getString("s.name");
+                int statusId = resultSet.getInt("status_id");
+                String statusName = resultSet.getString("s2.name");
+                Date createAt = resultSet.getDate("o.created_at");
+                Date lastModifiedAt = resultSet.getDate("o.last_modified_at");
+                Date deleteAt = resultSet.getDate("o.delete_at");
+                Order order = new Order(id, userId, userName, paymentId, paymentName, shipmentId, shipmentName, statusId, statusName, createAt, lastModifiedAt, deleteAt);
+                orders.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }
