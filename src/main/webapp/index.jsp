@@ -230,6 +230,18 @@
                                     <p>Order</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/payment" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Payment</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/shipment" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Shipment</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -256,7 +268,6 @@
             </div><!-- /.container-fluid -->
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">

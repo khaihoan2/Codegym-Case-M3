@@ -1,3 +1,4 @@
+<%@ page import="com.codegym.model.Order" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -231,7 +232,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/payment" class="nav-link">
+                                <a href="/order" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Payment</p>
                                 </a>
@@ -256,7 +257,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Profile</h1>
+                        <h1>Order</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -272,22 +273,63 @@
             <div class="container-fluid">
                 <div class="container-fluid">
                     <!-- Default box -->
-                    <div class="card">
+                    <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Delete Payment</h3>
+                            <h3 class="card-title">Quick Example</h3>
                         </div>
-                        <div class="card-body p-0">
-                            <div class="container mx-2">
-                                <form action="/payment?action=delete&id=${payment.id}" method="post">
-                                    <div class="mb-3">
-                                        <h5 class="my-4">Payment name: ${payment.name}</h5>
-                                    </div>
-                                    <button type="submit" class="btn btn-danger my-3 float-right">Delete</button>
-                                    <a class="btn btn-primary my-3 mr-3 float-right" href="/payment">Come back</a>
-                                </form>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form method="post">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <h3 class="display-6"><Strong class="mr-3">User name: </Strong>${order.userName}</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label>Payment</label>
+                                    <select class="form-control" name="paymentId">
+                                        <c:forEach items="${payments}" var="payment">
+                                            <c:if test="${payment.id == order.paymentId}">
+                                                <option value="${payment.id}" selected>${payment.name}</option>
+                                            </c:if>
+                                            <c:if test="${payment.id != order.paymentId}">
+                                                <option value="${payment.id}">${payment.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Shipment</label>
+                                    <select class="form-control" name="shipmentId">
+                                        <c:forEach items="${shipments}" var="shipment">
+                                            <c:if test="${shipment.id == order.shipmentId}">
+                                                <option value="${shipment.id}" selected>${shipment.name}</option>
+                                            </c:if>
+                                            <c:if test="${shipment.id != order.shipmentId}">
+                                                <option value="${shipment.id}">${shipment.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="form-control" name="statusId">
+                                        <c:forEach items="${statuses}" var="status">
+                                            <c:if test="${status.id == order.statusId}">
+                                                <option value="${status.id}" selected>${status.name}</option>
+                                            </c:if>
+                                            <c:if test="${status.id != order.statusId}">
+                                                <option value="${status.id}">${status.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <!-- /.card-body -->
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
                     <!-- /.card -->
                 </div>

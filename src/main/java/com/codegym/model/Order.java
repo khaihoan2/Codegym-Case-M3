@@ -21,6 +21,8 @@ public class Order {
 
     private String statusName;
 
+    private int quantity;
+
     private Date createAt;
 
     private Date lastModifiedAt;
@@ -47,6 +49,13 @@ public class Order {
         this.deleteAt = deleteAt;
     }
 
+    public Order(int id, int paymentId, int shipmentId, int statusId) {
+        this.id = id;
+        this.paymentId = paymentId;
+        this.shipmentId = shipmentId;
+        this.statusId = statusId;
+    }
+
     public Order(int id, int userId, String userName, int paymentId, String paymentName, int shipmentId, String shipmentName, int statusId, String statusName, Date createAt, Date lastModifiedAt, Date deleteAt) {
         this.id = id;
         this.userId = userId;
@@ -57,6 +66,22 @@ public class Order {
         this.shipmentName = shipmentName;
         this.statusId = statusId;
         this.statusName = statusName;
+        this.createAt = createAt;
+        this.lastModifiedAt = lastModifiedAt;
+        this.deleteAt = deleteAt;
+    }
+
+    public Order(int id, int userId, String userName, int paymentId, String paymentName, int shipmentId, String shipmentName, int statusId, String statusName, int quantity, Date createAt, Date lastModifiedAt, Date deleteAt) {
+        this.id = id;
+        this.userId = userId;
+        this.userName = userName;
+        this.paymentId = paymentId;
+        this.paymentName = paymentName;
+        this.shipmentId = shipmentId;
+        this.shipmentName = shipmentName;
+        this.statusId = statusId;
+        this.statusName = statusName;
+        this.quantity = quantity;
         this.createAt = createAt;
         this.lastModifiedAt = lastModifiedAt;
         this.deleteAt = deleteAt;
@@ -132,6 +157,14 @@ public class Order {
 
     public void setStatusName(String statusName) {
         this.statusName = statusName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Date getCreateAt() {

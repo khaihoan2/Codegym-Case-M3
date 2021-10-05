@@ -21,7 +21,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public boolean update(int id, Order order) {
-        return false;
+        return orderDao.update(id, order);
     }
 
     @Override
@@ -31,6 +31,12 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order findById(int id) {
-        return null;
+        return orderDao.findById(id);
+    }
+
+    @Override
+    public List<Order> findByName(String name) {
+        name = "%" + name + "%";
+        return orderDao.findByName(name);
     }
 }

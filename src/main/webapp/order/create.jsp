@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/order?action=create&userId=${userId}" method="post">
+<form action="/order?action=create&userId=${userId}" method="get">
     <input type="text" name="productId" placeholder="ProductId">
     <select name="paymentId">
         <c:forEach items="${payments}" var="payment">
