@@ -282,7 +282,6 @@
                                 <form action="/order?action=delete&id=${order.id}" method="post">
                                     <div class="mb-3">
                                         <h5 class="my-4"><Strong>User name: </Strong> ${order.userName}</h5>
-                                        <h5 class="my-4"><Strong>Quantity: </Strong> ${order.quantity}</h5>
                                         <h5 class="my-4"><Strong>Shipment: </Strong> ${order.shipmentName}</h5>
                                         <h5 class="my-4"><Strong>Payment: </Strong> ${order.paymentName}</h5>
                                         <h5 class="my-4"><Strong>Create at: </Strong> ${order.createAt}</h5>
@@ -290,7 +289,7 @@
                                         <h5 class="my-4"><Strong>Status: </Strong>${order.statusName}</h5>
                                         <h5 class="my-4"><Strong>Delete at: </Strong>${order.deleteAt}</h5>
                                     </div>
-                                    <button type="submit" class="btn btn-danger my-3 mr-2 float-right">Delete</button>
+                                    <button type="submit" class="btn btn-danger my-3 mr-3 float-right">Delete</button>
                                     <a class="btn btn-primary my-3 mr-3 float-right" href="/order">Come back</a>
                                 </form>
                             </div>

@@ -49,6 +49,13 @@ public class Order {
         this.deleteAt = deleteAt;
     }
 
+    public Order(int id, int paymentId, int shipmentId, int statusId) {
+        this.id = id;
+        this.paymentId = paymentId;
+        this.shipmentId = shipmentId;
+        this.statusId = statusId;
+    }
+
     public Order(int id, int userId, String userName, int paymentId, String paymentName, int shipmentId, String shipmentName, int statusId, String statusName, Date createAt, Date lastModifiedAt, Date deleteAt) {
         this.id = id;
         this.userId = userId;

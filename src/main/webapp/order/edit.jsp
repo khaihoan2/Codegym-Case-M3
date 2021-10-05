@@ -279,50 +279,49 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form method="post">
                             <div class="card-body">
                                 <div class="form-group">
                                     <h3 class="display-6"><Strong class="mr-3">User name: </Strong>${order.userName}</h3>
                                 </div>
                                 <div class="form-group">
                                     <label>Payment</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="paymentId">
                                         <c:forEach items="${payments}" var="payment">
-                                            <option value="${payment.id}">${payment.name}</option>
+                                            <c:if test="${payment.id == order.paymentId}">
+                                                <option value="${payment.id}" selected>${payment.name}</option>
+                                            </c:if>
+                                            <c:if test="${payment.id != order.paymentId}">
+                                                <option value="${payment.id}">${payment.name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Shipment</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="shipmentId">
                                         <c:forEach items="${shipments}" var="shipment">
-                                            <option value="${shipment.id}">${shipment.name}</option>
+                                            <c:if test="${shipment.id == order.shipmentId}">
+                                                <option value="${shipment.id}" selected>${shipment.name}</option>
+                                            </c:if>
+                                            <c:if test="${shipment.id != order.shipmentId}">
+                                                <option value="${shipment.id}">${shipment.name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control">
-                                        <c:forEach items="${status}" var="status">
-                                            <option value="${status.id}">${status.name}</option>
+                                    <select class="form-control" name="statusId">
+                                        <c:forEach items="${statuses}" var="status">
+                                            <c:if test="${status.id == order.statusId}">
+                                                <option value="${status.id}" selected>${status.name}</option>
+                                            </c:if>
+                                            <c:if test="${status.id != order.statusId}">
+                                                <option value="${status.id}">${status.name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                 </div>
                             </div>
                             <!-- /.card-body -->

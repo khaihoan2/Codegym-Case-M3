@@ -1,9 +1,6 @@
 package com.codegym.controller.order;
 
-import com.codegym.model.Order;
-import com.codegym.model.OrderItem;
-import com.codegym.model.Payment;
-import com.codegym.model.Shipment;
+import com.codegym.model.*;
 import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
 import com.codegym.service.orderItem.IOrderItemService;
@@ -12,7 +9,8 @@ import com.codegym.service.payment.IPaymentService;
 import com.codegym.service.payment.PaymentService;
 import com.codegym.service.shipment.IShipmentService;
 import com.codegym.service.shipment.ShipmentService;
-import com.sun.org.apache.xerces.internal.util.Status;
+import com.codegym.service.status.IStatusService;
+import com.codegym.service.status.StatusService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -29,6 +27,8 @@ public class OrderServlet extends HttpServlet {
     private IPaymentService paymentService = new PaymentService();
 
     private IOrderItemService orderItemService = new OrderItemService();
+
+    private IStatusService statusService = new StatusService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -65,7 +65,8 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("shipments", shipments);
         List<Payment> payments = paymentService.getAll();
         request.setAttribute("payments", payments);
-        List<Status>
+        List<Status> statuses = statusService.getAll();
+        request.setAttribute("statuses", statuses);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -151,10 +152,22 @@ public class OrderServlet extends HttpServlet {
             case "create":
                 createOrder(request, response);
                 break;
+            case "edit":
+                editOrder(request, response);
+                break;
             case "delete":
                 deleteOrder(request, response);
                 break;
         }
+    }
+
+    private void editOrder(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        int paymentId = Integer.parseInt(request.getParameter("paymentId"));
+        int shipmentId = Integer.parseInt(request.getParameter("shipmentId"));
+        int statusId = Integer.parseInt(request.getParameter("statusId"));
+        Order order = new Order(id, paymentId, shipmentId, statusId);
+        orderService.update(id, order);
     }
 
     private void createOrder(HttpServletRequest request, HttpServletResponse response) {

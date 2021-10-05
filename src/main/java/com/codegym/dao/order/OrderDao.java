@@ -72,7 +72,7 @@ public class OrderDao implements IOrderDao {
             preparedStatement.setInt(1, order.getPaymentId());
             preparedStatement.setInt(2, order.getShipmentId());
             preparedStatement.setInt(3, order.getStatusId());
-            preparedStatement.setDate(4, order.getLastModifiedAt());
+            preparedStatement.setDate(4, new Date(System.currentTimeMillis()));
             preparedStatement.setInt(5, id);
             isUpdate = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -103,8 +103,7 @@ public class OrderDao implements IOrderDao {
                     "left join user u on o.user_id = u.id\n" +
                     "left join payment p on o.payment_id = p.id\n" +
                     "left join shipment s on o.shipment_id = s.id\n" +
-                    "left join status s2 on o.status_id = s2.id\n" +
-                    "left join ordered_item oi on o.id = oi.order_id");
+                    "left join status s2 on o.status_id = s2.id");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt("user_id");
@@ -115,11 +114,10 @@ public class OrderDao implements IOrderDao {
                 String shipmentName = resultSet.getString("s.name");
                 int statusId = resultSet.getInt("status_id");
                 String statusName = resultSet.getString("s2.name");
-                int quantity = resultSet.getInt("quantity");
                 Date createAt = resultSet.getDate("o.created_at");
                 Date lastModifiedAt = resultSet.getDate("o.last_modified_at");
                 Date deleteAt = resultSet.getDate("o.delete_at");
-                order = new Order(id, userId, userName, paymentId, paymentName, shipmentId, shipmentName, statusId, statusName, quantity,createAt, lastModifiedAt, deleteAt);
+                order = new Order(id, userId, userName, paymentId, paymentName, shipmentId, shipmentName, statusId, statusName,createAt, lastModifiedAt, deleteAt);
             }
 
         } catch (SQLException e) {

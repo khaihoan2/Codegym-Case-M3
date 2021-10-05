@@ -281,7 +281,6 @@
                             <div class="container mx-2">
                                 <div class="mb-3">
                                     <h5 class="my-4"><Strong>User name: </Strong> ${order.userName}</h5>
-                                    <h5 class="my-4"><Strong>Quantity: </Strong> ${order.quantity}</h5>
                                     <h5 class="my-4"><Strong>Shipment: </Strong> ${order.shipmentName}</h5>
                                     <h5 class="my-4"><Strong>Payment: </Strong> ${order.paymentName}</h5>
                                     <h5 class="my-4"><Strong>Create at: </Strong> ${order.createAt}</h5>
