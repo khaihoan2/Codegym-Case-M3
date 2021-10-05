@@ -103,7 +103,9 @@ public class OrderDao implements IOrderDao {
                     "left join user u on o.user_id = u.id\n" +
                     "left join payment p on o.payment_id = p.id\n" +
                     "left join shipment s on o.shipment_id = s.id\n" +
-                    "left join status s2 on o.status_id = s2.id");
+                    "left join status s2 on o.status_id = s2.id\n" +
+                    "where o.id = ?");
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt("user_id");

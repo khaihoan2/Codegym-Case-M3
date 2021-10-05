@@ -33,4 +33,9 @@ public class OrderItemService implements IOrderItemService {
     public OrderItem findById(int id) {
         return null;
     }
+
+    @Override
+    public List<OrderItem> getOrderItemById(int id) {
+        return orderItemDao.getOrderItemById(id);
+    }
 }

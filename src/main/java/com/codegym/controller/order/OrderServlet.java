@@ -79,8 +79,10 @@ public class OrderServlet extends HttpServlet {
     private void showDetail(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Order order = orderService.findById(id);
+        List<OrderItem> orderItems = orderItemService.getOrderItemById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/detail.jsp");
         request.setAttribute("order", order);
+        request.setAttribute("orderItems", orderItems);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
