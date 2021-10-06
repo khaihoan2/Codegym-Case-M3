@@ -51,10 +51,16 @@ public class ProductService implements IProductService{
     @Override
     public boolean delete(int id) {
         return PRODUCT_DAO.delete(id);
+
     }
 
     @Override
     public Product findById(int id) {
-        return PRODUCT_DAO.findById(id);
+        Product product = PRODUCT_DAO.findById(id);
+        product.setBrand(BRAND_DAO.findById(product.getBrandId()));
+        product.setCategory(CATEGORY_DAO.findById(product.getCategoryId()));
+        product.setVendor(VENDOR_DAO.findById(product.getVendorId()));
+        product.setDiscount(DISCOUNT_DAO.findById(product.getDiscountId()));
+        return product;
     }
 }
