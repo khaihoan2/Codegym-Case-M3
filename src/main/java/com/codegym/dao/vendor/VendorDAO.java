@@ -79,6 +79,7 @@ public class VendorDAO implements IVendorDAO {
         Vendor vendor = null;
         try {
             PreparedStatement statement = CONNECTION.prepareStatement("SELECT * FROM vendor WHERE id=?");
+            statement.setInt(1,id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("name");

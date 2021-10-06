@@ -132,25 +132,4 @@ public class UserDao implements IUserDao {
 
         return users;
     }
-
-    @Override
-    public boolean login(String username, String password) {
-        boolean isValid=false;
-        try {
-
-            PreparedStatement statement = connection.prepareStatement("select * from  user where username=? and  password=?");
-            statement.setString(1,username);
-            statement.setString(2,password);
-            ResultSet resultSet =statement.executeQuery();
-            if (resultSet.next()){
-                isValid=true;
-
-            }else {
-                isValid=false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return isValid;
-    }
 }

@@ -97,7 +97,22 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void doLogin(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean isLoggedIn = USER_SERVICE.login(username, password);
 
+        String message = (isLoggedIn) ? "Logged in successfully!" : "Logged in failed!";
+
+        request.setAttribute("message", message);
+        try {
+            if (isLoggedIn) {
+                response.sendRedirect("/dashboard");
+            } else {
+                response.sendRedirect("/login");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void doRegister(HttpServletRequest request, HttpServletResponse response) {
