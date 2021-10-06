@@ -39,4 +39,11 @@ public class OrderService implements IOrderService {
         name = "%" + name + "%";
         return orderDao.findByName(name);
     }
+
+    @Override
+    public int getMaxId() {
+        return orderDao.getMaxId();
+    }
+
+
 }
