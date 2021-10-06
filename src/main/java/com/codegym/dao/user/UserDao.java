@@ -4,59 +4,36 @@ import com.codegym.dao.DBConnection;
 import com.codegym.model.User;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class UserDao implements IUserDao {
-    private static final Connection connection = DBConnection.getConnection();
+public class UserDao implements IUserDao{
+    private Connection connection = DBConnection.getConnection();
 
     @Override
     public List<User> getAll() {
-        List<User> users = new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement("select * from user");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String first_name = resultSet.getString("first_name ");
-                String last_name = resultSet.getString("last_name");
-                String address = resultSet.getString("address");
-                String telephone = resultSet.getString("telephone");
-                String email = resultSet.getString("email");
-                Date created_at = resultSet.getDate("created_at");
-                Date last_modified_at = resultSet.getDate("last_modified_at");
-                Date delete_at = resultSet.getDate("delete_at");
-                users.add(new User(id, username, password, first_name, last_name, address, telephone, email, created_at, last_modified_at, delete_at));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return users;
+        return null;
     }
 
     @Override
     public boolean save(User user) {
-        boolean isCreated=false;
+        boolean isSave = false;
         try {
-            PreparedStatement statement = connection.prepareStatement("insert into user (username,password,first_name,last_name,address,telephone,email,created_at) value (?,?,?,?,?,?,?,?)");
-            statement.setString(1,user.getUsername());
-            statement.setString(2,user.getPassword());
-            statement.setString(3,user.getFirst_name());
-            statement.setString(4,user.getLast_name());
-            statement.setString(5,user.getAddress());
-            statement.setString(6,user.getTelephone());
-            statement.setString(7,user.getEmail());
-            statement.setDate(8, java.sql.Date.valueOf(LocalDate.now()));
-            isCreated = statement.executeUpdate()>0;
-        } catch (Exception e) {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into user(username, password, first_name, last_name, address, telephone, email, created_at)\n" +
+                    "value (?, ?, ?, ?, ?, ?, ?, ?);");
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getAddress());
+            preparedStatement.setString(6, user.getTelephone());
+            preparedStatement.setString(7, user.getEmail());
+            preparedStatement.setDate(8, new Date(System.currentTimeMillis()));
+            isSave = preparedStatement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return isCreated;
+        return isSave;
     }
 
     @Override
@@ -75,61 +52,19 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean updateByName(String username, User user) {
-        boolean isUpdate=false;
+    public int findIdByUser(User user) {
+        int id = -1;
         try {
-            PreparedStatement statement = connection.prepareStatement("update user  set username=?,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,created_at=? where username=?");
-            statement.setString(1,user.getUsername());
-            statement.setString(1,user.getPassword());
-            statement.setString(1,user.getFirst_name());
-            statement.setString(1,user.getLast_name());
-            statement.setString(1,user.getAddress());
-            statement.setString(1,user.getTelephone());
-            statement.setString(1,user.getEmail());
-            statement.setDate(1,user.getCreated_at());
-            isUpdate = statement.executeUpdate()>0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return isUpdate;
-    }
-
-    @Override
-    public boolean deleteByName(String username) {
-        boolean isDelete=false;
-        try {
-            CallableStatement callableStatement = connection.prepareCall("call delete_by_name(?)");
-            callableStatement.setString(1,username);
-            isDelete=callableStatement.executeUpdate()>0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return isDelete;
-    }
-
-    @Override
-    public List<User> findByName(String name) {
-        List<User> users= new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement("select * from user where like username = ?");
-            statement.setString(1,name);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()==true){
-                String username=resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String first_name = resultSet.getString("first_name ");
-                String last_name = resultSet.getString("last_name");
-                String address = resultSet.getString("address");
-                String telephone = resultSet.getString("telephone");
-                String email = resultSet.getString("email");
-                Date created_at = resultSet.getDate("created_at");
-                User user =new User(username, password, first_name, last_name, address, telephone, email, created_at);
-                users.add(user);
+            PreparedStatement preparedStatement = connection.prepareStatement("select id from user where username = ? and password = ?");
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return users;
+        return id;
     }
 }
