@@ -34,4 +34,9 @@ public class BrandService implements IBrandService{
     public Brand findById(int id) {
         return BRAND_DAO.findById(id);
     }
+
+    @Override
+    public List<Brand> searchByName(String name) {
+        return null;
+    }
 }

@@ -60,7 +60,8 @@ public class CategoryDAO implements ICategoryDAO{
     public boolean delete(int id) {
         boolean isDeleted = false;
         try {
-            CallableStatement statement = CONNECTION.prepareCall("CALL delete_category");
+            CallableStatement statement = CONNECTION.prepareCall("CALL delete_category(?)");
+            statement.setInt(1,id);
             isDeleted = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

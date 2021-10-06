@@ -4,6 +4,13 @@ public class Discount {
     private int id;
     private int percentage;
 
+    public Discount() {
+    }
+
+    public Discount(int percentage) {
+        this.percentage = percentage;
+    }
+
     public Discount(int id, int percentage) {
         this.id = id;
         this.percentage = percentage;

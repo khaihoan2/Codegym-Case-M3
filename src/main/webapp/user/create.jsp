@@ -26,7 +26,7 @@
 
             <form action="/user?action=create" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder=" Username" name="username">
+                    <input type="text" class="form-control" placeholder=" Username" name="userName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="first name" name="firstname">
+                    <input type="text" class="form-control" placeholder="first name" name="firstName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Last name" name="lastname">
+                    <input type="text" class="form-control" placeholder="Last name" name="lastName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -103,11 +103,11 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="../static/plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../static/dist/js/adminlte.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

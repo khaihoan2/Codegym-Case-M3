@@ -15,6 +15,10 @@ public class Product {
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
     private LocalDate deleteAt;
+    private Brand brand;
+    private Category category;
+    private Vendor vendor;
+    private Discount discount;
 
     public Product() {
     }
@@ -139,5 +143,37 @@ public class Product {
 
     public void setDeleteAt(LocalDate deleteAt) {
         this.deleteAt = deleteAt;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 }

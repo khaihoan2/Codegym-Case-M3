@@ -79,8 +79,10 @@ public class OrderServlet extends HttpServlet {
     private void showDetail(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Order order = orderService.findById(id);
+        List<OrderItem> orderItems = orderItemService.getOrderItemById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/detail.jsp");
         request.setAttribute("order", order);
+        request.setAttribute("orderItems", orderItems);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -93,7 +95,9 @@ public class OrderServlet extends HttpServlet {
     private void showCreate(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/order/create.jsp");
         int userId = Integer.parseInt(request.getParameter("userId"));
-            request.setAttribute("userId", userId);
+        request.setAttribute("userId", userId);
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        request.setAttribute("productId", productId);
         List<Payment> payments = paymentService.getAll();
         request.setAttribute("payments", payments);
         List<Shipment> shipments = shipmentService.getAll();
@@ -168,6 +172,11 @@ public class OrderServlet extends HttpServlet {
         int statusId = Integer.parseInt(request.getParameter("statusId"));
         Order order = new Order(id, paymentId, shipmentId, statusId);
         orderService.update(id, order);
+        try {
+            response.sendRedirect("/order");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createOrder(HttpServletRequest request, HttpServletResponse response) {
@@ -176,10 +185,11 @@ public class OrderServlet extends HttpServlet {
         int shipmentId = Integer.parseInt(request.getParameter("shipmentId"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        OrderItem orderItem = new OrderItem(userId, productId, quantity);
-        orderItemService.save(orderItem);
         Order order = new Order(userId, paymentId, shipmentId);
         orderService.save(order);
+        int orderId = orderService.getMaxId();
+        OrderItem orderItem = new OrderItem(orderId, productId, quantity);
+        orderItemService.save(orderItem);
         try {
             response.sendRedirect("/order");
         } catch (IOException e) {
