@@ -391,14 +391,11 @@
                 <div class="card-header">
                     <h3 class="card-title">Products</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+                    <a class="btn btn-success btn-sm float-right" href="/products?action=create">
+                        <i class="fas fa-plus-square">
+                        </i>
+                        Create new product
+                    </a>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped projects">
@@ -439,8 +436,7 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/products?action=delete&id=${product.id}"
-                                       data-toggle="modal" data-target="#modal-danger">
+                                    <a class="btn btn-danger btn-sm" href="/products?action=delete&id=${product.id}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
