@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="first name" name="first_name">
+                    <input type="text" class="form-control" placeholder="first name" name="firstname">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                    <input type="text" class="form-control" placeholder="Last name" name="lastname">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -81,14 +81,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" placeholder="Date" name="created_at">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
@@ -111,11 +103,11 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="../static/dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

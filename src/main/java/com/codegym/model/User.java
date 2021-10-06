@@ -4,11 +4,16 @@ import java.util.Date;
 
 public class User {
     private int id;
-    private String username, password, first_name, last_name, address, telephone, email;
+    private String username;
+    private String password;
+    private String first_name;
+    private String last_name;
+    private String address;
+    private String telephone;
+    private String email;
     private Date created_at, last_modified_at, delete_at;
 
-    public User(int id, String username, String password, String first_name, String last_name, String address, String telephone, String email, Date created_at, Date last_modified_at, Date delete_at) {
-        this.id = id;
+    public User(String username, String password, String first_name, String last_name, String address, String telephone, String email) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
@@ -16,36 +21,7 @@ public class User {
         this.address = address;
         this.telephone = telephone;
         this.email = email;
-        this.created_at = created_at;
-        this.last_modified_at = last_modified_at;
-        this.delete_at = delete_at;
     }
-
-
-    public User(String username, String password, String first_name, String last_name, String address, String telephone, String email,Date created_at) {
-        this.username = username;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.address = address;
-        this.telephone = telephone;
-        this.email = email;
-        this.created_at=created_at;
-    }
-
-    public User(String password, String first_name, String last_name, String address, String telephone, String email, Date last_modified_at) {
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.address = address;
-        this.telephone = telephone;
-        this.email = email;
-        this.last_modified_at = last_modified_at;
-    }
-
-    public User() {
-    }
-
 
     public int getId() {
         return id;
@@ -111,8 +87,8 @@ public class User {
         this.email = email;
     }
 
-    public java.sql.Date getCreated_at() {
-        return (java.sql.Date) created_at;
+    public Date getCreated_at() {
+        return created_at;
     }
 
     public void setCreated_at(Date created_at) {
@@ -134,5 +110,4 @@ public class User {
     public void setDelete_at(Date delete_at) {
         this.delete_at = delete_at;
     }
-
 }

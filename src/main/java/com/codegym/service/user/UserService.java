@@ -11,7 +11,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> getAll() {
-        return userDao.getAll();
+        return null;
     }
 
     @Override
@@ -32,27 +32,5 @@ public class UserService implements IUserService {
     @Override
     public User findById(int id) {
         return null;
-    }
-
-
-    @Override
-    public List<User> findByName(String name) {
-        name = "%" + name + "%";
-        return userDao.findByName(name);
-    }
-
-    @Override
-    public boolean login(String username, String password) {
-        return userDao.login(username, password);
-    }
-
-    @Override
-    public boolean deleteByName(String username) {
-        return userDao.deleteByName(username);
-    }
-
-    @Override
-    public boolean updateByName(String username, User user) {
-        return userDao.updateByName(username, user);
     }
 }
