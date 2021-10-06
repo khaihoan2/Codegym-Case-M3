@@ -56,9 +56,10 @@
                     <i class="fas fa-search"></i>
                 </a>
                 <div class="navbar-search-block">
-                    <form action="/order" method="get" class="form-inline">
+                    <form class="form-inline">
                         <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" name="q" placeholder="Search" aria-label="Search">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                   aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit">
                                     <i class="fas fa-search"></i>
@@ -214,113 +215,40 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
 
-                    `                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Order
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/order" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Order</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Order
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/order" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Order</p>
+                                </a>
+                            </li><li class="nav-item">
                             <a href="/payment" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payment</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/shipment" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Shipment</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item">
+                                <a href="/shipment" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Shipment</p>
+                                </a>
+                            </li>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
     </aside>
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Order</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">User Profile</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="container-fluid">
-                    <!-- Default box -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Order</h3>
-
-                        </div>
-                        <div class="card-body p-0">
-                            <table class="table table-striped projects">
-                                <thead>
-                                <tr>
-                                    <th>Order Id</th>
-                                    <th>User name</th>
-                                    <th>Payment</th>
-                                    <th>Shipment</th>
-                                    <th>Status</th>
-                                    <th>Date Create</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${orders}" var="order">
-                                    <tr>
-                                        <td>${order.id}</td>
-                                        <td>${order.userName}</td>
-                                        <td>${order.paymentName}</td>
-                                        <td>${order.shipmentName}</td>
-                                        <td>${order.statusName}</td>
-                                        <td>${order.createAt}</td>
-                                        <td class="project-actions text-right d-flex ">
-                                            <a class="btn btn-primary btn-sm mr-2" href="/order?action=detail&id=${order.id}">
-                                                <i class="fas fa-folder"></i>
-                                            </a>
-                                            <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&id=${order.id}">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                            <a class="btn btn-danger btn-sm " href="/order?action=delete&id=${order.id}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </section>
-    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -344,5 +272,6 @@
 <!-- AdminLTE App -->
 <script src="../static/dist/js/adminlte.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
