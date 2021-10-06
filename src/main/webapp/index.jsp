@@ -49,7 +49,12 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="/login/login.jsp"><i class="fa fa-user-o"></i> My Account</a></li>
+                <c:if test="${userId == null}">
+                    <li><a href="/login/login.jsp"><i class="fa fa-user-o"></i> My Account</a></li>
+                </c:if>
+                <c:if test="${userId != null}">
+                    <li><a href="/users/detail.jsp"><i class="fa fa-user-o"></i>${userName}</a></li>
+                </c:if>
             </ul>
         </div>
     </div>

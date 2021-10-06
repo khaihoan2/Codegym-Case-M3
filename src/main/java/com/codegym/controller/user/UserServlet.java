@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 
-@WebServlet(name = "UserServlet", value = "/user")
+@WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
 
     private IUserService userService = new UserService();
@@ -40,8 +40,8 @@ public class UserServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         User user = new User(userName, password);
-        int id = userService.findIdByUser(user);
-        if (id == -1) {
+        int userId = userService.findIdByUser(user);
+        if (userId == -1) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login/login.jsp");
             String message = "Incorrect account or password!";
             request.setAttribute("message", message);
@@ -53,8 +53,11 @@ public class UserServlet extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/loginSuccess.jsp");
-            request.setAttribute("id", id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", userId);
+            session.setAttribute("userName", userName);
+            request.setAttribute("userId", userId);
             request.setAttribute("userName", userName);
             try {
                 dispatcher.forward(request, response);
