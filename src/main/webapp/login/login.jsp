@@ -26,7 +26,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="login" method="post">
+            <form action="/login?action=login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Username" name="username">
                     <div class="input-group-append">
@@ -55,7 +55,7 @@
                     <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        <button type="submit" class="btn btn-primary btn-block"><a href="/login/signup.jsp"></a> Sign Up </button>
+                        <button type="submit" class="btn btn-primary btn-block"><a href="/user/create.jsp"></a> Sign Up </button>
                     </div>
                     <!-- /.col -->
                 </div>

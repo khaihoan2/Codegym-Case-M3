@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/login?action=delete" method="post">
+<form action="/user?action=delete" method="post">
     <input type="text" name="username">
     <button>search</button>
 </form>

@@ -33,6 +33,16 @@ public class User {
         this.created_at=created_at;
     }
 
+    public User(String password, String first_name, String last_name, String address, String telephone, String email, Date last_modified_at) {
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.address = address;
+        this.telephone = telephone;
+        this.email = email;
+        this.last_modified_at = last_modified_at;
+    }
+
     public User() {
     }
 

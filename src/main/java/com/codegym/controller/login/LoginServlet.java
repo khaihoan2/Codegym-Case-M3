@@ -111,12 +111,29 @@ public class LoginServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "login":
+                showLogin(request,response);
+                break;
             case "delete":
                 showDelete(request,response);
                 break;
             default:
                 showProductList(request,response);
                 break;
+        }
+    }
+
+    private void showLogin(HttpServletRequest request, HttpServletResponse response) {
+        try {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login/login.jsp");
+            try {
+                dispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

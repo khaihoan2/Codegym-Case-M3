@@ -78,15 +78,16 @@ public class UserDao implements IUserDao {
     public boolean updateByName(String username, User user) {
         boolean isUpdate=false;
         try {
-            PreparedStatement statement = connection.prepareStatement("update user  set username=?,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,created_at=? where username=?");
+            PreparedStatement statement = connection.prepareStatement("update user  set username=?,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,created_at = ? where username=?");;
             statement.setString(1,user.getUsername());
-            statement.setString(1,user.getPassword());
-            statement.setString(1,user.getFirst_name());
-            statement.setString(1,user.getLast_name());
-            statement.setString(1,user.getAddress());
-            statement.setString(1,user.getTelephone());
-            statement.setString(1,user.getEmail());
-            statement.setDate(1,user.getCreated_at());
+            statement.setString(2,user.getPassword());
+            statement.setString(3,user.getFirst_name());
+            statement.setString(4,user.getLast_name());
+            statement.setString(5,user.getAddress());
+            statement.setString(6,user.getTelephone());
+            statement.setString(7,user.getEmail());
+            statement.setDate(8, user.getCreated_at());
+            statement.setString(9,username);
             isUpdate = statement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();

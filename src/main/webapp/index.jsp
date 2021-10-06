@@ -215,7 +215,8 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
 
-`                    <li class="nav-item">
+                    `
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
@@ -260,8 +261,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/login/login.jsp">Login</a></li>
-                            <li class="breadcrumb-item active"><a href="/login/signup.jsp">  Sign Up</a> </li>
+                            <li class="breadcrumb-item"><a href="/login">Login</a> </li>
+                            <li class="breadcrumb-item active"><a href="/login"> Sign Up</a></li>
                         </ol>
                     </div>
                 </div>
