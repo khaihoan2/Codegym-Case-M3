@@ -21,14 +21,29 @@ public class VendorServlet extends HttpServlet {
         }
         switch (action) {
             case "create": {
-
+                showCreate(request, response);
+                break;
+            }
+            case"delete":{
+                showDelete(request, response);
                 break;
             }
             default: {
-
+                showList(request, response);
                 break;
             }
         }
+    }
+
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) {
+    }
+
+    private void showList(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     @Override
@@ -39,11 +54,14 @@ public class VendorServlet extends HttpServlet {
         }
         switch (action) {
             case "create": {
-
+                showCreate(request, response);
                 break;
             }
+            case "delete":{
+                showDelete(request, response);
+            }
             default: {
-
+                showList(request, response);
                 break;
             }
         }
