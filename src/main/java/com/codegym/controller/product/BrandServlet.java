@@ -1,7 +1,6 @@
 package com.codegym.controller.product;
 
 import com.codegym.model.Brand;
-import com.codegym.model.Category;
 import com.codegym.service.brand.BrandService;
 //import sun.plugin.com.Dispatcher;
 
@@ -31,6 +30,10 @@ public class BrandServlet extends HttpServlet {
                 showEditForm(request, response);
                 break;
             }
+            case "view": {
+                showViewForm(request, response);
+                break;
+            }
             case "delete": {
                 showDeleteForm(request, response);
                 break;
@@ -41,6 +44,23 @@ public class BrandServlet extends HttpServlet {
             }
         }
 
+    }
+
+    private void showViewForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Brand discount = BRAND_SERVICE.findById(id);
+        RequestDispatcher dispatcher;
+        if (discount == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("brand/view.jsp");
+        }
+        request.setAttribute("brand", discount);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showListForm(HttpServletRequest request, HttpServletResponse response) {
@@ -91,7 +111,7 @@ public class BrandServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/brand/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("brand/create.jsp");
         try {
             dispatcher.forward(request, response);
         }catch (ServletException| IOException e){

@@ -1,9 +1,6 @@
 package com.codegym.controller.product;
 
-import com.codegym.model.Brand;
-import com.codegym.model.Category;
-import com.codegym.model.Shipment;
-import com.codegym.model.Vendor;
+import com.codegym.model.*;
 import com.codegym.service.vendor.IVendorService;
 import com.codegym.service.vendor.VendorService;
 
@@ -13,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "VendorServlet", value = "/vendors")
+    @WebServlet(name = "VendorServlet", value = "/vendors")
 public class VendorServlet extends HttpServlet {
 
     private static final IVendorService VENDOR_SERVICE = new VendorService();
@@ -33,6 +30,10 @@ public class VendorServlet extends HttpServlet {
                 showEditForm(request, response);
                 break;
             }
+            case "view": {
+                showViewForm(request, response);
+                break;
+            }
             case "delete": {
                 showDeleteForm(request, response);
                 break;
@@ -41,6 +42,23 @@ public class VendorServlet extends HttpServlet {
                 showListForm(request, response);
                 break;
             }
+        }
+    }
+
+    private void showViewForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Vendor discount = VENDOR_SERVICE.findById(id);
+        RequestDispatcher dispatcher;
+        if (discount == null) {
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("vendro/view.jsp");
+        }
+        request.setAttribute("vendro", discount);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 

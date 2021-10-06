@@ -12,16 +12,17 @@
 </head>
 <body>
 <div>
-    <button><a href="/vendro?action=create">create</a></button>
+    <button><a href="/vendors?action=create">create</a></button>
     <table>
         <tr>
             <th>Id</th>
             <th>Name</th>
         </tr>
-        <c:forEach items="${vendros}" var="vendro">
+        <c:forEach items="${vendro}" var="vendro">
             <tr>
                 <td>${vendro.id}</td>
                 <td>${vendro.name}</td>
+                <td><a href="/vendro?action=view&id=${vendro.id}">View</a></td>
                 <td><a href="/vendro?action=edit&id=${vendro.id}">Edit</a></td>
                 <td><a href="/vendro?action=delete&id=${vendro.id}">Delete</a></td>
             </tr>
