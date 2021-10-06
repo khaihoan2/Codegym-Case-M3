@@ -161,7 +161,7 @@ public class ProductServlet extends HttpServlet {
         product.setCreatedAt(LocalDate.now());
         boolean isSaved = PRODUCT_SERVICE.save(product);
 
-        String message = (isSaved)? "Product create successfully!" : "Product created fail!";
+        String message = (isSaved)? "Product created successfully!" : "Product created fail!";
 
         request.setAttribute("message", message);
         try {
@@ -183,7 +183,11 @@ public class ProductServlet extends HttpServlet {
         int discountId = Integer.parseInt(request.getParameter("discountId"));
         Product product = new Product(name, description, price, SKU, brandId, categoryId, vendorId, discountId);
         product.setLastModifiedAt(LocalDate.now());
-        PRODUCT_SERVICE.update(id, product);
+        boolean isUpdated = PRODUCT_SERVICE.update(id, product);
+
+        String message = (isUpdated)? "Product updated successfully!" : "Product updated fail!";
+
+        request.setAttribute("message", message);
         try {
             response.sendRedirect("/products");
         } catch (IOException e) {
@@ -193,7 +197,11 @@ public class ProductServlet extends HttpServlet {
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        PRODUCT_SERVICE.delete(id);
+        boolean isDeleted = PRODUCT_SERVICE.delete(id);
+
+        String message = (isDeleted)? "Product deleted successfully!" : "Product deleted fail!";
+
+        request.setAttribute("message", message);
         try {
             response.sendRedirect("/products");
         } catch (IOException e) {

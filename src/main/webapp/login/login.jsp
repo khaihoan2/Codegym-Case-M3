@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../static/dist/css/adminlte.min.css">
+
 </head>
+
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
@@ -26,9 +28,9 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="login" method="post">
+            <form action="../static/index3.html" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
+                    <input type="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -36,7 +38,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -55,12 +57,32 @@
                     <!-- /.col -->
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        <button type="submit" class="btn btn-primary btn-block"><a href="/login/signup.jsp"></a> Sign Up </button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
+<%--            TRANG ADMIN KHÔNG CHO PHÉP ĐĂNG NHẬP BẰNG CÁC TÀI KHOẢN MẠNG XÃ HỘI--%>
+<%--            <div class="social-auth-links text-center mb-3">--%>
+<%--                <p>- OR -</p>--%>
+<%--                <a href="#" class="btn btn-block btn-primary">--%>
+<%--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--%>
+<%--                </a>--%>
+<%--                <a href="#" class="btn btn-block btn-danger">--%>
+<%--                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+--%>
+<%--                </a>--%>
+<%--            </div>--%>
+<%--            <!-- /.social-auth-links -->--%>
+
+            <p class="mb-1">
+                <a href="/login?action=recover">I forgot my password</a>
+            </p>
+<%--            TRANG ADMIN KHÔNG CHO PHÉP ĐĂNG KÝ TÀI KHOẢN MỚI--%>
+<%--            <p class="mb-0">--%>
+<%--                <a href="/login?action=register" class="text-center">Register a new membership</a>--%>
+<%--            </p>--%>
+        </div>
+        <!-- /.login-card-body -->
     </div>
 </div>
 <!-- /.login-box -->
@@ -72,4 +94,6 @@
 <!-- AdminLTE App -->
 <script src="../static/dist/js/adminlte.min.js"></script>
 </body>
+
+
 </html>
