@@ -2,7 +2,6 @@ package com.codegym.dao.order;
 
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Order;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 
 import java.sql.*;
 import java.util.ArrayList;

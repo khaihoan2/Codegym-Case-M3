@@ -24,9 +24,9 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg">Register a new membership</p>
 
-            <form action="/login?action=signup" method="post">
+            <form action="/user?action=create" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder=" Username" name="username">
+                    <input type="text" class="form-control" placeholder=" Username" name="userName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="first name" name="first_name">
+                    <input type="text" class="form-control" placeholder="first name" name="firstName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                    <input type="text" class="form-control" placeholder="Last name" name="lastName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -75,14 +75,6 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="email" name="email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" placeholder="Date" name="created_at">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

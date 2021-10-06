@@ -1,41 +1,44 @@
 package com.codegym.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class User {
     private int id;
-    private String username, password, first_name, last_name, address, telephone, email;
-    private Date created_at, last_modified_at, delete_at;
 
-    public User(int id, String username, String password, String first_name, String last_name, String address, String telephone, String email, Date created_at, Date last_modified_at, Date delete_at) {
-        this.id = id;
-        this.username = username;
+    private String userName;
+
+    private String password;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String address;
+
+    private String telephone;
+
+    private String email;
+
+    private Date createAt;
+
+    private Date lastModifiedAt;
+
+    private Date deleteAt;
+
+    public User(String userName, String password) {
+        this.userName = userName;
         this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    }
+
+    public User(String userName, String password, String firstName, String lastName, String address, String telephone, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.telephone = telephone;
         this.email = email;
-        this.created_at = created_at;
-        this.last_modified_at = last_modified_at;
-        this.delete_at = delete_at;
     }
-
-
-    public User(String username, String password, String first_name, String last_name, String address, String telephone, String email,Date created_at) {
-        this.username = username;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.address = address;
-        this.telephone = telephone;
-        this.email = email;
-        this.created_at=created_at;
-    }
-
-    public User() {
-    }
-
 
     public int getId() {
         return id;
@@ -45,12 +48,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -61,20 +64,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -101,28 +104,27 @@ public class User {
         this.email = email;
     }
 
-    public java.sql.Date getCreated_at() {
-        return (java.sql.Date) created_at;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
-    public Date getLast_modified_at() {
-        return last_modified_at;
+    public Date getLastModifiedAt() {
+        return lastModifiedAt;
     }
 
-    public void setLast_modified_at(Date last_modified_at) {
-        this.last_modified_at = last_modified_at;
+    public void setLastModifiedAt(Date lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
     }
 
-    public Date getDelete_at() {
-        return delete_at;
+    public Date getDeleteAt() {
+        return deleteAt;
     }
 
-    public void setDelete_at(Date delete_at) {
-        this.delete_at = delete_at;
+    public void setDeleteAt(Date deleteAt) {
+        this.deleteAt = deleteAt;
     }
-
 }
