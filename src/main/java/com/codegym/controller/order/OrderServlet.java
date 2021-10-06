@@ -49,10 +49,23 @@ public class OrderServlet extends HttpServlet {
             case "delete":
                 showDelete(request, response);
                 break;
+            case "userList":
+                showUserList(request, response);
+                break;
             default:
                 showList(request, response);
                 break;
         }
+
+    }
+
+    private void showUserList(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            response.sendRedirect("/order/userList.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

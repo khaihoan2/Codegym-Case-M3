@@ -1,6 +1,9 @@
 package com.codegym.controller.user;
 
+import com.codegym.model.Role;
 import com.codegym.model.User;
+import com.codegym.service.role.IRoleService;
+import com.codegym.service.role.RoleService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
 
@@ -9,15 +12,38 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
 
     private IUserService userService = new UserService();
 
+    private IRoleService roleService = new RoleService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "logout":
+                logoutUser(request, response);
+                break;
+        }
+    }
 
+    private void logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("userId");
+        session.removeAttribute("userName");
+        session.removeAttribute("roles");
+        try {
+            response.sendRedirect("/index.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -53,16 +79,13 @@ public class UserServlet extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            List<Role> roles = roleService.getRolesByUserId(userId);
             HttpSession session = request.getSession();
             session.setAttribute("userId", userId);
             session.setAttribute("userName", userName);
-            request.setAttribute("userId", userId);
-            request.setAttribute("userName", userName);
+            session.setAttribute("roles", roles);
             try {
-                dispatcher.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
+                response.sendRedirect("index.jsp");
             } catch (IOException e) {
                 e.printStackTrace();
             }
