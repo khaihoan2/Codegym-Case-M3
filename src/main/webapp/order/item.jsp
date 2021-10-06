@@ -1,3 +1,4 @@
+<%@ page import="com.codegym.model.Order" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -231,7 +232,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/payment" class="nav-link">
+                                <a href="/order" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Payment</p>
                                 </a>

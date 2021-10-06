@@ -172,6 +172,11 @@ public class OrderServlet extends HttpServlet {
         int statusId = Integer.parseInt(request.getParameter("statusId"));
         Order order = new Order(id, paymentId, shipmentId, statusId);
         orderService.update(id, order);
+        try {
+            response.sendRedirect("/order");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createOrder(HttpServletRequest request, HttpServletResponse response) {
