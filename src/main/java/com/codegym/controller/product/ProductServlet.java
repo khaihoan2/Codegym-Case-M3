@@ -53,7 +53,7 @@ public class ProductServlet extends HttpServlet {
                 break;
             }
             case "delete": {
-                showDeleteFrom(request, response);
+//                showDeleteFrom(request, response);
                 break;
             }
             default: {
@@ -217,9 +217,9 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         boolean isDeleted = PRODUCT_SERVICE.delete(id);
 
-        String message = (isDeleted) ? "Product deleted successfully!" : "Product deleted fail!";
+//        String message = (isDeleted) ? "Product deleted successfully!" : "Product deleted fail!";
 
-        request.setAttribute("message", message);
+//        request.setAttribute("message", message);
         try {
             response.sendRedirect("/products");
         } catch (IOException e) {

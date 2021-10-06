@@ -381,113 +381,100 @@
 
         <!-- Main content -->
         <section class="content">
-
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Product Detail</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
+            <div class="row">
+                <%--                        Product's information--%>
+                <div class="col-12 col-md-12 col-lg-6 order-2 order-md-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Product's information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Product Name</h5>
+                                        <p>${product.name}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Product Description</h5>
+                                        <p>${product.description}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Product Price</h5>
+                                        <p>${product.price}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Product SKU</h5>
+                                        <p>${product.SKU}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Brand</h5>
+                                        <p>${product.brand.name}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Category</h5>
+                                        <p>${product.category.name}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Vendor</h5>
+                                        <p>${product.vendor.name}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>Discount</h5>
+                                        <p>${product.discount.percentage}%</p>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <%--                        Product's images--%>
+                <div class="col-12 col-md-12 col-lg-6 order-1 order-md-2">
                     <div class="row">
-                        <%--                        Product's information--%>
-                        <div class="col-12 col-md-12 col-lg-6 order-2 order-md-1">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Product's details</h3>
-
-                                            <div class="card-tools">
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                                        title="Collapse">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <h5>Product Name</h5>
-                                                <p>${product.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product Description</h5>
-                                                <p>${product.description}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product Price</h5>
-                                                <p>${product.price}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product SKU</h5>
-                                                <p>${product.SKU}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Brand</h5>
-                                                <p>${product.brand.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Category</h5>
-                                                <p>${product.category.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Vendor</h5>
-                                                <p>${product.vendor.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Discount</h5>
-                                                <p>${product.discount.name}</p>
-                                            </div>
-                                        </div>
-                                        <!-- /.card-body -->
+                        <div class="col-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Product's images</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="" class="btn-link text-secondary"><i
+                                                    class="far fa-fw fa-file-word"></i>
+                                                Functional-requirements.docx</a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="btn-link text-secondary"><i
+                                                    class="far fa-fw fa-file-pdf"></i>
+                                                UAT.pdf</a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="btn-link text-secondary"><i
+                                                    class="far fa-fw fa-envelope"></i>
+                                                Email-from-flatbal.mln</a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="btn-link text-secondary"><i
+                                                    class="far fa-fw fa-image "></i>
+                                                Logo.png</a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="btn-link text-secondary"><i
+                                                    class="far fa-fw fa-file-word"></i>
+                                                Contract-10_12_2014.docx</a>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center mt-5 mb-3">
+                                        <a href="#" class="btn btn-sm btn-primary">Add images</a>
+                                        <a href="#" class="btn btn-sm btn-warning">Report contact</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <%--                        Product's images--%>
-                        <div class="col-12 col-md-12 col-lg-6 order-1 order-md-2">
-                            <h5 class="mt-5 text-muted">Product images</h5>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                        Functional-requirements.docx</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i>
-                                        UAT.pdf</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i>
-                                        Email-from-flatbal.mln</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i>
-                                        Logo.png</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                        Contract-10_12_2014.docx</a>
-                                </li>
-                            </ul>
-                            <div class="text-center mt-5 mb-3">
-                                <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                                <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-
         </section>
         <!-- /.content -->
 
@@ -498,15 +485,6 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
 
 

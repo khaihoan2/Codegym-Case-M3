@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="../static/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../static/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../static/plugins/toastr/toastr.min.css">
 </head>
 
 
@@ -435,7 +439,8 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/products?action=delete&id=${product.id}">
+                                    <a class="btn btn-danger btn-sm" href="/products?action=delete&id=${product.id}"
+                                       data-toggle="modal" data-target="#modal-danger">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -471,7 +476,10 @@
 <script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="../static/dist/js/adminlte.js"></script>
-
+<!-- SweetAlert2 -->
+<script src="../static/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="../static/plugins/toastr/toastr.min.js"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="../static/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->

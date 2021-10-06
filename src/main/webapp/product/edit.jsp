@@ -387,68 +387,82 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Product's details</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                            title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="inputName">Product Name</label>
-                                    <input type="text" id="inputName" class="form-control" value="${product.name}" name="name">
+                                    <input type="text" id="inputName" class="form-control" value="${product.name}"
+                                           name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDescription">Product Description</label>
-                                    <input id="inputDescription" class="form-control" rows="4" name="description" value="${product.description}"/>
+                                    <input id="inputDescription" class="form-control" rows="4" name="description"
+                                           value="${product.description}"/>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputName">Product Price</label>
-                                    <input type="text" id="inputPrice" class="form-control" value="${product.price}" name="price">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="inputName">Product Price</label>
+                                            <input type="text" id="inputPrice" class="form-control" value="${product.price}"
+                                                   name="price">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="form-group">
+                                            <label for="inputName">Product SKU</label>
+                                            <input type="text" id="inputSKU" class="form-control" value="${product.SKU}"
+                                                   name="SKU">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputName">Product SKU</label>
-                                    <input type="text" id="inputSKU" class="form-control" value="${product.SKU}" name="SKU">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="inputBrand">Brand</label>
+                                            <select name="brandId" id="inputBrand" class="form-control custom-select">
+                                                <option disabled>Select one</option>
+                                                <c:forEach items="${brands}" var="brand">
+                                                    <option value="${brand.id}">${brand.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="inputCategory">Category</label>
+                                            <select name="categoryId" id="inputCategory" class="form-control custom-select">
+                                                <option disabled>Select one</option>
+                                                <c:forEach items="${categories}" var="category">
+                                                    <option value="${category.id}">${category.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputBrand">Brand</label>
-                                    <select name="brandId" id="inputBrand" class="form-control custom-select">
-                                        <option disabled>Select one</option>
-                                        <c:forEach items="${brands}" var="brand">
-                                            <option value="${brand.id}">${brand.name}</option>
-                                        </c:forEach>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="inputVendor">Vendor</label>
+                                            <select name="vendorId" id="inputVendor" class="form-control custom-select">
+                                                <option disabled>Select one</option>
+                                                <c:forEach items="${vendors}" var="vendor">
+                                                    <option value="${vendor.id}">${vendor.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="inputDiscount">Discount</label>
+                                            <select name="discountId" id="inputDiscount" class="form-control custom-select">
+                                                <option disabled>Select one</option>
+                                                <c:forEach items="${discounts}" var="discount">
+                                                    <option value="${discount.id}">${discount.percentage}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputCategory">Category</label>
-                                    <select name="categoryId" id="inputCategory" class="form-control custom-select">
-                                        <option disabled>Select one</option>
-                                        <c:forEach items="${categories}" var="category">
-                                            <option value="${category.id}">${category.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputVendor">Vendor</label>
-                                    <select name="vendorId" id="inputVendor" class="form-control custom-select">
-                                        <option disabled>Select one</option>
-                                        <c:forEach items="${vendors}" var="vendor">
-                                            <option value="${vendor.id}">${vendor.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputDiscount">Discount</label>
-                                    <select name="discountId" id="inputDiscount" class="form-control custom-select">
-                                        <option disabled>Select one</option>
-                                        <c:forEach items="${discounts}" var="discount">
-                                            <option value="${discount.id}">${discount.percentage}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -458,13 +472,6 @@
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">Files</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                            title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body p-0">
                                 <table class="table">
@@ -533,8 +540,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a href="/products" class="btn btn-secondary">Cancel</a>
-                        <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                        <a href="/products" class="btn btn-secondary float-right" style="margin: 5px">Cancel</a> &ensp;
+                        <input type="submit" value="Save Changes" class="btn btn-success float-right" style="margin: 5px">
                     </div>
                 </div>
             </form>
@@ -548,17 +555,7 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
-
 
 <!-- REQUIRED SCRIPTS -->
 
