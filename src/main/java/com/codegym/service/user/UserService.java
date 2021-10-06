@@ -7,16 +7,16 @@ import com.codegym.model.User;
 import java.util.List;
 
 public class UserService implements IUserService {
-    private IUserDao userDao = new UserDao();
+    private static final IUserDao USER_DAO = new UserDao();
 
     @Override
     public List<User> getAll() {
-        return userDao.getAll();
+        return USER_DAO.getAll();
     }
 
     @Override
     public boolean save(User user) {
-        return userDao.save(user);
+        return USER_DAO.save(user);
     }
 
     @Override
@@ -34,25 +34,27 @@ public class UserService implements IUserService {
         return null;
     }
 
-
     @Override
     public List<User> findByName(String name) {
         name = "%" + name + "%";
-        return userDao.findByName(name);
+        return USER_DAO.findByName(name);
     }
 
     @Override
     public boolean login(String username, String password) {
-        return userDao.login(username, password);
+        List<User> users = USER_DAO.getAll();
+
+
+        return true;
     }
 
     @Override
     public boolean deleteByName(String username) {
-        return userDao.deleteByName(username);
+        return USER_DAO.deleteByName(username);
     }
 
     @Override
     public boolean updateByName(String username, User user) {
-        return userDao.updateByName(username, user);
+        return USER_DAO.updateByName(username, user);
     }
 }
