@@ -9,5 +9,5 @@ public interface IUserService extends IGeneralService<User> {
     boolean login(String username,String password);
     boolean deleteByName(String username);
     boolean updateByName(String username, User user);
-    List<User> findByName(String username);
+    List<User> findByName(String name);
 }

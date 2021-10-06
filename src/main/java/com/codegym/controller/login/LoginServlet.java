@@ -10,7 +10,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -27,7 +26,7 @@ public class LoginServlet extends HttpServlet {
                 loginUser(request, response);
                 break;
             case "signup":
-                signup(request, response);
+                addUser(request, response);
                 break;
             case "delete":
                 deleteUser(request,response);
@@ -44,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         userService.findByName(username);
         try {
-            response.sendRedirect("/showAll.jsp");
+            response.sendRedirect("/login/showAll.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,13 +53,14 @@ public class LoginServlet extends HttpServlet {
         String username=request.getParameter("username");
         userService.deleteByName(username);
         try {
-            response.sendRedirect("/login/login.jsp");
+            response.sendRedirect("/login/showAll.jsp");
+//            xóa xong chuyển sang trang login.`
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void signup(HttpServletRequest request, HttpServletResponse response) {
+    private void addUser(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String first_name = request.getParameter("first_name");
@@ -70,10 +70,18 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         Date created_at= Date.valueOf(request.getParameter("created_at"));
         User user = new User(username, password, first_name, last_name, address, telephone, email,created_at);
-            userService.save(user);
+         boolean isCreated = userService.save(user);
+         String message = " ";
+         if (isCreated){
+             message = "Create success";
+         }else {
+             message="Create fail";
+         }
+         RequestDispatcher dispatcher =request.getRequestDispatcher("/login/login.jsp");
+         request.setAttribute("message",message);
         try {
-            response.sendRedirect("/login/login.jsp");
-        } catch (IOException e) {
+            dispatcher.forward(request,response);
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -103,24 +111,30 @@ public class LoginServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "login":
-                showLogin(request, response);
-                break;
-            case "signup":
-                showSignUp(request, response);
-                break;
             case "delete":
                 showDelete(request,response);
                 break;
-            case "search":
-                showByName(request,response);
             default:
+                showProductList(request,response);
                 break;
         }
     }
 
-    private void showByName(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showProductList(HttpServletRequest request, HttpServletResponse response) {
+        String name =request.getParameter("q");
+        List<User> users;
+        if (name==null || name.equals("")){
+            users=userService.getAll();
+        }else {
+            users=userService.findByName(name);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/login/list.jsp");
+        request.setAttribute("users",users);
+        try {
+            dispatcher.forward(request,response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
@@ -140,20 +154,5 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private void showSignUp(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            response.sendRedirect("/login/signup.jsp");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showLogin(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            response.sendRedirect("/login/login.jsp");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

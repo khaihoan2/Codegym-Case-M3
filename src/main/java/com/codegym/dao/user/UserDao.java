@@ -36,7 +36,7 @@ public class UserDao implements IUserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return users;
     }
 
     @Override
@@ -108,13 +108,14 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public List<User> findByName(String username) {
+    public List<User> findByName(String name) {
         List<User> users= new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("select * from user where like username = ?");
-            statement.setString(1,username);
+            statement.setString(1,name);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()==true){
+                String username=resultSet.getString("username");
                 String password = resultSet.getString("password");
                 String first_name = resultSet.getString("first_name ");
                 String last_name = resultSet.getString("last_name");
