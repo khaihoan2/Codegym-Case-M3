@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -29,7 +30,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
-<<<<<<< HEAD
 
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -361,12 +361,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create new category</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Create new category</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -399,6 +399,7 @@
             </form>
         </div>
 
+
         <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->
@@ -407,13 +408,16 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Footer -->
-    <footer class="main-footer position-fixed">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <%--    <!-- Footer -->--%>
+    <%--    <div class="container">--%>
+    <%--        <footer class="main-footer">--%>
+    <%--            <div class="float-right d-none d-sm-block">--%>
+    <%--                <b>Version</b> 3.2.0-rc--%>
+    <%--            </div>--%>
+    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
+    <%--        </footer>--%>
+    <%--    </div>--%>
+
     <!-- /.footer -->
 </div>
 
@@ -433,28 +437,6 @@
 <script src="../static/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../static/dist/js/pages/dashboard3.js"></script>
-=======
-<body>
-<div class="container">
-    <form action="/categories?action=create" method="post" class="card">
-        <div class="card-header">
-            <h3>Create form</h3>
-        </div>
-        <div class="card-body">
-            <c:if test="${message != null}">
-                <p>${message}</p>
-            </c:if>
-            <div class="mb-3">
-                <label for="name"></label>
-                <input type="text" id="name" name="name" placeholder="Category name...">
-            </div>
-            <div>
-                <button>Submit</button>
-            </div>
-        </div>
-
-    </form>
-</div>
->>>>>>> hoannnk
 </body>
 </html>
+

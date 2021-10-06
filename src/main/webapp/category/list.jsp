@@ -29,7 +29,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
-<<<<<<< HEAD
 
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -361,12 +360,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>All categories</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">All categories</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -379,7 +378,6 @@
         <!-- div class="content" -->
 
         <a href="${pageContext.request.contextPath}/categories?action=create">Create new category</a>
-
         <table>
             <tr>
                 <th>#</th>
@@ -407,13 +405,16 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Footer -->
-    <footer class="main-footer position-fixed">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <%--    <!-- Footer -->--%>
+    <%--    <div class="container">--%>
+    <%--        <footer class="main-footer">--%>
+    <%--            <div class="float-right d-none d-sm-block">--%>
+    <%--                <b>Version</b> 3.2.0-rc--%>
+    <%--            </div>--%>
+    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
+    <%--        </footer>--%>
+    <%--    </div>--%>
+
     <!-- /.footer -->
 </div>
 
@@ -433,30 +434,8 @@
 <script src="../static/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../static/dist/js/pages/dashboard3.js"></script>
-=======
-<body>
-
-
-<a href="${pageContext.request.contextPath}/categories?action=create">Create new category</a>
-
-<table>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>View</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <c:forEach items="${categories}" var="category">
-        <tr>
-            <td>${category.id}</td>
-            <td>${category.name}</td>
-            <td><a href="/categories?action=view&id=${category.id}">View</a></td>
-            <td><a href="/categories?action=edit&id=${category.id}">Edit</a></td>
-            <td><a href="/categories?action=delete&id=${category.id}">Delete</a></td>
-        </tr>
-    </c:forEach>
-</table>
->>>>>>> hoannnk
 </body>
 </html>
+
+
+
