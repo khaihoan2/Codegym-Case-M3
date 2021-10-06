@@ -229,11 +229,12 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Order</p>
                                 </a>
-                            </li><li class="nav-item">
-                            <a href="/payment" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Payment</p>
-                            </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/payment" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Payment</p>
+                                </a>
                             <li class="nav-item">
                                 <a href="/shipment" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -272,6 +273,8 @@
 <!-- AdminLTE App -->
 <script src="../static/dist/js/adminlte.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 </body>
 </html>
