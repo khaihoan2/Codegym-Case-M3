@@ -401,10 +401,13 @@
                         <thead>
                         <tr>
                             <th style="width: 5%">#</th>
-                            <th style="width: 25%">Name</th>
-                            <th style="width: 20%">SKU</th>
+                            <th style="width: 20%">Name</th>
+                            <th style="width: 5%">Description</th>
+                            <th style="width: 5%">Price</th>
+                            <th style="width: 5%">SKU</th>
+                            <th style="width: 10%">Category</th>
+                            <th style="width: 10%">Brand</th>
                             <th style="width: 10%">Vendor</th>
-                            <th style="width: 10%">Price</th>
                             <th style="width: 5%">Discount</th>
                             <th style="width: 25%"></th>
                         </tr>
@@ -414,10 +417,13 @@
                             <tr>
                                 <td>${product.id}</td>
                                 <td>${product.name}</td>
-                                <td>${product.SKU}</td>
-                                <td>${product.vendorId}</td>
+                                <td>${product.description}</td>
                                 <td>${product.price}</td>
-                                <td>${product.discountId}</td>
+                                <td>${product.SKU}</td>
+                                <td>${product.category.name}</td>
+                                <td>${product.brand.name}</td>
+                                <td>${product.vendor.name}</td>
+                                <td>${product.discount.percentage}</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="/products?action=view&id=${product.id}">
                                         <i class="fas fa-folder">
@@ -454,15 +460,6 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
 
 
