@@ -7,13 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-Delete
+<div>
+    <form action="/brand?action=delete&id=${id}" method="post">
+        <button>Yes</button>
+        <a type="button" href="/brand">No</a>
+    </form>
+</div>
 </body>
 </html>

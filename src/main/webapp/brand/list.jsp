@@ -5,7 +5,6 @@
   Time: 4:41 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -18,19 +17,20 @@
 
 <table>
     <tr>
-        <th>#</th>
+        <th>Id</th>
         <th>Name</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <c:forEach items="${brands}" var="brand">
+    <c:forEach items="${brand}" var="brand">
         <tr>
-            <td>${brand.id}</td>
-            <td>${brand.name}</td>
-            <td><a href="/brand/edit.jsp">Edit</a></td>
-            <td><a href="/brand/delete.jsp">Delete</a></td>
+            <th>${brand.id}</th>
+            <th>${brand.name}</th>
+            <th><a href="/brand?action=edit&id=${brand.id}">Edit</a></th>
+            <th><a href="/brand?action=delete&id=${brand.id}">Delete</a></th>
         </tr>
     </c:forEach>
+</table>
 </table>
 </body>
 </html>

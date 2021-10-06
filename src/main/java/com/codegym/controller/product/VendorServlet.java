@@ -61,9 +61,12 @@ public class VendorServlet extends HttpServlet {
                 showDelete(request, response);
             }
             default: {
-                showList(request, response);
+                listBrand(request, response);
                 break;
             }
         }
+    }
+
+    private void listBrand(HttpServletRequest request, HttpServletResponse response) {
     }
 }

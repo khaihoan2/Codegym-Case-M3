@@ -11,11 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-    <div>
-        <form method="post">
-            <input type="text" name="name" value="${shipment.name}">
-            <button>edit</button>
-        </form>
-    </div>
+<div>
+    <form action="/shipment?action=delete&id=${id}" method="post">
+        <button>Yes</button>
+        <a type="button" href="/shipment">No</a>
+    </form>
+</div>
 </body>
 </html>
