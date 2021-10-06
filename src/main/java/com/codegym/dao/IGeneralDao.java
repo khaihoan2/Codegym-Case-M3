@@ -1,8 +1,8 @@
-package com.codegym.service;
+package com.codegym.dao;
 
 import java.util.List;
 
-public interface IGeneralService<T> {
+public interface IGeneralDAO<T> {
     List<T> getAll();
 
     boolean save(T t);
@@ -13,4 +13,3 @@ public interface IGeneralService<T> {
 
     T findById(int id);
 }
-
