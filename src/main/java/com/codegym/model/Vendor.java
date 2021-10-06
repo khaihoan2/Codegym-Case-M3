@@ -11,6 +11,10 @@ public class Vendor {
         this.address = address;
     }
 
+    public Vendor(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

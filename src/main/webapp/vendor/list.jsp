@@ -29,7 +29,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
-<<<<<<< HEAD
 
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -361,12 +360,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create new category</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Create new category</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -378,25 +377,28 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <div class="container">
-            <form action="/categories?action=create" method="post" class="card">
-                <div class="card-header">
-                    <h3>Create form</h3>
-                </div>
-                <div class="card-body">
-                    <c:if test="${message != null}">
-                        <p>${message}</p>
-                    </c:if>
-                    <div class="mb-3">
-                        <label for="name"></label>
-                        <input type="text" id="name" name="name" placeholder="Category name...">
-                    </div>
-                    <div>
-                        <button>Submit</button>
-                    </div>
-                </div>
+        <div>
+            <button><a href="/vendors?action=create">create</a></button>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                </tr>
+                <c:forEach items="${vendors}" var="vendor">
+                    <tr>
+                        <td>${vendor.id}</td>
+                        <td>${vendor.name}</td>
+                        <td><a href="/vendor?action=view&id=${vendor.id}">View</a></td>
+                        <td><a href="/vendor?action=edit&id=${vendor.id}">Edit</a></td>
+                        <td><a href="/vendor?action=delete&id=${vendor.id}">Delete</a></td>
+                    </tr>
 
-            </form>
+
+                </c:forEach>
+            </table>
         </div>
 
         <!-- /.div -->
@@ -407,13 +409,16 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Footer -->
-    <footer class="main-footer position-fixed">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <%--    <!-- Footer -->--%>
+    <%--    <div class="container">--%>
+    <%--        <footer class="main-footer">--%>
+    <%--            <div class="float-right d-none d-sm-block">--%>
+    <%--                <b>Version</b> 3.2.0-rc--%>
+    <%--            </div>--%>
+    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
+    <%--        </footer>--%>
+    <%--    </div>--%>
+
     <!-- /.footer -->
 </div>
 
@@ -433,28 +438,5 @@
 <script src="../static/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../static/dist/js/pages/dashboard3.js"></script>
-=======
-<body>
-<div class="container">
-    <form action="/categories?action=create" method="post" class="card">
-        <div class="card-header">
-            <h3>Create form</h3>
-        </div>
-        <div class="card-body">
-            <c:if test="${message != null}">
-                <p>${message}</p>
-            </c:if>
-            <div class="mb-3">
-                <label for="name"></label>
-                <input type="text" id="name" name="name" placeholder="Category name...">
-            </div>
-            <div>
-                <button>Submit</button>
-            </div>
-        </div>
-
-    </form>
-</div>
->>>>>>> hoannnk
 </body>
 </html>
