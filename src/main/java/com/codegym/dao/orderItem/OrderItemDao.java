@@ -2,7 +2,6 @@ package com.codegym.dao.orderItem;
 
 import com.codegym.dao.DBConnection;
 import com.codegym.model.OrderItem;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

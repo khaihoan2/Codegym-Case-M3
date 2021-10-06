@@ -4,6 +4,7 @@ import com.codegym.dao.DBConnection;
 import com.codegym.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements IUserDao{
@@ -11,7 +12,28 @@ public class UserDao implements IUserDao{
 
     @Override
     public List<User> getAll() {
-        return null;
+        List<User> users = new ArrayList<>();
+        try {
+            PreparedStatement statement =connection.prepareStatement("select * from  user ");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String firstname = resultSet.getString("first_name");
+                String lastname = resultSet.getString("last_name");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String email = resultSet.getString("email");
+                Date created_at=new Date(System.currentTimeMillis());
+                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
     @Override
@@ -43,6 +65,13 @@ public class UserDao implements IUserDao{
 
     @Override
     public boolean delete(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from user where id = ?");
+            statement.setInt(1,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

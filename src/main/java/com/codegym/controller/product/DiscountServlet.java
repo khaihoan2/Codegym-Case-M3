@@ -5,8 +5,6 @@ import com.codegym.model.Category;
 import com.codegym.model.Discount;
 import com.codegym.service.discount.DiscountService;
 import com.codegym.service.discount.IDiscountService;
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.omg.PortableInterceptor.DISCARDING;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

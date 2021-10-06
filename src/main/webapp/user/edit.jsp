@@ -12,8 +12,8 @@
 </head>
 <body>
 <form action="/user?action=edit" method="post">
-    <input type="text" name="username_set" placeholder="username_set">
-    <input type="text" name="username" placeholder="username">
+    <input type="text" value="${users.id}" name="id" placeholder="sid">
+    <input type="text" value="${users.username}" name="username" placeholder="username">
     <input type="text" name="password" placeholder="password">
     <input type="text" name="first_name" placeholder="first_name">
     <input type="text" name="last_name" placeholder="last_name">

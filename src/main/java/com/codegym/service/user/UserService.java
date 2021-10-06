@@ -11,7 +11,12 @@ public class UserService implements IUserService{
 
     @Override
     public List<User> getAll() {
-        return null;
+        List<User> users = userDao.getAll();
+        for (User user1:users) {
+            System.out.println(user1);
+
+        }
+        return users;
     }
 
     @Override
@@ -26,7 +31,7 @@ public class UserService implements IUserService{
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return userDao.delete(id);
     }
 
     @Override
