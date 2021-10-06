@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>
-    <form action="/brand?action=delete&id=${id}" method="post">
+    <form action="/brands?action=delete&id=${id}" method="post">
         <button>Yes</button>
         <a type="button" href="/brand">No</a>
     </form>

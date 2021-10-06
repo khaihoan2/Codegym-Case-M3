@@ -1,7 +1,9 @@
 package com.codegym.controller.product;
 
 import com.codegym.model.Brand;
+import com.codegym.model.Shipment;
 import com.codegym.service.brand.BrandService;
+import com.codegym.service.brand.IBrandService;
 //import sun.plugin.com.Dispatcher;
 
 import javax.servlet.*;
@@ -14,6 +16,7 @@ import java.util.List;
 public class BrandServlet extends HttpServlet {
 
     private static final BrandService BRAND_SERVICE = new BrandService();
+    private IBrandService brandService = new BrandService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +41,9 @@ public class BrandServlet extends HttpServlet {
                 showDeleteForm(request, response);
                 break;
             }
+            case "q":
+                showListForm(request, response);
+                break;
             default: {
                 showListForm(request, response);
                 break;
@@ -64,13 +70,22 @@ public class BrandServlet extends HttpServlet {
     }
 
     private void showListForm(HttpServletRequest request, HttpServletResponse response) {
-        List<Brand> brands = BRAND_SERVICE .getAll();
+        List<Brand> brands = null;
+        String name = request.getParameter("name");
+        if (name == null) {
+            brands = brandService.getAll();
+        } else  if (name.equals("")){
+            brands = null;
+        } else {
+            brands = brandService.searchByName(name);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("brand/list.jsp");
         request.setAttribute("brands", brands);
-        RequestDispatcher dispatcher;
-        dispatcher = request.getRequestDispatcher("/brand/list.jsp");
         try {
             dispatcher.forward(request, response);
-        }catch (ServletException | IOException e){
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -111,7 +126,7 @@ public class BrandServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("brand/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/brand/create.jsp");
         try {
             dispatcher.forward(request, response);
         }catch (ServletException| IOException e){

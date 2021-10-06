@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-    @WebServlet(name = "VendorServlet", value = "/vendors")
+@WebServlet(name = "VendorServlet", value = "/vendors")
 public class VendorServlet extends HttpServlet {
 
     private static final IVendorService VENDOR_SERVICE = new VendorService();
@@ -52,9 +52,9 @@ public class VendorServlet extends HttpServlet {
         if (discount == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("vendro/view.jsp");
+            dispatcher = request.getRequestDispatcher("vendor/view.jsp");
         }
-        request.setAttribute("vendro", discount);
+        request.setAttribute("vendor", discount);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -69,8 +69,8 @@ public class VendorServlet extends HttpServlet {
         if (category == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("vendro/edit.jsp");
-            request.setAttribute("vendro", category);
+            dispatcher = request.getRequestDispatcher("vendor/edit.jsp");
+            request.setAttribute("vendor", category);
         }
         try {
             dispatcher.forward(request, response);
@@ -81,9 +81,9 @@ public class VendorServlet extends HttpServlet {
 
     private void showListForm(HttpServletRequest request, HttpServletResponse response) {
         List<Vendor> brands = VENDOR_SERVICE.getAll();
-        request.setAttribute("vendros", brands);
+        request.setAttribute("vendors", brands);
         RequestDispatcher dispatcher;
-        dispatcher = request.getRequestDispatcher("/vendro/list.jsp");
+        dispatcher = request.getRequestDispatcher("/vendor/list.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -98,8 +98,8 @@ public class VendorServlet extends HttpServlet {
         if (brand == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("/vendro/delete.jsp");
-            request.setAttribute("brand", brand);
+            dispatcher = request.getRequestDispatcher("vendor/delete.jsp");
+            request.setAttribute("vendor", brand);
         }
         try {
             dispatcher.forward(request, response);
@@ -109,7 +109,7 @@ public class VendorServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/vendro/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/vendor/create.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -125,37 +125,37 @@ public class VendorServlet extends HttpServlet {
         }
         switch (action) {
             case "create": {
-                createVendro(request, response);
+                createVendor(request, response);
                 break;
             }
             case "edit": {
-                EditVendro(request, response);
+                EditVendor(request, response);
                 break;
             }
             case "delete": {
-                deleteVendro(request, response);
+                deleteVendor(request, response);
             }
         }
     }
 
-    private void EditVendro(HttpServletRequest request, HttpServletResponse response) {
+    private void EditVendor(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         Vendor vendor = new Vendor(name);
         VENDOR_SERVICE.update(id, vendor);
     }
 
-    private void deleteVendro(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteVendor(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         VENDOR_SERVICE.delete(id);
     }
 
-    private void createVendro(HttpServletRequest request, HttpServletResponse response) {
+    private void createVendor(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Vendor vendor = new Vendor(name);
         VENDOR_SERVICE.save(vendor);
         try {
-            response.sendRedirect("/vendros");
+            response.sendRedirect("/vendors");
         } catch (IOException e) {
             e.printStackTrace();
         }
