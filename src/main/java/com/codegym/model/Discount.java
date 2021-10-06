@@ -9,6 +9,10 @@ public class Discount {
         this.percentage = percentage;
     }
 
+    public Discount(int percentage) {
+        this.percentage = percentage;
+    }
+
     public int getId() {
         return id;
     }
