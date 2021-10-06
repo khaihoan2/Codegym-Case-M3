@@ -29,6 +29,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
+<<<<<<< HEAD
 
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -415,5 +416,11 @@
 <script src="../static/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../static/dist/js/pages/dashboard3.js"></script>
+=======
+<body>
+<form method="post">
+    <button>OK, Delete</button>
+</form>
+>>>>>>> hoannnk
 </body>
 </html>

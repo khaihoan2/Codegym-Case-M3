@@ -28,6 +28,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
+<<<<<<< HEAD
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -317,5 +318,14 @@
 <script src="../static/dist/js/adminlte.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+=======
+<body>
+<div>
+    <form action="/shipment?action=delete&id=${id}" method="post">
+        <button>Yes</button>
+        <a type="button" href="/shipment">No</a>
+    </form>
+</div>
+>>>>>>> hoannnk
 </body>
 </html>

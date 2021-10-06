@@ -29,6 +29,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
 </head>
+<<<<<<< HEAD
 
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -432,5 +433,30 @@
 <script src="../static/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../static/dist/js/pages/dashboard3.js"></script>
+=======
+<body>
+
+
+<a href="${pageContext.request.contextPath}/categories?action=create">Create new category</a>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <c:forEach items="${categories}" var="category">
+        <tr>
+            <td>${category.id}</td>
+            <td>${category.name}</td>
+            <td><a href="/categories?action=view&id=${category.id}">View</a></td>
+            <td><a href="/categories?action=edit&id=${category.id}">Edit</a></td>
+            <td><a href="/categories?action=delete&id=${category.id}">Delete</a></td>
+        </tr>
+    </c:forEach>
+</table>
+>>>>>>> hoannnk
 </body>
 </html>

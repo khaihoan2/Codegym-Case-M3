@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Dashboard</title>
@@ -27,6 +28,10 @@
     <link rel="stylesheet" href="../static/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
+=======
+    <title>List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+>>>>>>> hoannnk
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
