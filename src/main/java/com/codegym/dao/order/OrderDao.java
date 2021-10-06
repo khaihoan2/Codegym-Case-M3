@@ -2,6 +2,7 @@ package com.codegym.dao.order;
 
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Order;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class OrderDao implements IOrderDao {
                     "left join user u on o.user_id = u.id\n" +
                     "left join payment p on o.payment_id = p.id\n" +
                     "left join shipment s on o.shipment_id = s.id\n" +
-                    "left join status s2 on o.status_id = s2.id");
+                    "left join status s2 on o.status_id = s2.id\n" +
+                    "group by o.created_at");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("o.id");
@@ -60,7 +62,6 @@ public class OrderDao implements IOrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return isSave;
     }
 
@@ -85,9 +86,9 @@ public class OrderDao implements IOrderDao {
     public boolean delete(int id) {
         boolean isRemove = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from `order` where id = ?");
-            preparedStatement.setInt(1, id);
-            isRemove = preparedStatement.executeUpdate() > 0;
+            CallableStatement callableStatement = connection.prepareCall("call delete_order_by_id(?)");
+            callableStatement.setInt(1, id);
+            isRemove = callableStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,7 +104,9 @@ public class OrderDao implements IOrderDao {
                     "left join user u on o.user_id = u.id\n" +
                     "left join payment p on o.payment_id = p.id\n" +
                     "left join shipment s on o.shipment_id = s.id\n" +
-                    "left join status s2 on o.status_id = s2.id");
+                    "left join status s2 on o.status_id = s2.id\n" +
+                    "where o.id = ?");
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt("user_id");
@@ -123,7 +126,6 @@ public class OrderDao implements IOrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return order;
     }
 
@@ -164,5 +166,20 @@ public class OrderDao implements IOrderDao {
             e.printStackTrace();
         }
         return orders;
+    }
+
+    @Override
+    public int getMaxId() {
+        int maxId = -1;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select max(id) maxId from `order`");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                maxId = resultSet.getInt("maxId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maxId;
     }
 }
