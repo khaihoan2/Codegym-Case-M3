@@ -276,16 +276,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Images--%>
-                    <li class="nav-item">
-                        <a href="/images" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Images
-                                <span class="right badge badge-danger">${images.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                     <%--                    Users--%>
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
@@ -323,26 +313,6 @@
                             <p>
                                 Shipments
                                 <span class="right badge badge-danger">${shipments.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Statuses--%>
-                    <li class="nav-item">
-                        <a href="/status" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Statuses
-                                <span class="right badge badge-danger">${statuses.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Role--%>
-                    <li class="nav-item">
-                        <a href="/role" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Roles
-                                <span class="right badge badge-danger">${roles.size()}</span>
                             </p>
                         </a>
                     </li>

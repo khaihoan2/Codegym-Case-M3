@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductDAO implements IProductDAO {
 
     private static final Connection CONNECTION = DBConnection.getConnection();
-    private static final String SQL_SELECT_ALL = "SELECT * FROM product";
+    private static final String SQL_SELECT_ALL = "SELECT * FROM product;";
     public static final String SQL_UPDATE = "UPDATE product\n" +
             "   SET name             = ?,\n" +
             "       description      = ?,\n" +

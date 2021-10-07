@@ -394,7 +394,7 @@
                     <a class="btn btn-success btn-sm float-right" href="/products?action=create">
                         <i class="fas fa-plus-square">
                         </i>
-                        Create new product
+                        Create new
                     </a>
                 </div>
                 <div class="card-body p-0">
@@ -403,12 +403,11 @@
                         <tr>
                             <th style="width: 5%">#</th>
                             <th style="width: 20%">Name</th>
-                            <th style="width: 5%">Description</th>
                             <th style="width: 5%">Price</th>
                             <th style="width: 5%">SKU</th>
                             <th style="width: 10%">Category</th>
                             <th style="width: 10%">Brand</th>
-                            <th style="width: 10%">Vendor</th>
+                            <th style="width: 15%">Vendor</th>
                             <th style="width: 5%">Discount</th>
                             <th style="width: 25%"></th>
                         </tr>
@@ -418,7 +417,6 @@
                             <tr>
                                 <td>${product.id}</td>
                                 <td>${product.name}</td>
-                                <td>${product.description}</td>
                                 <td>${product.price}</td>
                                 <td>${product.SKU}</td>
                                 <td>${product.category.name}</td>
