@@ -55,6 +55,9 @@ public class OrderServlet extends HttpServlet {
             case "customerEdit":
                 showCustomerEdit(request, response);
                 break;
+            case "customerDelete":
+                showCustomerDelete(request, response);
+                break;
             default:
                 showList(request, response);
                 break;
@@ -62,10 +65,24 @@ public class OrderServlet extends HttpServlet {
 
     }
 
+    private void showCustomerDelete(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/order/customerDelete.jsp");
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        Order order = orderService.findById(orderId);
+        request.setAttribute("order", order);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showCustomerEdit(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/customerEdit.jsp");
-        int id = Integer.parseInt(request.getParameter("id"));
-        Order order = orderService.findById(id);
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        Order order = orderService.findById(orderId);
         request.setAttribute("order", order);
         List<Shipment> shipments = shipmentService.getAll();
         request.setAttribute("shipments", shipments);
@@ -201,10 +218,41 @@ public class OrderServlet extends HttpServlet {
             case "edit":
                 editOrder(request, response);
                 break;
+            case "customerEdit":
+                customerEditOrder(request, response);
+                break;
             case "delete":
                 deleteOrder(request, response);
                 break;
+            case "customerDelete":
+                customerDeleteOrder(request, response);
+                break;
         }
+    }
+
+    private void customerDeleteOrder(HttpServletRequest request, HttpServletResponse response) {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        orderService.delete(orderId);
+        try {
+            response.sendRedirect("/order?action=userList");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void customerEditOrder(HttpServletRequest request, HttpServletResponse response) {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        int paymentId = Integer.parseInt(request.getParameter("paymentId"));
+        int shipmentId = Integer.parseInt(request.getParameter("shipmentId"));
+        int statusId = Integer.parseInt(request.getParameter("statusId"));
+        Order order = new Order(orderId, paymentId, shipmentId, statusId);
+        orderService.update(orderId, order);
+        try {
+            response.sendRedirect("/order?action=userList");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void editOrder(HttpServletRequest request, HttpServletResponse response) {
