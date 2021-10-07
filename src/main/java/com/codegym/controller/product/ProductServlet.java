@@ -7,6 +7,8 @@ import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.discount.DiscountService;
 import com.codegym.service.discount.IDiscountService;
+import com.codegym.service.image.IImageService;
+import com.codegym.service.image.ImageService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.vendor.IVendorService;
@@ -23,6 +25,7 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
 
     private static final IProductService PRODUCT_SERVICE = new ProductService();
+    private static final IImageService IMAGE_SERVICE = new ImageService();
     private static final IBrandService BRAND_SERVICE = new BrandService();
     private static final ICategoryService CATEGORY_SERVICE = new CategoryService();
     private static final IVendorService VENDOR_SERVICE = new VendorService();
@@ -72,12 +75,14 @@ public class ProductServlet extends HttpServlet {
     private void showViewFrom(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = PRODUCT_SERVICE.findById(id);
+        List<Image> images = IMAGE_SERVICE.findImageByProductId(id);
         RequestDispatcher dispatcher;
         if (product == null) {
             dispatcher = request.getRequestDispatcher(ERROR_404_JSP);
         } else {
             dispatcher = request.getRequestDispatcher(PRODUCT_VIEW_JSP);
             request.setAttribute("product", product);
+            request.setAttribute("images", images);
         }
         try {
             dispatcher.forward(request, response);
