@@ -377,32 +377,25 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <a href="/brands?action=create">Create</a>
-        <div>
-            <form action="/brands?action=q">
-                <input type="text" name="name">
-                <button>Search</button>
-            </form>
-            <table>
+        <a href="${pageContext.request.contextPath}/brands?action=create">Create new brand</a>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <c:forEach items="${brands}" var="brand">
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>View</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <td>${brand.id}</td>
+                    <td>${brand.name}</td>
+                    <td><a href="/brand?action=view&id=${brand.id}">View</a></td>
+                    <td><a href="/brand?action=edit&id=${brand.id}">Edit</a></td>
+                    <td><a href="/brand?action=delete&id=${brand.id}">Delete</a></td>
                 </tr>
-                <c:forEach items="${brands}" var="brand">
-                    <tr>
-                        <td>${brand.id}</td>
-                        <td>${brand.name}</td>
-                        <td><a href="/brand?action=view&id=${brand.id}">View</a></td>
-                        <td><a href="/brand?action=edit&id=${brand.id}">Edit</a></td>
-                        <td><a href="/brand?action=delete&id=${brand.id}">Delete</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-
+            </c:forEach>
+        </table>
         <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->

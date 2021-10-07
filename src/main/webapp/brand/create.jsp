@@ -377,13 +377,26 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <body>
-        <form action="/brands?action=create" method="post">
-            <label for="name"></label>
-            <input type="text" id="name" name="name" placeholder="Enter brand name...">
-            <button>Create</button>
-        </form>
-        </body>
+        <div class="container">
+            <form action="/brands?action=create" method="post" class="card">
+                <div class="card-header">
+                    <h3>Create form</h3>
+                </div>
+                <div class="card-body">
+                    <c:if test="${message != null}">
+                        <p>${message}</p>
+                    </c:if>
+                    <div class="mb-3">
+                        <label for="name"></label>
+                        <input type="text" id="name" name="name" placeholder="brand name...">
+                    </div>
+                    <div>
+                        <button>Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
 
         <!-- /.div -->
         <!-- /.content -->

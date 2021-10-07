@@ -377,12 +377,9 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <div>
-            <form action="/brands?action=delete&id=${id}" method="post">
-                <button>Yes</button>
-                <a type="button" href="/brand">No</a>
-            </form>
-        </div>
+        <form method="post">
+            <button>Yes, delete</button>
+        </form>
 
 
         <!-- /.div -->
