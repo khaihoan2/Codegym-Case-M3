@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="cart-btns">
                                     <a href="#">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +262,7 @@
             <!-- Product details -->
             <div class="col-md-5">
                 <div class="product-details">
-                    <h2 class="product-name">product name goes here</h2>
+                    <h2 class="product-name">${theProduct.name}</h2>
                     <div>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
@@ -274,10 +274,13 @@
                         <a class="review-link" href="#">10 Review(s) | Add your review</a>
                     </div>
                     <div>
-                        <h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
+                        <h3 class="product-price">
+                            $${theProduct.price - theProduct.price * theProduct.discount.percentage / 100}
+                            <del class="product-old-price">$${theProduct.price}</del>
+                        </h3>
                         <span class="product-available">In Stock</span>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>${theProduct.description}</p>
 
                     <div class="product-options">
                         <label>
@@ -335,7 +338,7 @@
                     <!-- product tab nav -->
                     <ul class="tab-nav">
                         <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                        <li><a data-toggle="tab" href="#tab2">Details</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Specification</a></li>
                         <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
                     </ul>
                     <!-- /product tab nav -->
@@ -346,7 +349,7 @@
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p>${theProduct.description}</p>
                                 </div>
                             </div>
                         </div>
@@ -356,7 +359,7 @@
                         <div id="tab2" class="tab-pane fade in">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p>Specification.</p>
                                 </div>
                             </div>
                         </div>
@@ -466,7 +469,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                                                 </div>
                                             </li>
                                             <li>
@@ -482,7 +486,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                                                 </div>
                                             </li>
                                             <li>
@@ -498,7 +503,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                                                 </div>
                                             </li>
                                         </ul>
@@ -523,11 +529,16 @@
                                             <div class="input-rating">
                                                 <span>Your Rating: </span>
                                                 <div class="stars">
-                                                    <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-                                                    <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-                                                    <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-                                                    <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-                                                    <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                                    <input id="star5" name="rating" value="5" type="radio"><label
+                                                        for="star5"></label>
+                                                    <input id="star4" name="rating" value="4" type="radio"><label
+                                                        for="star4"></label>
+                                                    <input id="star3" name="rating" value="3" type="radio"><label
+                                                        for="star3"></label>
+                                                    <input id="star2" name="rating" value="2" type="radio"><label
+                                                        for="star2"></label>
+                                                    <input id="star1" name="rating" value="1" type="radio"><label
+                                                        for="star1"></label>
                                                 </div>
                                             </div>
                                             <button class="primary-btn">Submit</button>
@@ -575,13 +586,18 @@
                     <div class="product-body">
                         <p class="product-category">Category</p>
                         <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                        <h4 class="product-price">$980.00
+                            <del class="product-old-price">$990.00</del>
+                        </h4>
                         <div class="product-rating">
                         </div>
                         <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+                            </button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
+                            </button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                            </button>
                         </div>
                     </div>
                     <div class="add-to-cart">
@@ -603,7 +619,9 @@
                     <div class="product-body">
                         <p class="product-category">Category</p>
                         <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                        <h4 class="product-price">$980.00
+                            <del class="product-old-price">$990.00</del>
+                        </h4>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -612,9 +630,12 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+                            </button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
+                            </button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                            </button>
                         </div>
                     </div>
                     <div class="add-to-cart">
@@ -635,7 +656,9 @@
                     <div class="product-body">
                         <p class="product-category">Category</p>
                         <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                        <h4 class="product-price">$980.00
+                            <del class="product-old-price">$990.00</del>
+                        </h4>
                         <div class="product-rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -644,9 +667,12 @@
                             <i class="fa fa-star-o"></i>
                         </div>
                         <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+                            </button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
+                            </button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                            </button>
                         </div>
                     </div>
                     <div class="add-to-cart">
@@ -665,13 +691,18 @@
                     <div class="product-body">
                         <p class="product-category">Category</p>
                         <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                        <h4 class="product-price">$980.00
+                            <del class="product-old-price">$990.00</del>
+                        </h4>
                         <div class="product-rating">
                         </div>
                         <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+                            </button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
+                            </button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                            </button>
                         </div>
                     </div>
                     <div class="add-to-cart">
@@ -735,7 +766,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                             <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
