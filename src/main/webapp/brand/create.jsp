@@ -378,7 +378,7 @@
         <!-- div class="content" -->
 
         <div class="container">
-            <form action="/brands?action=create" method="post" class="card">
+            <form method="post" class="card">
                 <div class="card-header">
                     <h3>Create form</h3>
                 </div>

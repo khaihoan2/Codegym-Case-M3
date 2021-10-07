@@ -55,14 +55,14 @@ public class BrandServlet extends HttpServlet {
 
     private void showViewForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Brand discount = BRAND_SERVICE.findById(id);
+        Brand brand = BRAND_SERVICE.findById(id);
         RequestDispatcher dispatcher;
-        if (discount == null) {
+        if (brand == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             dispatcher = request.getRequestDispatcher("/brand/view.jsp");
         }
-        request.setAttribute("brand", discount);
+        request.setAttribute("brand", brand);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -99,7 +99,7 @@ public class BrandServlet extends HttpServlet {
         if (brand == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         }else {
-            dispatcher = request.getRequestDispatcher("/brand/delete.jsp");
+            dispatcher = request.getRequestDispatcher("brand/delete.jsp");
             request.setAttribute("brand", brand);
         }
         try {
@@ -183,7 +183,7 @@ public class BrandServlet extends HttpServlet {
         String message = (isSaved)? "Successful!" : "Failed!";
         request.setAttribute("message", message);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/brands/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/brand/create.jsp");
 
         try {
             dispatcher.forward(request, response);

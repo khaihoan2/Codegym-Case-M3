@@ -377,12 +377,9 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-<%--        <div>--%>
-<%--            <form action="/brands?action=view&id=${id}" method="post">--%>
-<%--                <button>Yes</button>--%>
-<%--                <a type="button" href="/brand">No</a>--%>
-<%--            </form>--%>
-<%--        </div>--%>
+        <div>
+$hoan
+        </div>
 
         <!-- /.div -->
         <!-- /.content -->

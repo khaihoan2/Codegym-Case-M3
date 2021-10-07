@@ -381,7 +381,6 @@
             <button>Yes, delete</button>
         </form>
 
-
         <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->

@@ -377,7 +377,7 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <a href="${pageContext.request.contextPath}/brands?action=create">Create new brand</a>
+        <a href="/brands?action=create">Create new brand</a>
         <table>
             <tr>
                 <th>#</th>
@@ -390,9 +390,9 @@
                 <tr>
                     <td>${brand.id}</td>
                     <td>${brand.name}</td>
-                    <td><a href="/brand?action=view&id=${brand.id}">View</a></td>
-                    <td><a href="/brand?action=edit&id=${brand.id}">Edit</a></td>
-                    <td><a href="/brand?action=delete&id=${brand.id}">Delete</a></td>
+                    <td><a href="/brands?action=view&id=${brand.id}">View</a></td>
+                    <td><a href="/brands?action=edit&id=${brand.id}">Edit</a></td>
+                    <td><a href="/brands?action=delete&id=${brand.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>
