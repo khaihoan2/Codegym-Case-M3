@@ -4,6 +4,7 @@ import com.codegym.dao.DBConnection;
 import com.codegym.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements IUserDao{
@@ -11,7 +12,28 @@ public class UserDao implements IUserDao{
 
     @Override
     public List<User> getAll() {
-        return null;
+        List<User> users = new ArrayList<>();
+        try {
+            PreparedStatement statement =connection.prepareStatement("select * from  user ");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String firstname = resultSet.getString("first_name");
+                String lastname = resultSet.getString("last_name");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String email = resultSet.getString("email");
+                Date created_at=new Date(System.currentTimeMillis());
+                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
     @Override
@@ -38,17 +60,61 @@ public class UserDao implements IUserDao{
 
     @Override
     public boolean update(int id, User user) {
-        return false;
+        boolean isUpdate=false;
+        try {
+            PreparedStatement statement = connection.prepareStatement("update user set username =? ,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,last_modified_at=? where id=? ");
+            statement.setString(1, user.getUserName());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setString(5, user.getAddress());
+            statement.setString(6, user.getTelephone());
+            statement.setString(7, user.getEmail());
+            statement.setDate(8, new Date(System.currentTimeMillis()));
+            statement.setInt(9,id);
+           isUpdate= statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUpdate;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+       boolean isDelete=false;
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from user where id = (?)");
+            statement.setInt(1,id);
+            isDelete= statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isDelete ;
     }
 
     @Override
     public User findById(int id) {
-        return null;
+        User users = new User();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select id from user where id=?");
+            statement.setInt(1,id);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next()){
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String firstname = resultSet.getString("first_name");
+                String lastname = resultSet.getString("last_name");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String email = resultSet.getString("email");
+                Date created_at=new Date(System.currentTimeMillis());
+                 users= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users ;
     }
 
     @Override
