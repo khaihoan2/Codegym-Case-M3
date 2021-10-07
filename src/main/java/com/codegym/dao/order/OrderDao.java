@@ -13,7 +13,6 @@ public class OrderDao implements IOrderDao {
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
                     "from `order` o\n" +

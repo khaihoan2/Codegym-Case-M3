@@ -15,8 +15,6 @@ import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.shipment.IShipmentService;
 import com.codegym.service.shipment.ShipmentService;
-import com.codegym.service.status.IStatusService;
-import com.codegym.service.status.StatusService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
 import com.codegym.service.vendor.IVendorService;
@@ -26,6 +24,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "DashboardServlet", value = "/dashboard")
@@ -44,22 +43,41 @@ public class DashboardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = PRODUCT_SERVICE.getAll();
+        List<Product> latestProducts = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            latestProducts.add(products.get(i));
+        }
+
         List<Category> categories = CATEGORY_SERVICE.getAll();
         List<Brand> brands = BRAND_SERVICE.getAll();
         List<Vendor> vendors = VENDOR_SERVICE.getAll();
         List<Discount> discounts = DISCOUNT_SERVICE.getAll();
+
         List<User> users = USER_SERVICE.getAll();
+        List<User> latestMembers = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            latestMembers.add(users.get(i));
+        }
+
         List<Order> orders = ORDER_SERVICE.getAll();
+        List<Order> latestOrders = new ArrayList<>();
+        for (int i = 0; i < 1; i++) {
+            latestOrders.add(orders.get(i));
+        }
+
         List<Payment> payments = PAYMENT_SERVICE.getAll();
         List<Shipment> shipments = SHIPMENT_SERVICE.getAll();
 
         request.setAttribute("products", products);
+        request.setAttribute("latestProducts", latestProducts);
         request.setAttribute("categories", categories);
         request.setAttribute("brands", brands);
         request.setAttribute("vendors", vendors);
         request.setAttribute("discounts", discounts);
         request.setAttribute("users", users);
+        request.setAttribute("latestMembers", latestMembers);
         request.setAttribute("orders", orders);
+        request.setAttribute("latestOrders", latestOrders);
         request.setAttribute("payments", payments);
         request.setAttribute("shipments", shipments);
 
