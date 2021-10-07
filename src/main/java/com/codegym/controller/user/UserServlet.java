@@ -1,6 +1,6 @@
 package com.codegym.controller.user;
 
-import com.codegym.dao.user.UserDao;
+
 import com.codegym.model.User;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
@@ -11,9 +11,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", value = "/users")
-class UserServlet extends HttpServlet {
-
+@WebServlet(name = "User1Servlet", value = "/users")
+public class UserServlet extends HttpServlet {
     private IUserService userService = new UserService();
 
     @Override
@@ -27,13 +26,10 @@ class UserServlet extends HttpServlet {
                 showUserCreate(request, response);
                 break;
             case "delete":
-                showdelete(request, response);
-                break;
-            case "update":
-                showupdate(request,response);
+                showDelete(request, response);
                 break;
             default:
-                showUserList(request,response);
+                showUserList(request, response);
                 break;
 
         }
@@ -51,24 +47,15 @@ class UserServlet extends HttpServlet {
         }
     }
 
-    private void showupdate(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("sid"));
-        UserDao dao = new UserDao();
-        User user =dao.findById(id);
-        request.setAttribute("users",user);
-        try {
-            request.getRequestDispatcher("/user/edit.jsp").forward(request,response);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void showdelete(HttpServletRequest request, HttpServletResponse response) {
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("sid"));
         userService.delete(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
+        request.setAttribute("sid", id);
         try {
-            response.sendRedirect("/user/list.jsp");
-        } catch (IOException e) {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
 
@@ -76,11 +63,10 @@ class UserServlet extends HttpServlet {
 
     private void showUserCreate(HttpServletRequest request, HttpServletResponse response) {
         List<User> users = userService.getAll();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
         request.setAttribute("users", users);
         try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect("/users");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -103,7 +89,22 @@ class UserServlet extends HttpServlet {
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String address = request.getParameter("address");
+        String telephone=request.getParameter("telephone");
+        String email=request.getParameter("email");
+        User user = new User(username, password, firstname, lastname, address, telephone, email);
+        userService.update(id,user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createUser(HttpServletRequest request, HttpServletResponse response) {
@@ -116,7 +117,7 @@ class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         User user = new User(userName, password, firstName, lastName, address, telephone, email);
         userService.save(user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

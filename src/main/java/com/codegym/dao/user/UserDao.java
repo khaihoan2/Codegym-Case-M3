@@ -60,19 +60,36 @@ public class UserDao implements IUserDao{
 
     @Override
     public boolean update(int id, User user) {
-        return false;
+        boolean isUpdate=false;
+        try {
+            PreparedStatement statement = connection.prepareStatement("update user set username =? ,password=?,first_name=?,last_name=?,address=?,telephone=?,email=?,last_modified_at=? where id=? ");
+            statement.setString(1, user.getUserName());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setString(5, user.getAddress());
+            statement.setString(6, user.getTelephone());
+            statement.setString(7, user.getEmail());
+            statement.setDate(8, new Date(System.currentTimeMillis()));
+            statement.setInt(9,id);
+           isUpdate= statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUpdate;
     }
 
     @Override
     public boolean delete(int id) {
+       boolean isDelete=false;
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from user where id = ?");
+            PreparedStatement statement = connection.prepareStatement("delete from user where id = (?)");
             statement.setInt(1,id);
-            statement.executeUpdate();
+            isDelete= statement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return isDelete ;
     }
 
     @Override

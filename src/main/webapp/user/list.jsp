@@ -12,36 +12,46 @@
     <title>Title</title>
 </head>
 <body>
-<table border="1px" bgcolor="#7fff00">
-    <tr>
-        <th>id</th>
-        <th>username</th>
-        <th>password</th>
-        <th>first name</th>
-        <th>last name</th>
-        <th> address</th>
-        <th>telephone</th>
-        <th>email</th>
-        <th>Ngày khởi tạo</th>
-    </tr>
-    <c:forEach items="${users}" var="users">
+    <table border="1px" bgcolor="#7fff00">
         <tr>
-            <td>${users.id}</td>
-            <td>${users.userName}</td>
-            <td>${users.password}</td>
-            <td>${users.firstName}</td>
-            <td>${users.lastName}</td>
-            <td>${users.address}</td>
-            <td>${users.telephone}</td>
-            <td>${users.email}</td>
-            <td>${users.createAt}</td>
-            <td>
-               <a href="">update</a>
-               <a href="/users?delete?sid=${users.id}">delete</a>
-            </td>
+            <th>id</th>
+            <th>username</th>
+            <th>password</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th> address</th>
+            <th>telephone</th>
+            <th>email</th>
+            <th>Ngày khởi tạo</th>
         </tr>
-    </c:forEach>
-</table>
-<a href="create1.jsp">Create</a>
+        <c:forEach items="${users}" var="users">
+            <tr>
+                <td>${users.id}</td>
+                <td>${users.userName}</td>
+                <td>${users.password}</td>
+                <td>${users.firstName}</td>
+                <td>${users.lastName}</td>
+                <td>${users.address}</td>
+                <td>${users.telephone}</td>
+                <td>${users.email}</td>
+                <td>${users.createAt}</td>
+                <td>
+                    <form action="/users?action=delete"><a href="/user/edit.jsp">update</a></form>
+                    <a href="#" onclick="showMess(${users.id})">delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+    <a href="/user/create1.jsp">Create</a>
+</form>
+
+<script>
+    function showMess(id) {
+        var option = confirm("are you sure delete");
+        if (option === true) {
+            window.location.href = "delete?id=" + id;
+        }
+    }
+</script>
 </body>
 </html>

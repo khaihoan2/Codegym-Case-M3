@@ -11,17 +11,16 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/user?action=edit" method="post">
-    <input type="text"  name="id" placeholder="sid">
+<form action="/users?action=update" method="post">
+    <input type="text"  name="id" placeholder="id">
     <input type="text"  name="username" placeholder="username">
     <input type="text" name="password" placeholder="password">
-    <input type="text" name="first_name" placeholder="first_name">
-    <input type="text" name="last_name" placeholder="last_name">
+    <input type="text" name="firstname" placeholder="first_name">
+    <input type="text" name="lastname" placeholder="last_name">
     <input type="text" name="address" placeholder="address">
     <input type="text" name="telephone" placeholder="telephone">
     <input type="text" name="email" placeholder="email">
-    <input type="text" name="crated_at" placeholder="crated">
-    <button>edit</button>
+    <button>update</button>
 </form>
 </body>
 </html>
