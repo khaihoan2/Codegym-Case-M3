@@ -22,13 +22,10 @@ public class ProductDAO implements IProductDAO {
             "       vendor_id        = ?,\n" +
             "       discount_id      = ?\n" +
             " WHERE id = ?";
-    public static final String SQL_MARK_AS_DELETED = "UPDATE product\n" +
-            "SET delete_at = ?\n" +
-            "WHERE id = ?";
-    public static final String SQL_FIND_BY_ID = "SELECT * FROM product\n" +
-            "WHERE id = ?";
-    public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brandId, categoryId, vendorId, discountId, created_at) " +
-            "VALUES (?,?,?,?,?,?,?,?,?)";
+    public static final String SQL_DELETED = "DELETE FROM product WHERE id = ?";
+    public static final String SQL_FIND_BY_ID = "SELECT * FROM product WHERE id = ?";
+    public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brand_id, category_id, vendor_id, discount_id, created_at) " +
+            "VALUES (?,?,?,?,?,?,?,?,(SELECT CURDATE()))";
 
     @Override
     public List<Product> getAll() {
@@ -101,15 +98,15 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public boolean delete(int id) {
-        boolean isMarkAsDeleted = false;
+        boolean isDeleted = false;
         try {
-            PreparedStatement statement = CONNECTION.prepareStatement(SQL_MARK_AS_DELETED);
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_DELETED);
             statement.setInt(1, id);
-            isMarkAsDeleted = statement.executeUpdate() > 0;
+            isDeleted = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return isMarkAsDeleted;
+        return isDeleted;
     }
 
     @Override

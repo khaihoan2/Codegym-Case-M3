@@ -7,6 +7,8 @@ import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.discount.DiscountService;
 import com.codegym.service.discount.IDiscountService;
+import com.codegym.service.image.IImageService;
+import com.codegym.service.image.ImageService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.vendor.IVendorService;
@@ -23,10 +25,17 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
 
     private static final IProductService PRODUCT_SERVICE = new ProductService();
+    private static final IImageService IMAGE_SERVICE = new ImageService();
     private static final IBrandService BRAND_SERVICE = new BrandService();
     private static final ICategoryService CATEGORY_SERVICE = new CategoryService();
     private static final IVendorService VENDOR_SERVICE = new VendorService();
     private static final IDiscountService DISCOUNT_SERVICE = new DiscountService();
+
+    private static final List<Brand> brands = BRAND_SERVICE.getAll();
+    private static final List<Category> categories = CATEGORY_SERVICE.getAll();
+    private static final List<Vendor> vendors = VENDOR_SERVICE.getAll();
+    private static final List<Discount> discounts = DISCOUNT_SERVICE.getAll();
+
     public static final String ERROR_404_JSP = "error-404.jsp";
     public static final String PRODUCT_EDIT_JSP = "/product/edit.jsp";
     public static final String PRODUCT_VIEW_JSP = "/product/view.jsp";
@@ -66,12 +75,14 @@ public class ProductServlet extends HttpServlet {
     private void showViewFrom(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = PRODUCT_SERVICE.findById(id);
+        List<Image> images = IMAGE_SERVICE.findImageByProductId(id);
         RequestDispatcher dispatcher;
         if (product == null) {
             dispatcher = request.getRequestDispatcher(ERROR_404_JSP);
         } else {
             dispatcher = request.getRequestDispatcher(PRODUCT_VIEW_JSP);
             request.setAttribute("product", product);
+            request.setAttribute("images", images);
         }
         try {
             dispatcher.forward(request, response);
@@ -82,22 +93,19 @@ public class ProductServlet extends HttpServlet {
 
     private void showUpdateFrom(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        List<Brand> brands = BRAND_SERVICE.getAll();
-        List<Category> categories = CATEGORY_SERVICE.getAll();
-        List<Vendor> vendors = VENDOR_SERVICE.getAll();
-        List<Discount> discounts = DISCOUNT_SERVICE.getAll();
-        ;
+
+
         Product product = PRODUCT_SERVICE.findById(id);
         RequestDispatcher dispatcher;
         if (product == null) {
             dispatcher = request.getRequestDispatcher(ERROR_404_JSP);
         } else {
-            dispatcher = request.getRequestDispatcher(PRODUCT_EDIT_JSP);
             request.setAttribute("product", product);
             request.setAttribute("brands", brands);
             request.setAttribute("categories", categories);
             request.setAttribute("vendors", vendors);
             request.setAttribute("discounts", discounts);
+            dispatcher = request.getRequestDispatcher(PRODUCT_EDIT_JSP);
         }
         try {
             dispatcher.forward(request, response);
@@ -107,8 +115,13 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showCreateFrom(HttpServletRequest request, HttpServletResponse response) {
+        //localhost:8080?action=create
         RequestDispatcher dispatcher = request.getRequestDispatcher(PRODUCT_CREATE_JSP);
         try {
+            request.setAttribute("brands", brands);
+            request.setAttribute("categories", categories);
+            request.setAttribute("vendors", vendors);
+            request.setAttribute("discounts", discounts);
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
@@ -176,12 +189,11 @@ public class ProductServlet extends HttpServlet {
         int vendorId = Integer.parseInt(request.getParameter("vendorId"));
         int discountId = Integer.parseInt(request.getParameter("discountId"));
         Product product = new Product(name, description, price, SKU, brandId, categoryId, vendorId, discountId);
-        product.setCreatedAt(LocalDate.now());
         boolean isSaved = PRODUCT_SERVICE.save(product);
 
-        String message = (isSaved) ? "Product created successfully!" : "Product created fail!";
-
-        request.setAttribute("message", message);
+//        String message = (isSaved) ? "Product created successfully!" : "Product created fail!";
+//
+//        request.setAttribute("message", message);
         try {
             response.sendRedirect("/products");
         } catch (IOException e) {
@@ -203,7 +215,7 @@ public class ProductServlet extends HttpServlet {
         product.setLastModifiedAt(LocalDate.now());
         boolean isUpdated = PRODUCT_SERVICE.update(id, product);
 
-        String message = (isUpdated) ? "Product updated successfully!" : "Product updated fail!";
+//        String message = (isUpdated) ? "Product updated successfully!" : "Product updated fail!";
 
 //        request.setAttribute("message", message);
         try {
@@ -217,9 +229,9 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         boolean isDeleted = PRODUCT_SERVICE.delete(id);
 
-        String message = (isDeleted) ? "Product deleted successfully!" : "Product deleted fail!";
+//        String message = (isDeleted) ? "Product deleted successfully!" : "Product deleted fail!";
 
-        request.setAttribute("message", message);
+//        request.setAttribute("message", message);
         try {
             response.sendRedirect("/products");
         } catch (IOException e) {

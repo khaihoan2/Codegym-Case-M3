@@ -28,6 +28,10 @@
     <link rel="stylesheet" href="../static/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../static/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../static/plugins/toastr/toastr.min.css">
 </head>
 
 
@@ -387,14 +391,11 @@
                 <div class="card-header">
                     <h3 class="card-title">Products</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+                    <a class="btn btn-success btn-sm float-right" href="/products?action=create">
+                        <i class="fas fa-plus-square">
+                        </i>
+                        Create new product
+                    </a>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped projects">
@@ -471,7 +472,10 @@
 <script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="../static/dist/js/adminlte.js"></script>
-
+<!-- SweetAlert2 -->
+<script src="../static/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="../static/plugins/toastr/toastr.min.js"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="../static/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->

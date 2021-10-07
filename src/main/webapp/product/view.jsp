@@ -362,11 +362,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product's details!</h1>
+                        <h1>Product's details</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                             <li class="breadcrumb-item active">Product's details</li>
                         </ol>
                     </div>
@@ -381,113 +381,138 @@
 
         <!-- Main content -->
         <section class="content">
-
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Product Detail</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <%--                        Product's information--%>
-                        <div class="col-12 col-md-12 col-lg-6 order-2 order-md-1">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Product's details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Product Name</label>
+                                <p id="name" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.name}</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="des">Product Description</label>
+                                <p id="des" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.description}</p>
+                            </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Product's details</h3>
-
-                                            <div class="card-tools">
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                                        title="Collapse">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <h5>Product Name</h5>
-                                                <p>${product.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product Description</h5>
-                                                <p>${product.description}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product Price</h5>
-                                                <p>${product.price}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Product SKU</h5>
-                                                <p>${product.SKU}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Brand</h5>
-                                                <p>${product.brand.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Category</h5>
-                                                <p>${product.category.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Vendor</h5>
-                                                <p>${product.vendor.name}</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <h5>Discount</h5>
-                                                <p>${product.discount.name}</p>
-                                            </div>
-                                        </div>
-                                        <!-- /.card-body -->
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="price">Product Price</label>
+                                        <p id="price" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.price}</p>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label for="sku">Product SKU</label>
+                                        <p id="sku" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.SKU}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="brand">Brand</label>
+                                        <p id="brand" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.brand.name}</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="cate">Category</label>
+                                        <p id="cate" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.category.name}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="vendor">Vendor</label>
+                                        <p id="vendor" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.vendor.name}</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="discount">Discount</label>
+                                        <p id="discount" style="border-radius: 5px; border: 1px solid lightgrey; padding: 7px">${product.discount.percentage}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <%--                        Product's images--%>
-                        <div class="col-12 col-md-12 col-lg-6 order-1 order-md-2">
-                            <h5 class="mt-5 text-muted">Product images</h5>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                        Functional-requirements.docx</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i>
-                                        UAT.pdf</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i>
-                                        Email-from-flatbal.mln</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i>
-                                        Logo.png</a>
-                                </li>
-                                <li>
-                                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                        Contract-10_12_2014.docx</a>
-                                </li>
-                            </ul>
-                            <div class="text-center mt-5 mb-3">
-                                <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                                <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                            </div>
-                        </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+                <div class="col-md-6">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Files</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>File Size</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
+                                <tr>
+                                    <td>Functional-requirements.docx</td>
+                                    <td>49.8005 kb</td>
+                                    <td class="text-right py-0 align-middle">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                <tr>
+                                    <td>UAT.pdf</td>
+                                    <td>28.4883 kb</td>
+                                    <td class="text-right py-0 align-middle">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                <tr>
+                                    <td>Email-from-flatbal.mln</td>
+                                    <td>57.9003 kb</td>
+                                    <td class="text-right py-0 align-middle">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                <tr>
+                                    <td>Logo.png</td>
+                                    <td>50.5190 kb</td>
+                                    <td class="text-right py-0 align-middle">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                <tr>
+                                    <td>Contract-10_12_2014.docx</td>
+                                    <td>44.9715 kb</td>
+                                    <td class="text-right py-0 align-middle">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
         </section>
         <!-- /.content -->
 
@@ -498,15 +523,6 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
 
 
