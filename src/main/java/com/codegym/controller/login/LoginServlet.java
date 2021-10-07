@@ -1,4 +1,4 @@
-package com.codegym.controller.user;
+package com.codegym.controller.login;
 
 import com.codegym.model.Role;
 import com.codegym.model.User;
@@ -11,11 +11,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/users")
-public class UserServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     private IUserService userService = new UserService();
 
