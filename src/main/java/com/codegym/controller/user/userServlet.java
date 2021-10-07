@@ -31,10 +31,24 @@ class UserServlet extends HttpServlet {
                 break;
             case "update":
                 showupdate(request,response);
+                break;
             default:
+                showUserList(request,response);
+                break;
 
         }
 
+    }
+
+    private void showUserList(HttpServletRequest request, HttpServletResponse response) {
+        List<User> users = userService.getAll();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
+        request.setAttribute("users", users);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showupdate(HttpServletRequest request, HttpServletResponse response) {
@@ -61,8 +75,8 @@ class UserServlet extends HttpServlet {
     }
 
     private void showUserCreate(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
         List<User> users = userService.getAll();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
         request.setAttribute("users", users);
         try {
             dispatcher.forward(request, response);
@@ -81,7 +95,7 @@ class UserServlet extends HttpServlet {
             case "create":
                 createUser(request, response);
                 break;
-            case "login":
+            case "update":
                 update(request, response);
                 break;
         }
@@ -93,10 +107,10 @@ class UserServlet extends HttpServlet {
     }
 
     private void createUser(HttpServletRequest request, HttpServletResponse response) {
-        String userName = request.getParameter("username");
+        String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        String firstName = request.getParameter("firstname");
-        String lastName = request.getParameter("lastname");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
         String address = request.getParameter("address");
         String telephone = request.getParameter("telephone");
         String email = request.getParameter("email");

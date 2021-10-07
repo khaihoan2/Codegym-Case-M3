@@ -11,12 +11,8 @@ public class UserService implements IUserService{
 
     @Override
     public List<User> getAll() {
-        List<User> users = userDao.getAll();
-        for (User user1:users) {
-            System.out.println(user1);
 
-        }
-        return users;
+        return userDao.getAll();
     }
 
     @Override
@@ -36,7 +32,7 @@ public class UserService implements IUserService{
 
     @Override
     public User findById(int id) {
-        return null;
+        return userDao.findById(id);
     }
 
     @Override

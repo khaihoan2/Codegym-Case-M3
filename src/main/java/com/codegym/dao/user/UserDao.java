@@ -77,7 +77,27 @@ public class UserDao implements IUserDao{
 
     @Override
     public User findById(int id) {
-        return null;
+        User users = new User();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select id from user where id=?");
+            statement.setInt(1,id);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next()){
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String firstname = resultSet.getString("first_name");
+                String lastname = resultSet.getString("last_name");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String email = resultSet.getString("email");
+                Date created_at=new Date(System.currentTimeMillis());
+                 users= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users ;
     }
 
     @Override

@@ -37,7 +37,7 @@
             <td>${users.createAt}</td>
             <td>
                <a href="">update</a>
-               <a href="delete?sid=${users.id}">delete</a>
+               <a href="/users?delete?sid=${users.id}">delete</a>
             </td>
         </tr>
     </c:forEach>

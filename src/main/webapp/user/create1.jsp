@@ -16,7 +16,7 @@
         <tr>
             <td>username</td>
             <td>
-                <input type="text" name="username">
+                <input type="text" name="userName">
             </td>
         </tr>
         <tr>
@@ -27,13 +27,13 @@
         </tr> <tr>
             <td>firstname</td>
             <td>
-                <input type="text" name="firstname">
+                <input type="text" name="firstName">
             </td>
         </tr>
         <tr>
             <td>lastname</td>
             <td>
-                <input type="text" name="lastname">
+                <input type="text" name="lastName">
             </td>
         </tr>
         <tr>
