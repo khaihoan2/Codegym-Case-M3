@@ -59,11 +59,11 @@
                     </c:if>
                 </c:forEach>
                 <c:if test="${userId == null}">
-                    <li><a href="/login/login.jsp"><i class="fa fa-user-o"></i> My Account</a></li>
+                    <li><a href="/login?action=login"><i class="fa fa-user-o"></i> My Account</a></li>
                 </c:if>
                 <c:if test="${userId != null}">
                     <li><a href="#"><i class="fa fa-user-o"></i>${userName}</a></li>
-                    <li><a href="/users?action=logout">Log out  <i class="ti-direction"></i></a></li>
+                    <li><a href="/login?action=logout">Log out  <i class="ti-direction"></i></a></li>
                 </c:if>
             </ul>
         </div>

@@ -193,7 +193,7 @@ public class OrderDao implements IOrderDao {
                 "left join shipment s on o.shipment_id = s.id\n" +
                 "left join status s2 on o.status_id = s2.id\n" +
                 "left join ordered_item oi on o.id = oi.order_id\n" +
-                "where o.user_id = ?");
+                "where o.user_id = ? group by o.id");
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
