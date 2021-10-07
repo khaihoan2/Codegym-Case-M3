@@ -2,10 +2,13 @@ package com.codegym.controller.login;
 
 import com.codegym.model.Role;
 import com.codegym.model.User;
+import com.codegym.model.UserRole;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.role.RoleService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
+import com.codegym.service.userRole.IUserRoleService;
+import com.codegym.service.userRole.UserRoleService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,12 +16,14 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", value = "/users")
+@WebServlet(name = "UserServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
 
     private IUserService userService = new UserService();
 
     private IRoleService roleService = new RoleService();
+
+    private IUserRoleService userRoleService = new UserRoleService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,9 +32,37 @@ public class LoginServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "login":
+                showLogin(request, response);
+                break;
             case "logout":
                 logoutUser(request, response);
                 break;
+            case "register":
+                registerUser(request, response);
+                break;
+        }
+    }
+
+    private void registerUser(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/login/signup.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showLogin(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/login/login.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -39,7 +72,7 @@ public class LoginServlet extends HttpServlet {
         session.removeAttribute("userName");
         session.removeAttribute("roles");
         try {
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/index");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,8 +85,8 @@ public class LoginServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "create":
-                createUser(request, response);
+            case "register":
+                registerCustermer(request, response);
                 break;
             case "login":
                 loginUser(request, response);
@@ -83,15 +116,25 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userId", userId);
             session.setAttribute("userName", userName);
             session.setAttribute("roles", roles);
+            for (Role role : roles) {
+                if (role.getName().equals("Admin")){
+                    try {
+                        response.sendRedirect("/dashboard");
+                        return;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             try {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("/index");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void createUser(HttpServletRequest request, HttpServletResponse response) {
+    private void registerCustermer(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstName");
@@ -103,13 +146,15 @@ public class LoginServlet extends HttpServlet {
         boolean isSave = userService.save(user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login/login.jsp");
         if (isSave) {
-            String message = "Sign up success!";
+            User user1 = new User(userName, password);
+            int userId = userService.findIdByUser(user1);
+            UserRole userRole = new UserRole(userId, 2);
+            userRoleService.save(userRole);
+            String message = "Registration success!";
             request.setAttribute("message", message);
             try {
                 dispatcher.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         } else {

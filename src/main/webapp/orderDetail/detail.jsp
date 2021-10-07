@@ -161,15 +161,6 @@
                         <td>${orderItem.percentage}</td>
                         <td>${orderItem.price}</td>
                         <td>${orderItem.price * orderItem.quantity * (orderItem.percentage / 100)}</td>
-                        <td class="project-actions text-right d-flex ">
-                            <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&amp;id=1">
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm "
-                               href="/orderDetail?action=delete&amp;id=1&amp;productId=3&amp;orderId=1">
-                                Delete
-                            </a>
-                        </td>
                     </tr>
                 </c:forEach>
 
