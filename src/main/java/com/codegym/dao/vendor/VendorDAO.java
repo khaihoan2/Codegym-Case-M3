@@ -64,7 +64,7 @@ public class VendorDAO implements IVendorDAO {
     public boolean delete(int id) {
         boolean isMarkAsDeleted = false;
         try {
-            PreparedStatement statement = CONNECTION.prepareStatement("UPDATE vendor SET delete_at = ? WHERE id=?");
+            CallableStatement statement = CONNECTION.prepareCall("UPDATE vendor SET delete_at = ? WHERE id=?");
             statement.setDate(1, Date.valueOf(LocalDate.now()));
             statement.setInt(2, id);
             isMarkAsDeleted = statement.executeUpdate() > 0;

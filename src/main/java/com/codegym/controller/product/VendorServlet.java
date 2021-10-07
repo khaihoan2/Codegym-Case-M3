@@ -153,10 +153,15 @@ public class VendorServlet extends HttpServlet {
     private void createVendor(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Vendor vendor = new Vendor(name);
-        VENDOR_SERVICE.save(vendor);
+        boolean isSaved = VENDOR_SERVICE.save(vendor);
+        String message = (isSaved)? "Successful!" : "Failed!";
+        request.setAttribute("message", message);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/vendor/create.jsp");
+
         try {
-            response.sendRedirect("/vendors");
-        } catch (IOException e) {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

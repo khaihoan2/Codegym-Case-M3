@@ -60,7 +60,7 @@ public class BrandServlet extends HttpServlet {
         if (brand == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("/brand/view.jsp");
+            dispatcher = request.getRequestDispatcher("/brand/list.jsp");
         }
         request.setAttribute("brand", brand);
         try {

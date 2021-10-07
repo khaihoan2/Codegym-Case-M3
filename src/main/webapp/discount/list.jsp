@@ -387,13 +387,13 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            <c:forEach items="${discount}" var="discount">
+            <c:forEach items="${discounts}" var="discount">
                 <tr>
                     <td>${discount.id}</td>
-                    <td>${discount.name}</td>
-                    <td><a href="/discount?action=view&id=${discount.id}">View</a></td>
-                    <td><a href="/discount?action=edit&id=${discount.id}">Edit</a></td>
-                    <td><a href="/discount?action=delete&id=${discount.id}">Delete</a></td>
+                    <td>${discount.precentage}</td>
+                    <td><a href="/discounts?action=view&id=${discount.id}">View</a></td>
+                    <td><a href="/discounts?action=edit&id=${discount.id}">Edit</a></td>
+                    <td><a href="/discounts?action=delete&id=${discount.id}">Delete</a></td>
                 </tr>
             </c:forEach>
         </table>

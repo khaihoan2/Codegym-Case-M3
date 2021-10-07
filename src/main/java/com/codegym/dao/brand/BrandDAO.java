@@ -3,10 +3,7 @@ package com.codegym.dao.brand;
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Brand;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +61,7 @@ public class BrandDAO implements IBrandDAO {
     public boolean delete(int id) {
         boolean isDeleted = false;
         try {
-            PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM brand WHERE id=?");
+            CallableStatement statement = CONNECTION.prepareCall("DELETE FROM brand WHERE id=?");
             statement.setInt(1, id);
             isDeleted = statement.executeUpdate() > 0;
         } catch (SQLException e) {

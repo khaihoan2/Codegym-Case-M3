@@ -391,9 +391,9 @@
                     <tr>
                         <td>${vendor.id}</td>
                         <td>${vendor.name}</td>
-                        <td><a href="/vendor?action=view&id=${vendor.id}">View</a></td>
-                        <td><a href="/vendor?action=edit&id=${vendor.id}">Edit</a></td>
-                        <td><a href="/vendor?action=delete&id=${vendor.id}">Delete</a></td>
+                        <td><a href="/vendors?action=view&id=${vendor.id}">View</a></td>
+                        <td><a href="/vendors?action=edit&id=${vendor.id}">Edit</a></td>
+                        <td><a href="/vendors?action=delete&id=${vendor.id}">Delete</a></td>
                     </tr>
 
 
