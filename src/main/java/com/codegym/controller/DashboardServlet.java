@@ -63,13 +63,13 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("payments", payments);
         request.setAttribute("shipments", shipments);
 
-        String username = request.getParameter("userName");
-        boolean isLoggedIn = (username != null);
+        HttpSession session = request.getSession();
+
         RequestDispatcher dispatcher;
-        if (isLoggedIn) {
-            dispatcher = request.getRequestDispatcher("/dashboard.jsp");
-        } else {
+        if (session.isNew()) {
             dispatcher = request.getRequestDispatcher("/login/login.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("/dashboard.jsp");
         }
         dispatcher.forward(request, response);
     }
