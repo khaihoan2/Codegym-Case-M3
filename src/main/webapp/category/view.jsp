@@ -360,12 +360,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category's details</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Category's details</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -386,13 +386,16 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Footer -->
-    <footer class="main-footer position-fixed">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    <%--    <!-- Footer -->--%>
+    <%--    <div class="container">--%>
+    <%--        <footer class="main-footer">--%>
+    <%--            <div class="float-right d-none d-sm-block">--%>
+    <%--                <b>Version</b> 3.2.0-rc--%>
+    <%--            </div>--%>
+    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
+    <%--        </footer>--%>
+    <%--    </div>--%>
+
     <!-- /.footer -->
 </div>
 

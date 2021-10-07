@@ -1,6 +1,7 @@
 package com.codegym.controller.product;
 
 import com.codegym.model.Brand;
+import com.codegym.model.Category;
 import com.codegym.model.Shipment;
 import com.codegym.service.brand.BrandService;
 import com.codegym.service.brand.IBrandService;
@@ -59,7 +60,7 @@ public class BrandServlet extends HttpServlet {
         if (discount == null) {
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("brand/view.jsp");
+            dispatcher = request.getRequestDispatcher("/brand/view.jsp");
         }
         request.setAttribute("brand", discount);
         try {
@@ -115,7 +116,7 @@ public class BrandServlet extends HttpServlet {
         if (brand == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         }else {
-            dispatcher = request.getRequestDispatcher("/brand/edit.jsp");
+            dispatcher = request.getRequestDispatcher("brand/edit.jsp");
             request.setAttribute("brand", brand);
         }
         try {
@@ -161,6 +162,11 @@ public class BrandServlet extends HttpServlet {
     private void deleteBrand(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         BRAND_SERVICE.delete(id);
+        try {
+            response.sendRedirect("/brands");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editBrand(HttpServletRequest request, HttpServletResponse response) {
@@ -173,10 +179,15 @@ public class BrandServlet extends HttpServlet {
     private void createBrand(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Brand brand = new Brand(name);
-        BRAND_SERVICE.save(brand);
+        boolean isSaved = BRAND_SERVICE.save(brand);
+        String message = (isSaved)? "Successful!" : "Failed!";
+        request.setAttribute("message", message);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/brands/create.jsp");
+
         try {
-            response.sendRedirect("/brands");
-        } catch (IOException e) {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
