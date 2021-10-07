@@ -270,7 +270,8 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void createOrder(HttpServletRequest request, HttpServletResponse response) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        HttpSession session = request.getSession();
+        int userId = Integer.parseInt(session.getAttribute("userId").toString());
         int paymentId = Integer.parseInt(request.getParameter("paymentId"));
         int shipmentId = Integer.parseInt(request.getParameter("shipmentId"));
         int productId = Integer.parseInt(request.getParameter("productId"));
@@ -281,7 +282,7 @@ public class OrderServlet extends HttpServlet {
         OrderItem orderItem = new OrderItem(orderId, productId, quantity);
         orderItemService.save(orderItem);
         try {
-            response.sendRedirect("/order");
+            response.sendRedirect("/ecommerce");
         } catch (IOException e) {
             e.printStackTrace();
         }

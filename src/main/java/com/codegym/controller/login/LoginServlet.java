@@ -1,10 +1,12 @@
 package com.codegym.controller.login;
 
-import com.codegym.model.Role;
-import com.codegym.model.User;
-import com.codegym.model.UserRole;
+import com.codegym.model.*;
+import com.codegym.service.payment.IPaymentService;
+import com.codegym.service.payment.PaymentService;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.role.RoleService;
+import com.codegym.service.shipment.IShipmentService;
+import com.codegym.service.shipment.ShipmentService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
 import com.codegym.service.userRole.IUserRoleService;
@@ -24,6 +26,10 @@ public class LoginServlet extends HttpServlet {
     private IRoleService roleService = new RoleService();
 
     private IUserRoleService userRoleService = new UserRoleService();
+
+    private IPaymentService paymentService = new PaymentService();
+
+    private IShipmentService shipmentService = new ShipmentService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,7 +92,7 @@ public class LoginServlet extends HttpServlet {
         }
         switch (action) {
             case "register":
-                registerCustermer(request, response);
+                registerCustomer(request, response);
                 break;
             case "login":
                 loginUser(request, response);
@@ -112,10 +118,14 @@ public class LoginServlet extends HttpServlet {
             }
         } else {
             List<Role> roles = roleService.getRolesByUserId(userId);
+            List<Payment> payments = paymentService.getAll();
+            List<Shipment> shipments = shipmentService.getAll();
             HttpSession session = request.getSession();
             session.setAttribute("userId", userId);
             session.setAttribute("userName", userName);
             session.setAttribute("roles", roles);
+            session.setAttribute("paymentsSession", payments);
+            session.setAttribute("shipmentsSession", shipments);
             for (Role role : roles) {
                 if (role.getName().equals("Admin")){
                     try {
@@ -134,7 +144,7 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private void registerCustermer(HttpServletRequest request, HttpServletResponse response) {
+    private void registerCustomer(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String firstName = request.getParameter("firstName");
