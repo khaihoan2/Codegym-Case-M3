@@ -6,7 +6,7 @@ import com.codegym.model.User;
 
 import java.util.List;
 
-public class UserService implements IUserService{
+public class UserService implements IUserService {
     private IUserDao userDao = new UserDao();
 
     @Override
@@ -22,7 +22,7 @@ public class UserService implements IUserService{
 
     @Override
     public boolean update(int id, User user) {
-        return userDao.update(id,user);
+        return userDao.update(id, user);
     }
 
     @Override
@@ -39,4 +39,5 @@ public class UserService implements IUserService{
     public int findIdByUser(User user) {
         return userDao.findIdByUser(user);
     }
+
 }

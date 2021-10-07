@@ -24,34 +24,26 @@
             <th>email</th>
             <th>Ngày khởi tạo</th>
         </tr>
-        <c:forEach items="${users}" var="users">
+        <c:forEach items="${users}" var="user">
             <tr>
-                <td>${users.id}</td>
-                <td>${users.userName}</td>
-                <td>${users.password}</td>
-                <td>${users.firstName}</td>
-                <td>${users.lastName}</td>
-                <td>${users.address}</td>
-                <td>${users.telephone}</td>
-                <td>${users.email}</td>
-                <td>${users.createAt}</td>
+                <td>${user.id}</td>
+                <td>${user.userName}</td>
+                <td>${user.password}</td>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.address}</td>
+                <td>${user.telephone}</td>
+                <td>${user.email}</td>
+                <td>${user.createAt}</td>
                 <td>
-                    <a href="users?action=update&id=${users.id}">update</a>
-                    <a href="#" onclick="showMess(${users.id})">delete</a>
+                    <a href="users?action=update&id=${user.id}">update</a>
+                    <a href="users?action=delete&id=${user.id}">delete</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="/user/create1.jsp">Create</a>
+    <a href="users?action=create">Create</a>
 </form>
 
-<script>
-    function showMess(id) {
-        var option = confirm("are you sure delete");
-        if (option === true) {
-            window.location.href = "delete?id=" + id;
-        }
-    }
-</script>
 </body>
 </html>
