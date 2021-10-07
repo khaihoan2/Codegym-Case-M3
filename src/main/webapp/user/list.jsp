@@ -36,7 +36,7 @@
                 <td>${users.email}</td>
                 <td>${users.createAt}</td>
                 <td>
-                    <form action="/users?action=delete"><a href="/user/edit.jsp">update</a></form>
+                    <a href="users?action=update&id=${users.id}">update</a>
                     <a href="#" onclick="showMess(${users.id})">delete</a>
                 </td>
             </tr>

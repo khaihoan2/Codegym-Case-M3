@@ -28,12 +28,25 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 showDelete(request, response);
                 break;
+            case "update" : {
+                showFormUpdate(request, response);
+                break;
+            }
             default:
                 showUserList(request, response);
                 break;
 
         }
 
+    }
+
+    private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showUserList(HttpServletRequest request, HttpServletResponse response) {
@@ -99,10 +112,9 @@ public class UserServlet extends HttpServlet {
         String email=request.getParameter("email");
         User user = new User(username, password, firstname, lastname, address, telephone, email);
         userService.update(id,user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
         try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect("users");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -117,10 +129,9 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         User user = new User(userName, password, firstName, lastName, address, telephone, email);
         userService.save(user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
         try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect("users");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -11,8 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/users?action=update" method="post">
-    <input type="text"  name="id" placeholder="id">
+<form method="post">
     <input type="text"  name="username" placeholder="username">
     <input type="text" name="password" placeholder="password">
     <input type="text" name="firstname" placeholder="first_name">
