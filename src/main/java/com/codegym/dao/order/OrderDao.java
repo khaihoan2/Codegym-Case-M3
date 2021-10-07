@@ -140,7 +140,7 @@ public class OrderDao implements IOrderDao {
                     "left join shipment s on o.shipment_id = s.id\n" +
                     "left join status s2 on o.status_id = s2.id\n" +
                     "left join ordered_item oi on o.id = oi.order_id\n" +
-                    "where username like ?");
+                    "where username like ? group by o.id");
 
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
