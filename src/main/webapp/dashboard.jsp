@@ -592,7 +592,7 @@
                                             <tr>
                                                 <td><a href="/order?action=view&id=${order.id}">${order.id}</a></td>
                                                 <td>${order.userId}</td>
-                                                <td><span class="badge badge-success">${order.status}</span></td>
+                                                <td><span class="badge badge-success">${order.statusId}</span></td>
                                                 <td>
                                                     <div class="sparkbar" data-color="#00a65a" data-height="20">
                                                         ...
@@ -663,46 +663,6 @@
                                     <!-- /.card-footer -->
                                 </div>
                                 <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- USERS LIST -->
-                                <div class="card collapsed-card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Latest Members</h3>
-
-                                        <div class="card-tools">
-                                            <span class="badge badge-danger">New Members</span>
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body p-0" style="display: none;">
-                                        <ul class="users-list clearfix">
-<%--                                            <c:forEach items="${latestMembers}" var="member">--%>
-<%--                                                <li>--%>
-<%--                                                    <img src="static/dist/img/user1-128x128.jpg" alt="User Image">--%>
-<%--                                                    <a class="users-list-name" href="#">${member.firstName} ${member.lastName}</a>--%>
-<%--                                                    <span class="users-list-date">${member.createdAt}</span>--%>
-<%--                                                </li>--%>
-<%--                                            </c:forEach>--%>
-                                        </ul>
-                                        <!-- /.users-list -->
-                                    </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer text-center" style="display: none;">
-                                        <a href="/user">View All Users</a>
-                                    </div>
-                                    <!-- /.card-footer -->
-                                </div>
-                                <!--/.card -->
                             </div>
                             <!-- /.col -->
                         </div>

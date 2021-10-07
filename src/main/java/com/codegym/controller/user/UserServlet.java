@@ -71,7 +71,6 @@ public class UserServlet extends HttpServlet {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void showUserCreate(HttpServletRequest request, HttpServletResponse response) {
