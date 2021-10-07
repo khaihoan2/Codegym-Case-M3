@@ -26,7 +26,8 @@ public class UserDao implements IUserDao{
                 String telephone = resultSet.getString("telephone");
                 String email = resultSet.getString("email");
                 Date created_at=new Date(System.currentTimeMillis());
-                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+                Date delete_at=resultSet.getDate("delete_at");
+                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at,delete_at);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -83,8 +84,9 @@ public class UserDao implements IUserDao{
     public boolean delete(int id) {
        boolean isDelete=false;
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from user where id = (?)");
-            statement.setInt(1,id);
+            PreparedStatement statement = connection.prepareStatement("update user set delete_at=? where id=?");
+            statement.setDate(1,new Date(System.currentTimeMillis()));
+            statement.setInt(2,id);
             isDelete= statement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();

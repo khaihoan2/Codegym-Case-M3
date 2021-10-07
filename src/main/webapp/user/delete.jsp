@@ -13,7 +13,7 @@
 <body>
 <div>
 
-    <form action="/users?action=delete&id=${id}" method="post">
+    <form action="/users?action=delete" method="post">
         <button>Yes</button>
         <a type="button" href="/users">No </a>
 

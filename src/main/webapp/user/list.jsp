@@ -23,6 +23,7 @@
             <th>telephone</th>
             <th>email</th>
             <th>Ngày khởi tạo</th>
+            <th>Ngày xóa</th>
         </tr>
         <c:forEach items="${users}" var="user">
             <tr>
@@ -35,6 +36,7 @@
                 <td>${user.telephone}</td>
                 <td>${user.email}</td>
                 <td>${user.createAt}</td>
+                <td>${user.deleteAt}</td>
                 <td>
                     <a href="users?action=update&id=${user.id}">update</a>
                     <a href="users?action=delete&id=${user.id}">delete</a>

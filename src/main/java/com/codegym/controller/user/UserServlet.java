@@ -29,7 +29,7 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 showDelete(request, response);
                 break;
-            case "update" :
+            case "update":
                 showFormUpdate(request, response);
                 break;
             default:
@@ -41,16 +41,6 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String address = request.getParameter("address");
-        String telephone=request.getParameter("telephone");
-        String email=request.getParameter("email");
-        User user = new User(username, password, firstname, lastname, address, telephone, email);
-        userService.findIdByUser(user);
-        request.setAttribute("user",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         try {
             dispatcher.forward(request, response);
@@ -73,16 +63,11 @@ public class UserServlet extends HttpServlet {
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        User user = userService.findById(id);
-        RequestDispatcher dispatcher;
-        if (user == null) {
-            dispatcher = request.getRequestDispatcher("error-404.jsp");
-        } else {
-            dispatcher = request.getRequestDispatcher("user/delete.jsp");
-        }
-        request.setAttribute("user", user);
+        userService.delete(id);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("user/delete.jsp");
+        request.setAttribute("id", id);
         try {
-            dispatcher.forward(request, response);
+            dispatcher.forward(request,response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -112,10 +97,10 @@ public class UserServlet extends HttpServlet {
                 update(request, response);
                 break;
             case "return":
-                returnUser(request,response);
+                returnUser(request, response);
                 break;
             case "delete":
-                deleteUser(request,response);
+                deleteUser(request, response);
                 break;
 
         }
@@ -123,13 +108,9 @@ public class UserServlet extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        userService.delete(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/delete.jsp");
-        request.setAttribute("id", id);
         try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect("users");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -149,10 +130,10 @@ public class UserServlet extends HttpServlet {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");
-        String telephone=request.getParameter("telephone");
-        String email=request.getParameter("email");
+        String telephone = request.getParameter("telephone");
+        String email = request.getParameter("email");
         User user = new User(username, password, firstname, lastname, address, telephone, email);
-        userService.update(id,user);
+        userService.update(id, user);
         try {
             response.sendRedirect("users");
         } catch (IOException e) {
