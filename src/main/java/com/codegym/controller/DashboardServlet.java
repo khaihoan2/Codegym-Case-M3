@@ -17,6 +17,8 @@ import com.codegym.service.shipment.IShipmentService;
 import com.codegym.service.shipment.ShipmentService;
 import com.codegym.service.status.IStatusService;
 import com.codegym.service.status.StatusService;
+import com.codegym.service.user.IUserService;
+import com.codegym.service.user.UserService;
 import com.codegym.service.vendor.IVendorService;
 import com.codegym.service.vendor.VendorService;
 
@@ -34,13 +36,10 @@ public class DashboardServlet extends HttpServlet {
     private static final IBrandService BRAND_SERVICE = new BrandService();
     private static final IVendorService VENDOR_SERVICE = new VendorService();
     private static final IDiscountService DISCOUNT_SERVICE = new DiscountService();
-    //    private static final IImageService IMAGE_SERVICE = new ImageService();
-//    private static final IUserService USER_SERVICE = new UserService();
+    private static final IUserService USER_SERVICE = new UserService();
     private static final IOrderService ORDER_SERVICE = new OrderService();
     private static final IPaymentService PAYMENT_SERVICE = new PaymentService();
     private static final IShipmentService SHIPMENT_SERVICE = new ShipmentService();
-    private static final IStatusService STATUS_SERVICE = new StatusService();
-//    private static final IRoleService ROLE_SERVICE = new RoleService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,27 +48,29 @@ public class DashboardServlet extends HttpServlet {
         List<Brand> brands = BRAND_SERVICE.getAll();
         List<Vendor> vendors = VENDOR_SERVICE.getAll();
         List<Discount> discounts = DISCOUNT_SERVICE.getAll();
-//        List<Image> images = .getAll();
-//        List<User> users = USER_SERVICE.getAll();
+        List<User> users = USER_SERVICE.getAll();
         List<Order> orders = ORDER_SERVICE.getAll();
         List<Payment> payments = PAYMENT_SERVICE.getAll();
         List<Shipment> shipments = SHIPMENT_SERVICE.getAll();
-        List<Status> statuses = STATUS_SERVICE.getAll();
-//        List<Role> roles = ROLE.getAll();
 
         request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         request.setAttribute("brands", brands);
         request.setAttribute("vendors", vendors);
         request.setAttribute("discounts", discounts);
-//        request.setAttribute("images", images);
-//        request.setAttribute("users", users);
+        request.setAttribute("users", users);
         request.setAttribute("orders", orders);
         request.setAttribute("payments", payments);
         request.setAttribute("shipments", shipments);
-        request.setAttribute("statuses", statuses);
-//        request.setAttribute("roles", roles);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard.jsp");
+
+        String username = request.getParameter("userName");
+        boolean isLoggedIn = (username != null);
+        RequestDispatcher dispatcher;
+        if (isLoggedIn) {
+            dispatcher = request.getRequestDispatcher("/dashboard.jsp");
+        } else {
+            dispatcher = request.getRequestDispatcher("/login/login.jsp");
+        }
         dispatcher.forward(request, response);
     }
 
