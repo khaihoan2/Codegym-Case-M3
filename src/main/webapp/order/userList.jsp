@@ -160,10 +160,10 @@
                             <a class="btn btn-info btn-sm mr-2" href="/orderDetail?action=&orderId=${order.id}">
                                 Details
                             </a>
-                            <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&amp;id=1">
+                            <a class="btn btn-info btn-sm mr-2" href="/order?action=customerEdit&orderId=${order.id}">
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm " href="/orderDetail?action=delete&amp;id=1&amp;productId=3&amp;orderId=1">
+                            <a class="btn btn-danger btn-sm " href="/order?action=customerDelete&orderId=${order.id}">
                                 Delete
                             </a>
                         </td>
