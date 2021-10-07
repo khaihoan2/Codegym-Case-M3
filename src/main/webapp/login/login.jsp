@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Log in (v2)</title>
 
+    <link rel="stylesheet" href="/static/themify-icons/themify-icons.css">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,12 +27,12 @@
         <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="/user?action=login" method="post">
+            <form action="/users?action=login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="User name..." name="userName">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <i class="fa fa-user-o"></i>
+                            <i class="ti-user"></i>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,8 @@
 
 package com.codegym.controller.product;
 
-import com.codegym.model.Category;
 import com.codegym.model.Discount;
 import com.codegym.service.discount.DiscountService;
-import com.codegym.service.discount.IDiscountService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
