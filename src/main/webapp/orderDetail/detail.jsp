@@ -136,46 +136,48 @@
 
 <%--Content--%>
 <div class="container" style="margin-top: 58px; margin-bottom: 58px">
-    <c:forEach items="${orders}" var="order">
     <div class="card" style="border: 1px solid #ccc; border-radius: 4px;  margin-bottom: 40px">
         <div class="card-header">
             <h3 class="card-title" style="padding: 16px 10px">Order</h3>
         </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects">
-                    <thead>
+        <div class="card-body p-0">
+            <table class="table table-striped projects">
+                <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${orderItems}" var="orderItem">
                     <tr>
-                        <th>Crate At</th>
-                        <th>Shipment</th>
-                        <th>Payment</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr>
-                        <td>${order.createAt}</td>
-                        <td>${order.shipmentName}</td>
-                        <td>${order.paymentName}</td>
+                        <td>${orderItem.productName}</td>
+                        <td>${orderItem.productCategory}</td>
+                        <td>${orderItem.quantity}</td>
+                        <td>${orderItem.percentage}</td>
+                        <td>${orderItem.price}</td>
+                        <td>${orderItem.price * orderItem.quantity * (orderItem.percentage / 100)}</td>
                         <td class="project-actions text-right d-flex ">
-                            <a class="btn btn-info btn-sm mr-2" href="/orderDetail?action=&orderId=${order.id}">
-                                Details
-                            </a>
                             <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&amp;id=1">
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm " href="/orderDetail?action=delete&amp;id=1&amp;productId=3&amp;orderId=1">
+                            <a class="btn btn-danger btn-sm "
+                               href="/orderDetail?action=delete&amp;id=1&amp;productId=3&amp;orderId=1">
                                 Delete
                             </a>
                         </td>
                     </tr>
+                </c:forEach>
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
+        </div>
         <!-- /.card-body -->
     </div>
-    </c:forEach>
-
 </div>
 <%--Content--%>
 
@@ -226,7 +228,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                             <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>

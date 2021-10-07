@@ -50,7 +50,10 @@ public class OrderServlet extends HttpServlet {
                 showDelete(request, response);
                 break;
             case "userList":
-                showUserList(request, response);
+                showUserOrderList(request, response);
+                break;
+            case "customerEdit":
+                showCustomerEdit(request, response);
                 break;
             default:
                 showList(request, response);
@@ -59,14 +62,40 @@ public class OrderServlet extends HttpServlet {
 
     }
 
-    private void showUserList(HttpServletRequest request, HttpServletResponse response) {
+    private void showCustomerEdit(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/order/customerEdit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Order order = orderService.findById(id);
+        request.setAttribute("order", order);
+        List<Shipment> shipments = shipmentService.getAll();
+        request.setAttribute("shipments", shipments);
+        List<Payment> payments = paymentService.getAll();
+        request.setAttribute("payments", payments);
+        List<Status> statuses = statusService.getAll();
+        request.setAttribute("statuses", statuses);
         try {
-            response.sendRedirect("/order/userList.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
 
+    private void showUserOrderList(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        int userId = Integer.parseInt(session.getAttribute("userId").toString());
+        List<Order> orders = orderService.getOrdersByUserId(userId);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/order/userList.jsp");
+        request.setAttribute("orders", orders);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showEdit(HttpServletRequest request, HttpServletResponse response) {

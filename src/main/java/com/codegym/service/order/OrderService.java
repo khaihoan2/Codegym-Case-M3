@@ -45,5 +45,10 @@ public class OrderService implements IOrderService {
         return orderDao.getMaxId();
     }
 
+    @Override
+    public List<Order> getOrdersByUserId(int userId) {
+        return orderDao.getOrdersByUserId(userId);
+    }
+
 
 }

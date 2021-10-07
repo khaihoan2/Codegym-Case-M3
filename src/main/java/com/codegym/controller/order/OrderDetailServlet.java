@@ -1,5 +1,6 @@
 package com.codegym.controller.order;
 
+import com.codegym.model.OrderItem;
 import com.codegym.service.orderItem.IOrderItemService;
 import com.codegym.service.orderItem.OrderItemService;
 
@@ -7,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "OrderDetailServlet", value = "/orderDetail")
 public class OrderDetailServlet extends HttpServlet {
@@ -22,6 +24,23 @@ public class OrderDetailServlet extends HttpServlet {
             case "delete":
                 showDelete(request, response);
                 break;
+            default:
+                showList(request, response);
+                break;
+        }
+    }
+
+    private void showList(HttpServletRequest request, HttpServletResponse response) {
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        List<OrderItem> orderItems = orderItemService.getOrderItemById(orderId);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderDetail/detail.jsp");
+        request.setAttribute("orderItems", orderItems);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

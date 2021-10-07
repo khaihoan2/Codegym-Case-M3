@@ -9,4 +9,7 @@ public interface IOrderService extends IGeneralService<Order> {
     List<Order> findByName(String name);
 
     int getMaxId();
+
+    List<Order> getOrdersByUserId(int userId);
+
 }

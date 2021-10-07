@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface IOrderDao extends IGeneralDAO<Order> {
     List<Order> findByName(String name);
+
     int getMaxId();
+
+    List<Order> getOrdersByUserId(int userId);
 }
