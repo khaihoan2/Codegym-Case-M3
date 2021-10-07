@@ -194,7 +194,7 @@
                     <img src="./static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 
@@ -408,8 +408,8 @@
                                     <th>Product name</th>
                                     <th>Category</th>
                                     <th>Quantity</th>
-                                    <th>Discount</th>
                                     <th>Price</th>
+                                    <th>Discount</th>
                                     <th>Total money</th>
                                 </tr>
                                 </thead>
@@ -421,11 +421,8 @@
                                         <td>${orderItem.quantity}</td>
                                         <td>${orderItem.price}</td>
                                         <td>${orderItem.percentage}</td>
-                                        <td>${orderItem.price * orderItem.quantity * (orderItem.percentage / 100)}</td>
+                                        <td>${orderItem.price * orderItem.quantity - (orderItem.price * orderItem.quantity * (orderItem.percentage / 100))}</td>
                                         <td class="project-actions text-right d-flex ">
-                                            <a class="btn btn-info btn-sm mr-2" href="/order?action=edit&amp;id=1">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
                                             <a class="btn btn-danger btn-sm " href="/orderDetail?action=delete&id=${order.id}&productId=${orderItem.productId}&orderId=${order.id}">
                                                 <i class="fas fa-trash"></i>
                                             </a>

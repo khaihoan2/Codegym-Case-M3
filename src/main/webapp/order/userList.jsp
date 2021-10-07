@@ -62,7 +62,7 @@
                 </c:if>
                 <c:if test="${userId != null}">
                     <li><a href="#"><i class="fa fa-user-o"></i>${userName}</a></li>
-                    <li><a href="/users?action=logout">Log out  <i class="ti-direction"></i></a></li>
+                    <li><a href="/login?action=logout">Log out  <i class="ti-direction"></i></a></li>
                 </c:if>
             </ul>
         </div>
@@ -148,6 +148,7 @@
                         <th>Crate At</th>
                         <th>Shipment</th>
                         <th>Payment</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -156,6 +157,7 @@
                         <td>${order.createAt}</td>
                         <td>${order.shipmentName}</td>
                         <td>${order.paymentName}</td>
+                        <td>${order.statusName}</td>
                         <td class="project-actions text-right d-flex ">
                             <a class="btn btn-info btn-sm mr-2" href="/orderDetail?action=&orderId=${order.id}">
                                 Details

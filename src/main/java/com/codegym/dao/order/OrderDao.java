@@ -17,11 +17,11 @@ public class OrderDao implements IOrderDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select *\n" +
                     "from `order` o\n" +
-                    "left join user u on o.user_id = u.id\n" +
-                    "left join payment p on o.payment_id = p.id\n" +
-                    "left join shipment s on o.shipment_id = s.id\n" +
-                    "left join status s2 on o.status_id = s2.id\n" +
-                    "group by o.created_at");
+                    "inner join user u on o.user_id = u.id\n" +
+                    "inner join payment p on o.payment_id = p.id\n" +
+                    "inner join shipment s on o.shipment_id = s.id\n" +
+                    "inner join status s2 on o.status_id = s2.id\n" +
+                    "group by o.id");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("o.id");
