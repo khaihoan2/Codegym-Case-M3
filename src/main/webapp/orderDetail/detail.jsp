@@ -160,7 +160,7 @@
                         <td>${orderItem.quantity}</td>
                         <td>${orderItem.percentage}</td>
                         <td>${orderItem.price}</td>
-                        <td>${orderItem.price * orderItem.quantity * (orderItem.percentage / 100)}</td>
+                        <td>${orderItem.price * orderItem.quantity - (orderItem.price * orderItem.quantity * (orderItem.percentage / 100))}</td>
                     </tr>
                 </c:forEach>
 

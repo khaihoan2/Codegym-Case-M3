@@ -99,12 +99,7 @@
                                 <label>Payment</label>
                                 <select class="form-control" name="paymentId">
                                     <c:forEach items="${payments}" var="payment">
-                                        <c:if test="${payment.id == order.paymentId}">
-                                            <option value="${payment.id}" selected>${payment.name}</option>
-                                        </c:if>
-                                        <c:if test="${payment.id != order.paymentId}">
-                                            <option value="${payment.id}">${payment.name}</option>
-                                        </c:if>
+                                        <option value="${payment.id}">${payment.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -112,12 +107,7 @@
                                 <label>Shipment</label>
                                 <select class="form-control" name="shipmentId">
                                     <c:forEach items="${shipments}" var="shipment">
-                                        <c:if test="${shipment.id == order.shipmentId}">
-                                            <option value="${shipment.id}" selected>${shipment.name}</option>
-                                        </c:if>
-                                        <c:if test="${shipment.id != order.shipmentId}">
-                                            <option value="${shipment.id}">${shipment.name}</option>
-                                        </c:if>
+                                        <option value="${shipment.id}">${shipment.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

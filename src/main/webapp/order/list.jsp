@@ -66,7 +66,7 @@
                     <form class="form-inline">
                         <div class="input-group input-group-sm">
                             <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                   aria-label="Search">
+                                   aria-label="Search" name="q">
                             <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit">
                                     <i class="fas fa-search"></i>
@@ -194,7 +194,7 @@
                     <img src="./static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 

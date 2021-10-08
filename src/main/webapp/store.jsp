@@ -9,32 +9,30 @@
 
     <title>Electro - HTML Ecommerce Template</title>
 
-    <link rel="stylesheet" href="./static/themify-icons/themify-icons.css">
-
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="./static/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="./static/css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="./static/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="static/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="static/css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="./static/css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="./static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="./static/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="static/css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="static/js/respond.min.js"></script>
-    <script src="static/js/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -105,6 +103,7 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
+
                         <!-- Cart -->
                         <c:forEach items="${roles}" var="role">
                             <c:if test="${role.id == 2}">
@@ -403,7 +402,54 @@
                 </div>
                 <!-- /store top filter -->
 
-
+                <!-- store products -->
+                <div class="row">
+                    <c:forEach items="${products}" var="product">
+                        <!-- product -->
+                        <a href="/ecommerce?action=view&id=${product.id}">
+                            <div class="col-md-4 col-xs-6" style="cursor: pointer;">
+                                    <%--                             onclick="window.location='/ecommerce?action=view&id=${product.id}';">--%>
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="./static/img/product01.png" alt="">
+                                        <div class="product-label">
+                                            <span class="sale">-30%</span>
+                                            <span class="new">NEW</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">${product.category.name}</p>
+                                        <h3 class="product-name">${product.name}</h3>
+                                        <h4 class="product-price">${product.price - product.price * product.discount.percentage / 100}
+                                            <del class="product-old-price">$${product.price}</del>
+                                        </h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-btns">
+                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                    class="tooltipp">add to wishlist</span></button>
+                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                    class="tooltipp">add to compare</span></button>
+                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- /product -->
+                    </c:forEach>
+                </div>
+                <!-- /store products -->
 
                 <!-- store bottom filter -->
                 <div class="store-filter clearfix">
@@ -473,7 +519,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                             <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>

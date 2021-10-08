@@ -48,8 +48,21 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <c:forEach items="${roles}" var="role">
+                    <c:if test="${role.id == 1}">
+                        <li><a href="/dashboard"><i class="ti-user"></i>${role.name}</a></li>
+                    </c:if>
+                    <c:if test="${role.id == 2}">
+                        <li><a href="/users/detail"><i class="ti-info"></i>Information</a></li>
+                    </c:if>
+                </c:forEach>
+                <c:if test="${userId == null}">
+                    <li><a href="/login?action=login"><i class="fa fa-user-o"></i> My Account</a></li>
+                </c:if>
+                <c:if test="${userId != null}">
+                    <li><a href="#"><i class="fa fa-user-o"></i>${userName}</a></li>
+                    <li><a href="/login?action=logout">Log out  <i class="ti-direction"></i></a></li>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -90,57 +103,18 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <div>
-                            <a href="#">
-                                <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
-                            </a>
-                        </div>
-                        <!-- /Wishlist -->
 
                         <!-- Cart -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
-                                <div class="qty">3</div>
-                            </a>
-                            <div class="cart-dropdown">
-                                <div class="cart-list">
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./static/img/product01.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./static/img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
+                        <c:forEach items="${roles}" var="role">
+                            <c:if test="${role.id == 2}">
+                                <div class="cart">
+                                    <a href="/order?action=userList">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Your Cart</span>
+                                    </a>
                                 </div>
-                                <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                            </c:if>
+                        </c:forEach>
                         <!-- /Cart -->
 
                         <!-- Menu Toogle -->
@@ -297,17 +271,35 @@
                         </label>
                     </div>
 
-                    <div class="add-to-cart">
-                        <div class="qty-label">
-                            Qty
-                            <div class="input-number">
-                                <input type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
+                    <form action="/order?action=create&productId=${theProduct.id}" method="post">
+                        <div class="add-to-cart">
+                            <div class="qty-label">
+                                Qty
+                                <div class="input-number">
+                                    <input type="number" name="quantity">
+                                    <span class="qty-up">+</span>
+                                    <span class="qty-down">-</span>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label>Payment</label>
+                                <select class="form-control" name="paymentId">
+                                    <c:forEach items="${paymentsSession}" var="payment">
+                                        <option value="${payment.id}">${payment.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Shipment</label>
+                                <select class="form-control" name="shipmentId">
+                                    <c:forEach items="${shipmentsSession}" var="shipment">
+                                        <option value="${shipment.id}">${shipment.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
+                    </form>
 
                     <ul class="product-btns">
                         <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
