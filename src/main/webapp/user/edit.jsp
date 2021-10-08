@@ -11,15 +11,39 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post">
-    <input type="text"  name="username" placeholder="username">
-    <input type="text" name="password" placeholder="password">
-    <input type="text" name="firstname" placeholder="first_name">
-    <input type="text" name="lastname" placeholder="last_name">
-    <input type="text" name="address" placeholder="address">
-    <input type="text" name="telephone" placeholder="telephone">
-    <input type="text" name="email" placeholder="email">
-    <button>update</button>
-</form>
+<a href="/users"> Quay lại </a>
+<table>
+    <form method="post">
+        <tr>
+            <td><input type="text" name="username" value="${user.userName}"></td>
+        </tr>
+
+        <tr>
+            <td><input type="text" name="password" value="${user.password}"></td>
+        </tr>
+
+        <tr>
+            <td><input type=" text" name="firstname" value="${first_Name}"></td>
+        </tr>
+
+        <tr>
+            <td><input type="text" name="lastname" value="${user.lastName}"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="address" value="${user.address}"></td>
+        </tr>
+        <tr>
+            <td><input type="number" name="telephone" value="${user.telephone}"></td>
+        </tr>
+        <tr>
+            <td><input type="email" name="email" value="${user.email}"></td>
+            <th>
+                <button type="submit"> update</button>
+            </th>
+        </tr>
+
+    </form>
+</table>
+
 </body>
 </html>

@@ -26,7 +26,8 @@ public class UserDao implements IUserDao{
                 String telephone = resultSet.getString("telephone");
                 String email = resultSet.getString("email");
                 Date created_at=new Date(System.currentTimeMillis());
-                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at);
+                Date delete_at=resultSet.getDate("delete_at");
+                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at,delete_at);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -83,8 +84,9 @@ public class UserDao implements IUserDao{
     public boolean delete(int id) {
        boolean isDelete=false;
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from user where id = (?)");
-            statement.setInt(1,id);
+            PreparedStatement statement = connection.prepareStatement("update user set delete_at=? where id=?");
+            statement.setDate(1,new Date(System.currentTimeMillis()));
+            statement.setInt(2,id);
             isDelete= statement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,4 +135,32 @@ public class UserDao implements IUserDao{
         }
         return id;
     }
+
+    @Override
+    public List<User> findByName(String name) {
+        List<User> users=new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select  * from user where username like ?");
+            statement.setString(1,name);
+            ResultSet resultSet=statement.executeQuery();
+            while (resultSet.next()){
+                int id=resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String firstname = resultSet.getString("first_name");
+                String lastname = resultSet.getString("last_name");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String email = resultSet.getString("email");
+                Date created_at=resultSet.getDate("created_at");
+                Date delete_at=resultSet.getDate("delete_at");
+                User user= new User(id,username,password,firstname,lastname,address,telephone,email,created_at,delete_at);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
 }

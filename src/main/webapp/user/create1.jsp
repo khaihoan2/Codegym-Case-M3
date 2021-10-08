@@ -6,11 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
+
 <form action="/users?action=create" method="post">
     <table>
         <tr>
@@ -53,7 +55,8 @@
             </td>
         </tr>
         <tr>
-            <td> <button type="submit">Update</button> </td>
+            <td> <button type="submit">create</button></td>
+           <td><button><a type="" href="/users">return</a></button> </td>
         </tr>
     </table>
 </form>
