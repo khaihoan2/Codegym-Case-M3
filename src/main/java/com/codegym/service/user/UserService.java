@@ -40,4 +40,10 @@ public class UserService implements IUserService {
         return userDao.findIdByUser(user);
     }
 
+    @Override
+    public List<User> findByName(String name) {
+        name="%"+name+"%";
+      return userDao.findByName(name);
+    }
+
 }

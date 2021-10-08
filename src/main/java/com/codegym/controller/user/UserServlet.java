@@ -41,7 +41,10 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showFormUpdate(HttpServletRequest request, HttpServletResponse response) {
+        int id= Integer.parseInt(request.getParameter("id"));
+        User user = userService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        request.setAttribute("user",user);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -50,7 +53,13 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showUserList(HttpServletRequest request, HttpServletResponse response) {
-        List<User> users = userService.getAll();
+        String name = request.getParameter("name");
+        List<User> users;
+        if (name==null ||name.equals("")){
+            users=userService.getAll();
+        }else {
+            users=userService.findByName(name);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/user/list.jsp");
         request.setAttribute("users", users);
         try {
@@ -102,6 +111,8 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 deleteUser(request, response);
                 break;
+            default:
+                showUserList(request,response);
 
         }
 
@@ -125,15 +136,17 @@ public class UserServlet extends HttpServlet {
 
     private void update(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        String username = request.getParameter("username");
+        String username = request.getParameter("userName");
         String password = request.getParameter("password");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
+        String firstname = request.getParameter("firstName");
+        String lastname = request.getParameter("lastName");
         String address = request.getParameter("address");
         String telephone = request.getParameter("telephone");
         String email = request.getParameter("email");
         User user = new User(username, password, firstname, lastname, address, telephone, email);
         userService.update(id, user);
+        request.setAttribute("user",user);
+
         try {
             response.sendRedirect("users");
         } catch (IOException e) {

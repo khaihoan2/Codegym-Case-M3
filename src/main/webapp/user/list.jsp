@@ -12,6 +12,11 @@
     <title>Title</title>
 </head>
 <body>
+<form action="/users" method="get">
+    <input name="name" type="text" placeholder="search">
+    <button type="submit">Search</button>
+</form>
+<form>
     <table border="1px" bgcolor="#7fff00">
         <tr>
             <th>id</th>
@@ -38,8 +43,8 @@
                 <td>${user.createAt}</td>
                 <td>${user.deleteAt}</td>
                 <td>
-                    <a href="users?action=update&id=${user.id}">update</a>
-                    <a href="users?action=delete&id=${user.id}">delete</a>
+                   <button type="button"><a href="users?action=update&id=${user.id}">update</a> </button>
+                    <button type="button"><a href="users?action=delete&id=${user.id}">delete</a></button>
                 </td>
             </tr>
         </c:forEach>
