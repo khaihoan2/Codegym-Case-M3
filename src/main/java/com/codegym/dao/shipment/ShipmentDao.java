@@ -14,7 +14,7 @@ public class ShipmentDao implements IShipmentDao {
     public List<Shipment> getAll() {
         List<Shipment> shipments = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from shipment");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM shipment");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -32,7 +32,7 @@ public class ShipmentDao implements IShipmentDao {
     public boolean save(Shipment shipment) {
         boolean isShipment = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into shipment(name) value (?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO shipment(name) VALUE (?)");
             preparedStatement.setString(1, shipment.getName());
             isShipment = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class ShipmentDao implements IShipmentDao {
     public boolean update(int id, Shipment shipment) {
         boolean isUpdate = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update shipment set name = ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE shipment SET name = ? WHERE id = ?");
             preparedStatement.setString(1, shipment.getName());
             preparedStatement.setInt(2, id);
             isUpdate = preparedStatement.executeUpdate() > 0;
@@ -59,7 +59,7 @@ public class ShipmentDao implements IShipmentDao {
     public boolean delete(int id) {
         boolean isRemove = false;
         try {
-            CallableStatement callableStatement = connection.prepareCall("call delete_shipment_by_id(?)");
+            CallableStatement callableStatement = connection.prepareCall("CALL delete_shipment_by_id(?)");
             callableStatement.setInt(1, id);
             isRemove = callableStatement.execute();
         } catch (SQLException e) {
@@ -72,7 +72,7 @@ public class ShipmentDao implements IShipmentDao {
     public Shipment findById(int id) {
         Shipment shipment = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from shipment where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM shipment WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -89,7 +89,7 @@ public class ShipmentDao implements IShipmentDao {
     public List<Shipment> searchByName(String name) {
         List<Shipment> shipments = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from shipment where name like ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM shipment WHERE name LIKE ?");
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

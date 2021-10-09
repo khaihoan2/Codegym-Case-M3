@@ -86,7 +86,7 @@ public class UserServlet extends HttpServlet {
         List<User> users = userService.getAll();
         request.setAttribute("users", users);
         try {
-            response.sendRedirect("/user/create1.jsp");
+            response.sendRedirect("/user/create.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
