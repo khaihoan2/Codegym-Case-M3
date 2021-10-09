@@ -85,9 +85,10 @@ public class UserServlet extends HttpServlet {
     private void showUserCreate(HttpServletRequest request, HttpServletResponse response) {
         List<User> users = userService.getAll();
         request.setAttribute("users", users);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/create.jsp");
         try {
-            response.sendRedirect("/user/create.jsp");
-        } catch (IOException e) {
+            dispatcher.forward(request, response);
+        } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
     }
