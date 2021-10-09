@@ -31,7 +31,7 @@
 </head>
 
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
 <div class="wrapper">
 
     <!-- Preloader -->
@@ -180,7 +180,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/dashboard" class="brand-link">
+        <a href="/index" class="brand-link">
             <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Electro</span>
@@ -194,7 +194,7 @@
                     <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 
@@ -276,16 +276,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Images--%>
-                    <li class="nav-item">
-                        <a href="/images" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Images
-                                <span class="right badge badge-danger">${images.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                     <%--                    Users--%>
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
@@ -326,26 +316,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Statuses--%>
-                    <li class="nav-item">
-                        <a href="/status" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Statuses
-                                <span class="right badge badge-danger">${statuses.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Role--%>
-                    <li class="nav-item">
-                        <a href="/role" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Roles
-                                <span class="right badge badge-danger">${roles.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -375,31 +345,15 @@
         <!-- CHỈ CHỈNH SỬA PHẦN MAIN CONTENT NÀY THÔI NHÉ -->
         <!-- MẪU HTML CÓ THỂ LẤY TẠI " /static/pages/examples/..." -->
         <!-- Main content -->
-        <!-- div class="content" -->
 
-        <div>
-$hoan
-        </div>
+        $hoan$
 
-        <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->
         <!-- /.LÀM ƠN ĐỪNG SỬA CÁC PHẦN KHÁC -->
 
     </div>
     <!-- /.content-wrapper -->
-
-    <%--    <!-- Footer -->--%>
-    <%--    <div class="container">--%>
-    <%--        <footer class="main-footer">--%>
-    <%--            <div class="float-right d-none d-sm-block">--%>
-    <%--                <b>Version</b> 3.2.0-rc--%>
-    <%--            </div>--%>
-    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
-    <%--        </footer>--%>
-    <%--    </div>--%>
-
-    <!-- /.footer -->
 </div>
 
 
@@ -420,5 +374,3 @@ $hoan
 <script src="../static/dist/js/pages/dashboard3.js"></script>
 </body>
 </html>
-
-
