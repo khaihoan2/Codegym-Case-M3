@@ -139,14 +139,17 @@ public class OrderServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Order order = orderService.findById(id);
         List<OrderItem> orderItems = orderItemService.getOrderItemById(id);
+        double totalMoney = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalMoney += orderItem.getPrice() * (1 - (double) orderItem.getPercentage() / 100) * orderItem.getQuantity();
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/order/detail.jsp");
         request.setAttribute("order", order);
         request.setAttribute("orderItems", orderItems);
+        request.setAttribute("totalMoney", totalMoney);
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -163,9 +166,7 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("shipments", shipments);
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }

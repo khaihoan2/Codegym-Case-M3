@@ -417,17 +417,16 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card collapsed-card">
                             <div class="card-header">
                                 <h5 class="card-title">Monthly Recap Report</h5>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-plus"></i>
                                     </button>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-tool dropdown-toggle"
-                                                data-toggle="dropdown">
+                                        <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
                                             <i class="fas fa-wrench"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" role="menu">
@@ -444,7 +443,7 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body" style="display: none;">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <p class="text-center">
@@ -504,12 +503,11 @@
                                 <!-- /.row -->
                             </div>
                             <!-- ./card-body -->
-                            <div class="card-footer">
+                            <div class="card-footer" style="display: none;">
                                 <div class="row">
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-success"><i
-                                                    class="fas fa-caret-up"></i> 17%</span>
+                                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
                                             <h5 class="description-header">$35,210.43</h5>
                                             <span class="description-text">TOTAL REVENUE</span>
                                         </div>
@@ -518,8 +516,7 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-warning"><i
-                                                    class="fas fa-caret-left"></i> 0%</span>
+                                            <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
                                             <h5 class="description-header">$10,390.90</h5>
                                             <span class="description-text">TOTAL COST</span>
                                         </div>
@@ -528,8 +525,7 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-success"><i
-                                                    class="fas fa-caret-up"></i> 20%</span>
+                                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
                                             <h5 class="description-header">$24,813.53</h5>
                                             <span class="description-text">TOTAL PROFIT</span>
                                         </div>
@@ -538,8 +534,7 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block">
-                                            <span class="description-percentage text-danger"><i
-                                                    class="fas fa-caret-down"></i> 18%</span>
+                                            <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
                                             <h5 class="description-header">1200</h5>
                                             <span class="description-text">GOAL COMPLETIONS</span>
                                         </div>
@@ -550,10 +545,10 @@
                             </div>
                             <!-- /.card-footer -->
                         </div>
-                        <!-- /.card -->
                     </div>
-                    <!-- /.col -->
                 </div>
+
+
                 <!-- /.row -->
 
                 <!-- Main row -->
@@ -581,21 +576,35 @@
                                     <table class="table m-0">
                                         <thead>
                                         <tr>
-                                            <th>Order ID</th>
+                                            <th>#</th>
                                             <th>Customer</th>
                                             <th>Status</th>
-                                            <th>Total Money</th>
+                                            <th>Payment</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${latestOrders}" var="order">
+                                        <c:forEach items="${latestOrders}" var="latestOrder">
                                             <tr>
-                                                <td><a href="/order?action=view&id=${order.id}">${order.id}</a></td>
-                                                <td>${order.userId}</td>
-                                                <td><span class="badge badge-success">${order.statusId}</span></td>
+                                                <td><a href="/order?action=view&id=${order.id}">${latestOrder.id}</a>
+                                                </td>
+                                                <td>${latestOrder.userName}</td>
+                                                <td>
+                                                    <c:if test="${latestOrder.statusId==1}">
+                                                        <span class="badge badge-warning">${latestOrder.statusName}</span>
+                                                    </c:if>
+                                                    <c:if test="${latestOrder.statusId==2}">
+                                                        <span class="badge badge-info">${latestOrder.statusName}</span>
+                                                    </c:if>
+                                                    <c:if test="${latestOrder.statusId==3}">
+                                                        <span class="badge badge-primary">${latestOrder.statusName}</span>
+                                                    </c:if>
+                                                    <c:if test="${latestOrder.statusId==4}">
+                                                        <span class="badge badge-success">${latestOrder.statusName}</span>
+                                                    </c:if>
+                                                </td>
                                                 <td>
                                                     <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                        ...
+                                                            ${latestOrder.paymentName}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -607,9 +616,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All
-                                    Orders</a>
+                                <a href="/order" class="btn btn-sm btn-secondary float-right">View All Orders</a>
                             </div>
                             <!-- /.card-footer -->
                         </div>

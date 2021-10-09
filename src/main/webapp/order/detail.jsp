@@ -410,7 +410,7 @@
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Discount</th>
-                                    <th>Total money</th>
+                                    <th>Money</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -421,7 +421,7 @@
                                         <td>${orderItem.quantity}</td>
                                         <td>${orderItem.price}</td>
                                         <td>${orderItem.percentage}</td>
-                                        <td>${orderItem.price * orderItem.quantity - (orderItem.price * orderItem.quantity * (orderItem.percentage / 100))}</td>
+                                        <td>${orderItem.price * orderItem.quantity * (1- orderItem.percentage / 100)}</td>
                                         <td class="project-actions text-right d-flex ">
                                             <a class="btn btn-danger btn-sm " href="/orderDetail?action=delete&id=${order.id}&productId=${orderItem.productId}&orderId=${order.id}">
                                                 <i class="fas fa-trash"></i>
@@ -429,33 +429,26 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>${totalMoney}</strong></td>
+                                    <td></td>
+                                </tr>
                                 </tbody>
                             </table>
                             <a class="btn btn-primary my-3 mr-3 float-right" href="/order">Come back</a>
                         </div>
                         <!-- /.card-body -->
                     </div>
-                    <footer class="main-footer">
-                        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-                        All rights reserved.
-                        <div class="float-right d-none d-sm-inline-block">
-                            <b>Version</b> 3.2.0-rc
-                        </div>
-                    </footer>
                 </div>
             </div>
         </section>
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
 
 

@@ -54,9 +54,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login/signup.jsp");
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -65,9 +63,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login/login.jsp");
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -78,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         session.removeAttribute("userName");
         session.removeAttribute("roles");
         try {
-            response.sendRedirect("/index");
+            response.sendRedirect("/home");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,7 +123,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("paymentsSession", payments);
             session.setAttribute("shipmentsSession", shipments);
             for (Role role : roles) {
-                if (role.getName().equals("Admin")){
+                if (role.getName().equals("ADMINISTRATOR")){
                     try {
                         response.sendRedirect("/dashboard");
                         return;
@@ -137,7 +133,7 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             try {
-                response.sendRedirect("/index");
+                response.sendRedirect("/home");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -172,9 +168,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("message", message);
             try {
                 dispatcher.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         }

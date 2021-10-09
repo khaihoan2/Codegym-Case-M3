@@ -377,25 +377,62 @@
         <!-- Main content -->
         <!-- div class="content" -->
 
-        <a href="${pageContext.request.contextPath}/categories?action=create">Create new category</a>
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>View</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <c:forEach items="${categories}" var="category">
-                <tr>
-                    <td>${category.id}</td>
-                    <td>${category.name}</td>
-                    <td><a href="/categories?action=view&id=${category.id}">View</a></td>
-                    <td><a href="/categories?action=edit&id=${category.id}">Edit</a></td>
-                    <td><a href="/categories?action=delete&id=${category.id}">Delete</a></td>
-                </tr>
-            </c:forEach>
-        </table>
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Categories</h3>
+
+                    <a class="btn btn-success btn-sm float-right" href="/categories?action=create">
+                        <i class="fas fa-plus-square">
+                        </i>
+                        Create new
+                    </a>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped projects">
+                        <thead>
+                        <tr>
+                            <th style="width: 5%">#</th>
+                            <th style="width: 20%">Name</th>
+                            <th style="width: 25%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${categories}" var="categorie">
+                            <tr>
+                                <td>${categorie.id}</td>
+                                <td>${categorie.name}</td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/categories?action=view&id=${categorie.id}">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/categories?action=edit&id=${categorie.id}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/categories?action=delete&id=${categorie.id}">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
 
         <!-- /.div -->
         <!-- /.content -->
@@ -404,18 +441,6 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-    <%--    <!-- Footer -->--%>
-    <%--    <div class="container">--%>
-    <%--        <footer class="main-footer">--%>
-    <%--            <div class="float-right d-none d-sm-block">--%>
-    <%--                <b>Version</b> 3.2.0-rc--%>
-    <%--            </div>--%>
-    <%--            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.--%>
-    <%--        </footer>--%>
-    <%--    </div>--%>
-
-    <!-- /.footer -->
 </div>
 
 

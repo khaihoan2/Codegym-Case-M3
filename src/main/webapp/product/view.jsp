@@ -513,6 +513,7 @@
                     <!-- /.card -->
                 </div>
             </div>
+            <a href="/products" class="btn btn-secondary float-right" style="margin: 5px">Back</a>
         </section>
         <!-- /.content -->
 

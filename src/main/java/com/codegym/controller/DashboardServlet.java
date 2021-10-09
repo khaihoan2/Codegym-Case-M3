@@ -9,6 +9,8 @@ import com.codegym.service.discount.DiscountService;
 import com.codegym.service.discount.IDiscountService;
 import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
+import com.codegym.service.orderItem.IOrderItemService;
+import com.codegym.service.orderItem.OrderItemService;
 import com.codegym.service.payment.IPaymentService;
 import com.codegym.service.payment.PaymentService;
 import com.codegym.service.product.IProductService;
@@ -24,8 +26,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "DashboardServlet", value = "/dashboard")
 public class DashboardServlet extends HttpServlet {
@@ -39,6 +43,7 @@ public class DashboardServlet extends HttpServlet {
     private static final IOrderService ORDER_SERVICE = new OrderService();
     private static final IPaymentService PAYMENT_SERVICE = new PaymentService();
     private static final IShipmentService SHIPMENT_SERVICE = new ShipmentService();
+    private static final IOrderItemService ORDER_ITEM_SERVICE = new OrderItemService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,7 +66,7 @@ public class DashboardServlet extends HttpServlet {
 
         List<Order> orders = ORDER_SERVICE.getAll();
         List<Order> latestOrders = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             latestOrders.add(orders.get(i));
         }
 
@@ -83,13 +88,18 @@ public class DashboardServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        RequestDispatcher dispatcher;
         if (session.isNew()) {
-            dispatcher = request.getRequestDispatcher("/login/login.jsp");
+            response.sendRedirect("/login?action=login");
         } else {
-            dispatcher = request.getRequestDispatcher("/dashboard.jsp");
+            RequestDispatcher dispatcher;
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            if (parameterMap.isEmpty()) {
+                dispatcher = request.getRequestDispatcher("/dashboard.jsp");
+            } else {
+                dispatcher = request.getRequestDispatcher("/error-404.jsp");
+            }
+            dispatcher.forward(request, response);
         }
-        dispatcher.forward(request, response);
     }
 
     @Override

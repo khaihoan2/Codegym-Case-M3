@@ -5,8 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "IndexServlet", value = "/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet(name = "HomeServlet", value = "/home")
+public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -15,18 +15,16 @@ public class IndexServlet extends HttpServlet {
         }
         switch (action) {
             default:
-                showIndex(request, response);
+                showHomePage(request, response);
                 break;
         }
     }
 
-    private void showIndex(HttpServletRequest request, HttpServletResponse response) {
+    private void showHomePage(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
