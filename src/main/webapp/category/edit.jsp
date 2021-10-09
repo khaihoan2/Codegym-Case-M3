@@ -31,12 +31,13 @@
 </head>
 
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
 <div class="wrapper">
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
-        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60"
+        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+             width="60"
              style="display: none;">
     </div>
 
@@ -180,8 +181,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/dashboard" class="brand-link">
-            <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <a href="/index" class="brand-link">
+            <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Electro</span>
         </a>
@@ -194,7 +196,7 @@
                     <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 
@@ -276,16 +278,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Images--%>
-                    <li class="nav-item">
-                        <a href="/images" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Images
-                                <span class="right badge badge-danger">${images.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                     <%--                    Users--%>
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
@@ -326,26 +318,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Statuses--%>
-                    <li class="nav-item">
-                        <a href="/status" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Statuses
-                                <span class="right badge badge-danger">${statuses.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Role--%>
-                    <li class="nav-item">
-                        <a href="/role" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Roles
-                                <span class="right badge badge-danger">${roles.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -375,25 +347,45 @@
         <!-- CHỈ CHỈNH SỬA PHẦN MAIN CONTENT NÀY THÔI NHÉ -->
         <!-- MẪU HTML CÓ THỂ LẤY TẠI " /static/pages/examples/..." -->
         <!-- Main content -->
-        <!-- div class="content" -->
 
+        <!-- Main content -->
+        <section class="content">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Category's details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="inputName">Category Name</label>
+                                    <input type="text" id="inputName" class="form-control" value="${category.name}"
+                                           name="name">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="/categories" class="btn btn-secondary float-right" style="margin: 5px">Cancel</a> &ensp;
+                        <input type="submit" value="Save Changes" class="btn btn-success float-right"
+                               style="margin: 5px">
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- /.content -->
 
-        <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->
         <!-- /.LÀM ƠN ĐỪNG SỬA CÁC PHẦN KHÁC -->
 
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Footer -->
-    <footer class="main-footer position-fixed">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0-rc
-        </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
-    <!-- /.footer -->
 </div>
 
 

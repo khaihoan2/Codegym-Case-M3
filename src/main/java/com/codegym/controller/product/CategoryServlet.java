@@ -144,11 +144,9 @@ public class CategoryServlet extends HttpServlet {
         String message = (isSaved)? "Successful!" : "Failed!";
         request.setAttribute("message", message);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/category/create.jsp");
-
         try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect("/categories");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -158,6 +156,11 @@ public class CategoryServlet extends HttpServlet {
         String name = request.getParameter("name");
         Category category = new Category(name);
         CATEGORY_SERVICE.update(id, category);
+        try {
+            response.sendRedirect("/categories");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) {

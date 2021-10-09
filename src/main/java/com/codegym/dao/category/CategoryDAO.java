@@ -48,7 +48,7 @@ public class CategoryDAO implements ICategoryDAO{
         try {
             PreparedStatement statement = CONNECTION.prepareStatement("UPDATE category SET name=? WHERE id=?");
             statement.setString(1, category.getName());
-            statement.setInt(1, id);
+            statement.setInt(2, id);
             isUpdated = statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

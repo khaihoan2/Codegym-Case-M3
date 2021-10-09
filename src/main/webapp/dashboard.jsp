@@ -426,7 +426,8 @@
                                         <i class="fas fa-plus"></i>
                                     </button>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                        <button type="button" class="btn btn-tool dropdown-toggle"
+                                                data-toggle="dropdown">
                                             <i class="fas fa-wrench"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" role="menu">
@@ -507,7 +508,8 @@
                                 <div class="row">
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                                            <span class="description-percentage text-success"><i
+                                                    class="fas fa-caret-up"></i> 17%</span>
                                             <h5 class="description-header">$35,210.43</h5>
                                             <span class="description-text">TOTAL REVENUE</span>
                                         </div>
@@ -516,7 +518,8 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                                            <span class="description-percentage text-warning"><i
+                                                    class="fas fa-caret-left"></i> 0%</span>
                                             <h5 class="description-header">$10,390.90</h5>
                                             <span class="description-text">TOTAL COST</span>
                                         </div>
@@ -525,7 +528,8 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
-                                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                                            <span class="description-percentage text-success"><i
+                                                    class="fas fa-caret-up"></i> 20%</span>
                                             <h5 class="description-header">$24,813.53</h5>
                                             <span class="description-text">TOTAL PROFIT</span>
                                         </div>
@@ -534,7 +538,8 @@
                                     <!-- /.col -->
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block">
-                                            <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                                            <span class="description-percentage text-danger"><i
+                                                    class="fas fa-caret-down"></i> 18%</span>
                                             <h5 class="description-header">1200</h5>
                                             <span class="description-text">GOAL COMPLETIONS</span>
                                         </div>
@@ -585,7 +590,7 @@
                                         <tbody>
                                         <c:forEach items="${latestOrders}" var="latestOrder">
                                             <tr>
-                                                <td><a href="/order?action=view&id=${order.id}">${latestOrder.id}</a>
+                                                <td><a href="/order?action=view&id=${latestOrder.id}">${latestOrder.id}</a>
                                                 </td>
                                                 <td>${latestOrder.userName}</td>
                                                 <td>
