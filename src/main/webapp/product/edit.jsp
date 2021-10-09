@@ -31,7 +31,7 @@
 </head>
 
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
 <div class="wrapper">
 
     <!-- Preloader -->
@@ -181,7 +181,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/dashboard" class="brand-link">
+        <a href="/index" class="brand-link">
             <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
@@ -196,7 +196,7 @@
                     <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 
@@ -278,16 +278,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Images--%>
-                    <li class="nav-item">
-                        <a href="/images" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Images
-                                <span class="right badge badge-danger">${images.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                     <%--                    Users--%>
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
@@ -328,26 +318,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Statuses--%>
-                    <li class="nav-item">
-                        <a href="/status" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Statuses
-                                <span class="right badge badge-danger">${statuses.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Role--%>
-                    <li class="nav-item">
-                        <a href="/role" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Roles
-                                <span class="right badge badge-danger">${roles.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -362,12 +332,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit product</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Edit product</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -377,7 +347,6 @@
         <!-- CHỈ CHỈNH SỬA PHẦN MAIN CONTENT NÀY THÔI NHÉ -->
         <!-- MẪU HTML CÓ THỂ LẤY TẠI " /static/pages/examples/..." -->
         <!-- Main content -->
-        <!-- div class="content" -->
 
         <!-- Main content -->
         <section class="content">
@@ -403,7 +372,8 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="inputName">Product Price</label>
-                                            <input type="text" id="inputPrice" class="form-control" value="${product.price}"
+                                            <input type="text" id="inputPrice" class="form-control"
+                                                   value="${product.price}"
                                                    name="price">
                                         </div>
                                     </div>
@@ -430,7 +400,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="inputCategory">Category</label>
-                                            <select name="categoryId" id="inputCategory" class="form-control custom-select">
+                                            <select name="categoryId" id="inputCategory"
+                                                    class="form-control custom-select">
                                                 <option disabled>Select one</option>
                                                 <c:forEach items="${categories}" var="category">
                                                     <option value="${category.id}">${category.name}</option>
@@ -454,7 +425,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="inputDiscount">Discount</label>
-                                            <select name="discountId" id="inputDiscount" class="form-control custom-select">
+                                            <select name="discountId" id="inputDiscount"
+                                                    class="form-control custom-select">
                                                 <option disabled>Select one</option>
                                                 <c:forEach items="${discounts}" var="discount">
                                                     <option value="${discount.id}">${discount.percentage}</option>
@@ -541,14 +513,14 @@
                 <div class="row">
                     <div class="col-12">
                         <a href="/products" class="btn btn-secondary float-right" style="margin: 5px">Cancel</a> &ensp;
-                        <input type="submit" value="Save Changes" class="btn btn-success float-right" style="margin: 5px">
+                        <input type="submit" value="Save Changes" class="btn btn-success float-right"
+                               style="margin: 5px">
                     </div>
                 </div>
             </form>
         </section>
         <!-- /.content -->
 
-        <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->
         <!-- /.LÀM ƠN ĐỪNG SỬA CÁC PHẦN KHÁC -->
@@ -556,6 +528,7 @@
     </div>
     <!-- /.content-wrapper -->
 </div>
+
 
 <!-- REQUIRED SCRIPTS -->
 

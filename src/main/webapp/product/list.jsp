@@ -28,20 +28,15 @@
     <link rel="stylesheet" href="../static/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../static/plugins/summernote/summernote-bs4.min.css">
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../static/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="../static/plugins/toastr/toastr.min.css">
 </head>
 
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
 <div class="wrapper">
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
-        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-             width="60"
+        <img class="animation__shake" src="../static/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60"
              style="display: none;">
     </div>
 
@@ -185,9 +180,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/dashboard" class="brand-link">
-            <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                 class="brand-image img-circle elevation-3"
+        <a href="/index" class="brand-link">
+            <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Electro</span>
         </a>
@@ -200,7 +194,7 @@
                     <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Chính Thành Hoàn Vũ</a>
+                    <a href="#" class="d-block">${userName}</a>
                 </div>
             </div>
 
@@ -282,16 +276,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Images--%>
-                    <li class="nav-item">
-                        <a href="/images" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Images
-                                <span class="right badge badge-danger">${images.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                     <%--                    Users--%>
                     <li class="nav-item">
                         <a href="/users" class="nav-link">
@@ -332,26 +316,6 @@
                             </p>
                         </a>
                     </li>
-                    <%--                    Statuses--%>
-                    <li class="nav-item">
-                        <a href="/status" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Statuses
-                                <span class="right badge badge-danger">${statuses.size()}</span>
-                            </p>
-                        </a>
-                    </li>
-                    <%--                    Role--%>
-                    <li class="nav-item">
-                        <a href="/role" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Roles
-                                <span class="right badge badge-danger">${roles.size()}</span>
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -366,12 +330,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>All products</h1>
+                        <h1>Write the page's name here!</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">All products</li>
+                            <li class="breadcrumb-item active">Write the page's name here!</li>
                         </ol>
                     </div>
                 </div>
@@ -381,7 +345,6 @@
         <!-- CHỈ CHỈNH SỬA PHẦN MAIN CONTENT NÀY THÔI NHÉ -->
         <!-- MẪU HTML CÓ THỂ LẤY TẠI " /static/pages/examples/..." -->
         <!-- Main content -->
-        <!-- div class="content" -->
 
         <!-- Main content -->
         <section class="content">
@@ -422,7 +385,7 @@
                                 <td>${product.category.name}</td>
                                 <td>${product.brand.name}</td>
                                 <td>${product.vendor.name}</td>
-                                <td>${product.discount.percentage}</td>
+                                <td>${product.discount.percentage}%</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="/products?action=view&id=${product.id}">
                                         <i class="fas fa-folder">
@@ -452,7 +415,6 @@
         </section>
         <!-- /.content -->
 
-        <!-- /.div -->
         <!-- /.content -->
         <!-- /.DỪNG Ở ĐÂY ĐƯỢC RỒI, ĐỪNG SỬA CÁC PHẦN KHÁC -->
         <!-- /.LÀM ƠN ĐỪNG SỬA CÁC PHẦN KHÁC -->
@@ -470,10 +432,7 @@
 <script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
 <script src="../static/dist/js/adminlte.js"></script>
-<!-- SweetAlert2 -->
-<script src="../static/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="../static/plugins/toastr/toastr.min.js"></script>
+
 <!-- OPTIONAL SCRIPTS -->
 <script src="../static/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
