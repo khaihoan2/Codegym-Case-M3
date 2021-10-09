@@ -63,4 +63,16 @@ public class ProductService implements IProductService{
         product.setDiscount(DISCOUNT_DAO.findById(product.getDiscountId()));
         return product;
     }
+
+    @Override
+    public List<Product> findByName(String keyword) {
+        List<Product> products = PRODUCT_DAO.findByName("%" + keyword + "%");
+        for (Product product : products) {
+            product.setBrand(BRAND_DAO.findById(product.getBrandId()));
+            product.setCategory(CATEGORY_DAO.findById(product.getCategoryId()));
+            product.setVendor(VENDOR_DAO.findById(product.getVendorId()));
+            product.setDiscount(DISCOUNT_DAO.findById(product.getDiscountId()));
+        }
+        return products;
+    }
 }

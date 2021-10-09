@@ -26,6 +26,7 @@ public class ProductDAO implements IProductDAO {
     public static final String SQL_FIND_BY_ID = "SELECT * FROM product WHERE id = ?";
     public static final String SQL_INSERT = "INSERT INTO product (name, description, price, SKU, brand_id, category_id, vendor_id, discount_id, created_at) " +
             "VALUES (?,?,?,?,?,?,?,?,(SELECT CURDATE()))";
+    public static final String SQL_FIND_BY_NAME = "SELECT * FROM product WHERE name LIKE ?";
 
     @Override
     public List<Product> getAll() {
@@ -134,5 +135,34 @@ public class ProductDAO implements IProductDAO {
             e.printStackTrace();
         }
         return product;
+    }
+
+    @Override
+    public List<Product> findByName(String keyword) {
+        List<Product> products = new ArrayList<>();
+        try {
+            PreparedStatement statement = CONNECTION.prepareStatement(SQL_FIND_BY_NAME);
+            statement.setString(1, keyword);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                double price = Double.parseDouble(resultSet.getString("price"));
+                String SKU = resultSet.getString("SKU");
+                int brandId = resultSet.getInt("brand_id");
+                int categoryId = resultSet.getInt("category_id");
+                int vendorId = resultSet.getInt("vendor_id");
+                int discountId = resultSet.getInt("discount_id");
+                LocalDate createAt = LocalDate.parse(resultSet.getString("created_at"));
+                LocalDate lastModifiedAt = LocalDate.parse(resultSet.getString("created_at"));
+                LocalDate deletedAt = LocalDate.parse(resultSet.getString("created_at"));
+                Product product = new Product(id, name, description, price, SKU, brandId, categoryId, vendorId, discountId, createAt, lastModifiedAt, deletedAt);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 }

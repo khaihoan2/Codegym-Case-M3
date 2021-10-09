@@ -147,12 +147,18 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void listAllProduct(HttpServletRequest request, HttpServletResponse response) {
-        List<Product> products = PRODUCT_SERVICE.getAll();
+        String keyword = request.getParameter("q");
+        List<Product> products;
+        if (keyword == null || keyword.equals("")) {
+            products = PRODUCT_SERVICE.getAll();
+        } else {
+            products = PRODUCT_SERVICE.findByName(keyword);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/list.jsp");
         request.setAttribute("products", products);
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
+        } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
     }
